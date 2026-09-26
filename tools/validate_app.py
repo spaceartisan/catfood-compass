@@ -47,3 +47,15 @@ assert '.search-stick{position:sticky' in css
 assert 'scroll-snap-type:x proximity' in css
 assert 'bottom:calc(7px + var(--safe-bottom))' in css
 print('PASS: v0.2.7 mobile Store Mode layout repairs are wired')
+
+# Theme contrast / dismiss-control regression checks (v0.2.8)
+assert 'v0.2.8 — theme contrast and dismiss-control hardening' in css
+assert css.count('.close-btn') >= 1, 'close button styling missing'
+assert 'stroke:currentColor' in css, 'SVG close icon does not follow themed foreground'
+assert 'id="clearSearchBtn"' in html, 'app-owned search clear button missing'
+assert '::-webkit-search-cancel-button' in css, 'native search clear suppression missing'
+assert js.count('clearSearchBtn') >= 3, 'search clear behavior missing'
+assert html.count('class="icon-btn close-btn"') >= 2, 'dialog close buttons not hardened'
+assert 'class="icon-btn close-btn" data-close-detail' in js, 'detail close button not hardened'
+assert '.sheet-head h2,' in css and '.theme-option strong,' in css, 'dialog/theme label foreground hardening missing'
+print('PASS: v0.2.8 dialog, theme-label, and X/clear contrast hardening is wired')

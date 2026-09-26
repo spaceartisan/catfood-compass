@@ -1,4 +1,4 @@
-# CatFood Compass v0.2.7
+# CatFood Compass v0.2.8
 
 A mobile-friendly, static cat-food shopping app designed for GitHub Pages. **There is one canonical build only; all included source records live in this app.** It compares foods primarily by **protein, fat, and carbohydrate as percent of metabolizable calories**, **phosphorus in mg/100 kcal**, and **calorie density/package calories when the source provides them**.
 
@@ -24,6 +24,7 @@ Source anomalies are preserved and flagged rather than silently corrected. Examp
 - Six persistent visual themes: **Catnip**, **Midnight**, **Ocean**, **Berry**, **Sunset**, and **Lavender**. Theme selection is stored locally and applies before first paint to avoid flashing the default palette.
 - Sharper visual language with tighter corner radii, flatter cards, crisper nutrient tiles, and less pill-shaped chrome while preserving touch-friendly controls.
 - Mobile layout repair: Store Mode is applied before first paint, only the search row remains sticky, quick filters scroll cleanly, the result/sort row stays within the viewport, and bottom-nav safe spacing is improved.
+- Theme contrast hardening: dialog surfaces, headings, theme labels, form controls, close buttons, and clear controls now receive explicit foreground/background colors. All dismiss/clear “X” controls use a currentColor SVG rather than an inherited text glyph, and search has its own visible clear button.
 - Show source dates on FDSG rows when the source provides them.
 - Show phosphorus plus additional magnesium/calcium/sodium in details when available.
 - Favorite foods locally and compare up to four side-by-side.

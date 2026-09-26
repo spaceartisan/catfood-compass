@@ -186,3 +186,136 @@ html.store-mode-preload .hero{display:none}
   .food-card{scroll-margin-top:calc(64px + 58px)}
   body.store-mode .food-card{scroll-margin-top:calc(56px + 58px)}
 }
+
+/* v0.2.8 — theme contrast and dismiss-control hardening */
+/* Native controls and top-layer dialogs do not reliably inherit the same
+   foreground color on every mobile browser. Make the semantic surfaces
+   explicit so theme text never lands on a same-colored background. */
+body,
+.sheet-dialog,
+.detail-dialog,
+.sheet,
+.detail-card,
+.theme-option,
+.searchbox,
+.search-suggestion,
+.secondary-btn,
+.card-actions button,
+.load-more,
+.star-btn,
+.form-grid input,
+.form-grid select,
+.sort-label select{
+  color:var(--ink);
+}
+
+.sheet,
+.detail-card{
+  background:var(--panel);
+  color:var(--ink);
+}
+.sheet-head h2,
+.detail-head h2,
+.theme-option strong,
+.form-panel h3,
+.panel h3{
+  color:var(--ink);
+}
+.sheet .subtle,
+.detail-card .subtle,
+.theme-option small,
+.form-grid label,
+.theme-picker legend{
+  color:var(--muted);
+}
+
+/* Explicit high-contrast close/clear control. SVG strokes follow currentColor,
+   avoiding platform-specific rendering of the old Unicode X glyph. */
+.close-btn{
+  --close-bg:color-mix(in srgb,var(--panel) 88%,var(--ink) 12%);
+  --close-border:color-mix(in srgb,var(--line-strong) 72%,var(--ink) 28%);
+  --close-fg:var(--ink);
+  appearance:none;
+  -webkit-appearance:none;
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 auto;
+  width:42px;
+  height:42px;
+  padding:0;
+  border:1px solid var(--close-border);
+  border-radius:7px;
+  background:var(--close-bg);
+  color:var(--close-fg);
+  opacity:1;
+}
+.close-btn svg{
+  width:19px;
+  height:19px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.35;
+  stroke-linecap:round;
+}
+.close-btn:hover{
+  background:var(--brand-2);
+  border-color:var(--brand-line);
+  color:var(--brand);
+}
+.close-btn:active{transform:translateY(1px)}
+.close-btn:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--brand) 68%,transparent);
+  outline-offset:2px;
+}
+
+/* Search uses an app-owned clear button. Hide the browser-specific clear X so
+   there cannot be two clear buttons or an invisible native glyph. */
+.searchbox input[type="search"]::-webkit-search-cancel-button{
+  -webkit-appearance:none;
+  appearance:none;
+  display:none;
+}
+.search-clear{
+  width:32px;
+  height:32px;
+  border-radius:6px;
+  margin-left:2px;
+  background:transparent;
+  border-color:transparent;
+}
+.search-clear svg{width:17px;height:17px}
+.search-clear:hover{
+  background:var(--brand-2);
+  border-color:var(--brand-line);
+}
+
+/* Form controls get explicit themed surfaces and placeholder contrast. */
+input,select,textarea{color:var(--ink)}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.88}
+.form-grid input,.form-grid select,.sort-label select{
+  background:var(--panel);
+  border-color:var(--line);
+}
+
+/* Selected theme text should remain legible even when the preview palette is
+   dramatically different from the active app theme. */
+.theme-option{background:var(--panel)}
+.theme-option:has(input:checked){
+  background:color-mix(in srgb,var(--brand-2) 46%,var(--panel));
+}
+
+/* Dark theme gets a slightly stronger close-control surface so the X remains
+   obvious against both dialog and app backgrounds. */
+html[data-theme="midnight"] .close-btn{
+  --close-bg:#202b27;
+  --close-border:#4b5f56;
+  --close-fg:#f4faf7;
+}
+html[data-theme="midnight"] .search-clear{background:transparent;border-color:transparent}
+html[data-theme="midnight"] .search-clear:hover{background:var(--brand-2);border-color:var(--brand-line)}
+
+@media(max-width:620px){
+  .close-btn{width:44px;height:44px}
+  .search-clear{width:34px;height:34px}
+}

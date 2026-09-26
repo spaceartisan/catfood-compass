@@ -275,7 +275,7 @@
       ['Sodium',rangeFmt(f,'sodium_mg_per_100kcal',' mg/100 kcal')]
     ].filter(([,v])=>v!=='—');
     const alias=aliasFor(f);
-    $('#detailContent').innerHTML=`<div class="detail-card"><div class="detail-head"><div><div class="brand-name">${esc(f.brand)}</div><h2>${esc(f.product)}</h2>${f.line?`<div class="line-name">${esc(f.line)}</div>`:''}${f.style?`<div class="style-name">${esc(f.style)}</div>`:''}${alias?.current_name?`<div class="shelf-name detail-shelf">Current shelf name: ${esc(alias.current_name)}</div>`:''}</div><button class="icon-btn" data-close-detail>✕</button></div>
+    $('#detailContent').innerHTML=`<div class="detail-card"><div class="detail-head"><div><div class="brand-name">${esc(f.brand)}</div><h2>${esc(f.product)}</h2>${f.line?`<div class="line-name">${esc(f.line)}</div>`:''}${f.style?`<div class="style-name">${esc(f.style)}</div>`:''}${alias?.current_name?`<div class="shelf-name detail-shelf">Current shelf name: ${esc(alias.current_name)}</div>`:''}</div><button class="icon-btn close-btn" data-close-detail aria-label="Close details" title="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
       <div class="badge-row">${badges(f)}</div>
       <div class="detail-grid"><div class="detail-value"><span>Protein</span><strong>${rangeFmt(f,'protein_cal_pct','% calories')}</strong></div><div class="detail-value"><span>Fat</span><strong>${rangeFmt(f,'fat_cal_pct','% calories')}</strong></div><div class="detail-value"><span>Carbohydrate</span><strong>${rangeFmt(f,'carb_cal_pct','% calories')}</strong></div><div class="detail-value"><span>Phosphorus</span><strong>${rangeFmt(f,'phosphorus_mg_per_100kcal',' mg/100 kcal')}</strong></div><div class="detail-value"><span>Calories</span><strong>${esc(calorieText(f))}</strong></div><div class="detail-value"><span>Carb target</span><strong>≤ ${fmt(state.settings.carbTarget)}%</strong></div>${extraMinerals.map(([k,v])=>`<div class="detail-value"><span>${k}</span><strong>${esc(v)}</strong></div>`).join('')}</div>
       <div class="detail-notes">${sourceNotes(f)}</div>
@@ -302,10 +302,11 @@
       const rm=e.target.closest('[data-remove-compare]');if(rm){state.compare=state.compare.filter(x=>x!==rm.dataset.removeCompare);persist();renderCompare();renderBrowse();}
       if(e.target.closest('[data-close-detail]'))$('#detailDialog').close();
       const del=e.target.closest('[data-delete-custom]');if(del){state.custom=state.custom.filter(x=>x.id!==del.dataset.deleteCustom);persist();populateBrands();renderCustom();renderBrowse();toast('Deleted');}
-      const sug=e.target.closest('[data-search-suggestion]');if(sug){state.query=sug.dataset.searchSuggestion;$('#searchInput').value=state.query;state.visible=48;$('#searchSuggestions').classList.add('hidden');renderBrowse();$('#searchInput').focus();}
+      const sug=e.target.closest('[data-search-suggestion]');if(sug){state.query=sug.dataset.searchSuggestion;$('#searchInput').value=state.query;$('#clearSearchBtn')?.classList.toggle('hidden',!state.query);state.visible=48;$('#searchSuggestions').classList.add('hidden');renderBrowse();$('#searchInput').focus();}
       if(e.target.closest('[data-clear-food-filters]')){state.quick={carb:false,complete:false,favorites:false,wet:false,seafood:false};state.filters={brand:'',carbMax:null,proteinMin:null,phosMax:null,fatMax:null,source:'',form:'',texture:'',hideRx:false,excludeSeafood:false,completeOnly:false};$$('.chip[data-quick]').forEach(b=>b.classList.toggle('active',!!state.quick[b.dataset.quick]));syncDialogs();renderBrowse();}
     });
-    $('#searchInput').addEventListener('input',e=>{state.query=e.target.value;state.visible=48;renderBrowse();renderSuggestions();});
+    $('#searchInput').addEventListener('input',e=>{state.query=e.target.value;$('#clearSearchBtn')?.classList.toggle('hidden',!state.query);state.visible=48;renderBrowse();renderSuggestions();});
+    $('#clearSearchBtn').addEventListener('click',()=>{state.query='';$('#searchInput').value='';$('#clearSearchBtn').classList.add('hidden');$('#searchSuggestions').classList.add('hidden');state.visible=48;renderBrowse();$('#searchInput').focus();});
     $('#searchInput').addEventListener('focus',renderSuggestions);
     $('#searchInput').addEventListener('blur',()=>setTimeout(()=>{$('#searchSuggestions')?.classList.add('hidden');},140));
     $('#searchInput').addEventListener('keydown',e=>{if(e.key==='Escape'){$('#searchSuggestions')?.classList.add('hidden');e.currentTarget.blur();}});
@@ -326,5 +327,5 @@
     $('#exportCustomBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state.custom,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='catfood-compass-my-foods.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
   }
   function registerSW(){if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./service-worker.js').catch(()=>{});}
-  populateBrands();syncDialogs();initEvents();applyTheme();applyStoreMode();renderBrowse();renderCompare();renderCustom();registerSW();
+  populateBrands();syncDialogs();initEvents();applyTheme();applyStoreMode();$('#clearSearchBtn')?.classList.toggle('hidden',!state.query);renderBrowse();renderCompare();renderCustom();registerSW();
 })();

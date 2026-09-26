@@ -38,10 +38,13 @@
 
       <div class="search-stick">
         <div class="search-row">
-          <label class="searchbox">
+          <div class="searchbox">
             <span aria-hidden="true">⌕</span>
             <input id="searchInput" type="search" autocomplete="off" placeholder="Search brand + line + recipe…" aria-label="Search foods across brand, line, recipe, and texture" />
-          </label>
+            <button id="clearSearchBtn" class="close-btn search-clear hidden" type="button" aria-label="Clear search" title="Clear search">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+          </div>
           <button id="filterBtn" class="secondary-btn" type="button">Filters <span id="filterCount" class="count-badge hidden">0</span></button>
         </div>
         <div id="searchSuggestions" class="search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
@@ -173,7 +176,9 @@
 
   <dialog id="filterDialog" class="sheet-dialog">
     <form method="dialog" class="sheet">
-      <div class="sheet-head"><div><p class="eyebrow">Narrow the list</p><h2>Filters</h2></div><button class="icon-btn" value="cancel" aria-label="Close">✕</button></div>
+      <div class="sheet-head"><div><p class="eyebrow">Narrow the list</p><h2>Filters</h2></div><button class="icon-btn close-btn" value="cancel" aria-label="Close" title="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button></div>
       <div class="form-grid">
         <label>Brand<select id="brandFilter"><option value="">All brands</option></select></label>
         <label>Max carbs (% calories)<input id="carbMaxFilter" type="number" min="0" max="100" step="1" /></label>
@@ -193,7 +198,9 @@
 
   <dialog id="settingsDialog" class="sheet-dialog">
     <form method="dialog" class="sheet">
-      <div class="sheet-head"><div><p class="eyebrow">Personalize</p><h2>Settings</h2></div><button class="icon-btn" value="cancel" aria-label="Close">✕</button></div>
+      <div class="sheet-head"><div><p class="eyebrow">Personalize</p><h2>Settings</h2></div><button class="icon-btn close-btn" value="cancel" aria-label="Close" title="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button></div>
       <p class="subtle">These are shopping filters, not medical pass/fail rules. The seed chart's default carbohydrate target is 10% of calories.</p>
       <div class="form-grid">
         <label>Carb target (% calories)<input id="settingCarbTarget" type="number" min="0" max="100" step="1" /></label>
