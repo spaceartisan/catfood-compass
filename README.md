@@ -1,4 +1,4 @@
-# CatFood Compass v0.2.8
+# CatFood Compass v0.2.9
 
 A mobile-friendly, static cat-food shopping app designed for GitHub Pages. **There is one canonical build only; all included source records live in this app.** It compares foods primarily by **protein, fat, and carbohydrate as percent of metabolizable calories**, **phosphorus in mg/100 kcal**, and **calorie density/package calories when the source provides them**.
 
@@ -11,6 +11,21 @@ The app currently contains **2,024 records** from three supplied reference sets:
 - **25 FDSG dry / air-dried / steam-dried records** from *Dry Food List - Compiled for FDSG*. This source is mainly a carbohydrate list, so missing protein, fat, phosphorus, and calorie data remain blank.
 
 Source anomalies are preserved and flagged rather than silently corrected. Examples include negative calculated carbohydrate values and macro totals that do not add to approximately 100% in the supplied wet-food sheet.
+
+
+## Dedicated Tiki Cat reconciliation database
+
+`data/tiki_cat.json` / `data/tiki_cat.js` is an **additive** Tiki Cat-specific database. `data/tiki_cat_reconciliation.csv` is a human-reviewable reconciliation table. It does not modify or replace any Pierson or FDSG nutrition record. Instead, it stores the current Tiki Pets wet-food catalog separately and links historical/source observations to current manufacturer catalog entries when the identity can be reconciled conservatively.
+
+Current snapshot (verified 2026-09-26):
+
+- **161 current Tiki wet-food/catalog entries** across After Dark, Baby, Born Carnivore, Friends, Gelée, Grill, Luau, Mega Packs, Silver, Solutions, and Velvet Mousse.
+- **120 existing Tiki source observations** remain in the original 2,024-record source database.
+- **95 verified current-name/legacy-name links** are used by the app for current-name search and shelf-name display.
+- **25 unresolved source records** remain deliberately unresolved rather than being forced onto a current SKU.
+- Only verified links are exposed to the app as current-name aliases; unresolved rows keep their source names only.
+
+This allows, for example, an old `Aloha Friends` source row to remain exactly as sourced while current `Friends` terminology can also be found in search. The nutrition values continue to come from the original source row; current manufacturer naming does not overwrite source nutrition.
 
 ## What it does
 

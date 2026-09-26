@@ -1,0 +1,4158 @@
+{
+  "meta": {
+    "database": "Tiki Cat reconciliation database",
+    "schema_version": "1.0",
+    "verified_on": "2026-09-26",
+    "scope": "Tiki Cat wet-food current catalog plus non-destructive links to existing CatFood Compass source records",
+    "source_of_current_catalog": "Tiki Pets official website",
+    "current_catalog_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/",
+    "preservation_rule": "Existing Pierson/FDSG records remain immutable source observations. This database links to them; it does not overwrite them.",
+    "current_product_count": 161,
+    "source_record_count": 120,
+    "reconciliation_counts": {
+      "verified_legacy_match": 11,
+      "unresolved": 25,
+      "verified_name_match": 84
+    },
+    "current_line_counts": {
+      "After Dark": 29,
+      "Baby": 20,
+      "Born Carnivore": 23,
+      "Friends": 21,
+      "Gelée": 2,
+      "Grill": 13,
+      "Luau": 16,
+      "Mega Packs": 7,
+      "Silver": 14,
+      "Solutions": 8,
+      "Velvet Mousse": 8
+    },
+    "notes": [
+      "Current manufacturer catalog names are stored separately from historical/source names.",
+      "A missing current match means unresolved, not discontinued, unless separately verified.",
+      "FDSG wet source restrictions remain attached to the original records."
+    ]
+  },
+  "sources": {
+    "catalog": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/",
+    "after_dark": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+    "friends": "https://tikipets.com/cat/friends/",
+    "grill": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+    "gelee": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/lean-gelee/",
+    "luau": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+    "mega_packs": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/mega-packs/",
+    "silver": "https://tikipets.com/cat/silver/",
+    "solutions": "https://tikipets.com/cat/solutions/",
+    "velvet_mousse": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+    "baby": "https://tikipets.com/cat/baby/",
+    "born_carnivore": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/"
+  },
+  "current_products": [
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Shreds",
+      "current_name": "Shreds Chicken, Quail & Chicken Liver Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-after-dark-shreds-shreds-chicken-quail-and-chicken-liver-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Shreds",
+      "current_name": "Shreds Turkey & Turkey Liver Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-after-dark-shreds-shreds-turkey-and-turkey-liver-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Shreds",
+      "current_name": "Shreds With Rabbit & Chicken Liver in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-after-dark-shreds-shreds-with-rabbit-and-chicken-liver-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Shreds",
+      "current_name": "Shreds With Venison & Beef Liver Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-after-dark-shreds-shreds-with-venison-and-beef-liver-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Soft Pâté",
+      "current_name": "Pâté Lamb & Beef Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Soft Pate · Lamb & Beef Liver · Pate"
+      ],
+      "id": "tiki-after-dark-soft-pate-pate-lamb-and-beef-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Soft Pâté",
+      "current_name": "Pâté Duck & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Duck & Chicken Liver · Pate",
+        "After Dark Soft Pate · Duck & Chicken Liver · Pate"
+      ],
+      "id": "tiki-after-dark-soft-pate-pate-duck-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Soft Pâté",
+      "current_name": "Pâté Venison & Beef Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Venison & Beef Liver · Pate",
+        "After Dark Soft Pate · Venison & Beef Liver · Pate"
+      ],
+      "id": "tiki-after-dark-soft-pate-pate-venison-and-beef-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Soft Pâté",
+      "current_name": "Pâté Rabbit & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Rabbit & Chicken Liver · Pate",
+        "After Dark Soft Pate · Rabbit & Chicken Liver · Pate"
+      ],
+      "id": "tiki-after-dark-soft-pate-pate-rabbit-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Soft Pâté",
+      "current_name": "Pâté Chicken, Chicken Liver & Quail Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Soft Pate · Chicken, Chicken Liver & Quail · Pate"
+      ],
+      "id": "tiki-after-dark-soft-pate-pate-chicken-chicken-liver-and-quail-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Soft Pâté",
+      "current_name": "Pâté Turkey & Turkey Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Soft Pate · Turkey & Turkey Giblets · Pate"
+      ],
+      "id": "tiki-after-dark-soft-pate-pate-turkey-and-turkey-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Soft Pâté",
+      "current_name": "Pâté Beef & Beef Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Beef & Beef Liver · Pate",
+        "After Dark · Beef & Beef Liver · Soft Pate",
+        "After Dark Soft Pate · Beef & Beef Liver · Pate"
+      ],
+      "id": "tiki-after-dark-soft-pate-pate-beef-and-beef-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Pâté+",
+      "current_name": "Pâté Chicken & Quail Egg Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Pate+ · Chicken & Quail Egg in Chicken Broth · Pate"
+      ],
+      "id": "tiki-after-dark-pate-pate-chicken-and-quail-egg-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Pâté+",
+      "current_name": "Pâté Chicken Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Pate+ · Chicken in Chicken Broth · Pate"
+      ],
+      "id": "tiki-after-dark-pate-pate-chicken-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Pâté+",
+      "current_name": "Pâté Chicken & Beef Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Pate+ · Chicken & Beef in Chicken Broth · Pate"
+      ],
+      "id": "tiki-after-dark-pate-pate-chicken-and-beef-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Pâté+",
+      "current_name": "Pâté Chicken & Duck Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Pate+ · Chicken & Duck in Chicken Broth · Pate"
+      ],
+      "id": "tiki-after-dark-pate-pate-chicken-and-duck-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Chicken in Broth, 2.8 oz/ 5.5 oz. · Shreds"
+      ],
+      "id": "tiki-after-dark-whole-foods-whole-foods-chicken-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken & Beef Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Chicken & Beef in Broth, 2.8 oz/ 5.5 oz. · Shreds"
+      ],
+      "id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-beef-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken & Duck Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Chicken & Duck in Broth, 2.8 oz/ 5.5 oz. · Shreds"
+      ],
+      "id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-duck-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken & Lamb Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Chicken & Lamb in Broth, 2.8 oz/ 5.5 oz. · Shreds"
+      ],
+      "id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-lamb-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken & Pork Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Chicken & Pork in Broth, 2.8 oz/ 5.5 oz. · Shreds"
+      ],
+      "id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-pork-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken & Quail Egg Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark · Chicken & Quail Egg in Broth, 2.8 oz/ 5.5 oz. · Shreds"
+      ],
+      "id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-quail-egg-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Velvet Mousse",
+      "current_name": "Velvet Mousse Chicken Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Velvet Mousse · Chicken in Chicken Broth · Mousse"
+      ],
+      "id": "tiki-after-dark-velvet-mousse-velvet-mousse-chicken-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Velvet Mousse",
+      "current_name": "Velvet Mousse Chicken & Beef Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Velvet Mousse · Chicken & Beef in Chicken Broth · Mousse"
+      ],
+      "id": "tiki-after-dark-velvet-mousse-velvet-mousse-chicken-and-beef-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Velvet Mousse",
+      "current_name": "Velvet Mousse Chicken & Duck Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Velvet Mousse · Chicken & Duck in Chicken Broth · Mousse"
+      ],
+      "id": "tiki-after-dark-velvet-mousse-velvet-mousse-chicken-and-duck-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Velvet Mousse",
+      "current_name": "Velvet Mousse Chicken & Quail Egg Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "After Dark Velvet Mousse · Chicken & Quail Egg in Chicken Broth · Mousse"
+      ],
+      "id": "tiki-after-dark-velvet-mousse-velvet-mousse-chicken-and-quail-egg-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Shreds",
+      "current_name": "Shreds Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-after-dark-shreds-shreds-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Velvet Mousse",
+      "current_name": "Velvet Mousse Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-after-dark-velvet-mousse-velvet-mousse-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Pâté",
+      "current_name": "Pâté Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-after-dark-pate-pate-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "family": "Mixed",
+      "current_name": "After Dark Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/after-dark/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-after-dark-mixed-after-dark-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Minced",
+      "current_name": "Tuna & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-minced-tuna-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Minced",
+      "current_name": "Tuna, Ocean Whitefish & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Aloha Friends · Tuna, Ocean Whitefish & Pumpkin in Broth, 3 oz/ 5.5 oz · Bits"
+      ],
+      "id": "tiki-friends-minced-tuna-ocean-whitefish-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Minced",
+      "current_name": "Tuna, Shrimp & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Aloha Friends · Tuna, Shrimp & Pumpkin Recipe in Broth, 3 oz/5.5 oz · Bits"
+      ],
+      "id": "tiki-friends-minced-tuna-shrimp-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Minced",
+      "current_name": "Tuna, Tilapia & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Aloha Friends · Tuna, Tilapia & Pumpkin in Broth, 3 oz/5.5 oz · Bits"
+      ],
+      "id": "tiki-friends-minced-tuna-tilapia-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Minced",
+      "current_name": "Chicken & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-minced-chicken-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Minced",
+      "current_name": "Chicken, Pumpkin & Duck Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-minced-chicken-pumpkin-and-duck-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Minced",
+      "current_name": "Chicken, Pumpkin & Lamb Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-minced-chicken-pumpkin-and-lamb-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Minced",
+      "current_name": "Chicken, Pumpkin & Tuna Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-minced-chicken-pumpkin-and-tuna-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Mousse",
+      "current_name": "Tuna & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Aloha Friends · Tuna & Pumpkin in Broth, 3 oz/ 5.5 oz · Bits"
+      ],
+      "id": "tiki-friends-mousse-tuna-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Mousse",
+      "current_name": "Tuna, Pumpkin & Ocean Whitefish Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-mousse-tuna-pumpkin-and-ocean-whitefish-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Mousse",
+      "current_name": "Tuna, Pumpkin & Shrimp Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-mousse-tuna-pumpkin-and-shrimp-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Mousse",
+      "current_name": "Tuna, Pumpkin & Tilapia Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-mousse-tuna-pumpkin-and-tilapia-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Mousse",
+      "current_name": "Chicken & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Aloha Friends · Chicken & Pumpkin in Broth · Bits"
+      ],
+      "id": "tiki-friends-mousse-chicken-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Mousse",
+      "current_name": "Chicken, Pumpkin & Duck Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Aloha Friends · Chicken, Pumpkin & Duck in Broth · Bits"
+      ],
+      "id": "tiki-friends-mousse-chicken-pumpkin-and-duck-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Mousse",
+      "current_name": "Chicken, Pumpkin & Lamb Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Aloha Friends · Chicken, Pumpkin & Lamb in Broth · Bits"
+      ],
+      "id": "tiki-friends-mousse-chicken-pumpkin-and-lamb-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Mousse",
+      "current_name": "Chicken, Pumpkin & Tuna Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-mousse-chicken-pumpkin-and-tuna-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Variety Pack",
+      "current_name": "Minced: Tuna Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-variety-pack-minced-tuna-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Variety Pack",
+      "current_name": "Minced: Chicken Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-variety-pack-minced-chicken-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Variety Pack",
+      "current_name": "Mousse: Tuna Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-variety-pack-mousse-tuna-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Variety Pack",
+      "current_name": "Mousse: Chicken Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-variety-pack-mousse-chicken-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Friends",
+      "family": "Variety Pack",
+      "current_name": "Minced: Tuna Mega Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/cat/friends/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-friends-variety-pack-minced-tuna-mega-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Pâté",
+      "current_name": "Mackerel & Sardines Pate",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grill · Mackerel & Sardines in Broth · Pate/ Finely Minced"
+      ],
+      "id": "tiki-grill-pate-mackerel-and-sardines-pate"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Pâté",
+      "current_name": "Sardines Pate",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grill · Sardines in Sardine Broth · Pate/ Finely Minced"
+      ],
+      "id": "tiki-grill-pate-sardines-pate"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Pâté",
+      "current_name": "Tuna & Crab Surimi Pate",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grill · Tuna & Crab Surimi in Tuna Broth · Pate/ Finely Minced"
+      ],
+      "id": "tiki-grill-pate-tuna-and-crab-surimi-pate"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Pâté",
+      "current_name": "Sardines & Lobster Consomme Pate",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grill · Sardines & Lobster Consomme in Broth · Pate/ Finely Minced"
+      ],
+      "id": "tiki-grill-pate-sardines-and-lobster-consomme-pate"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Pâté",
+      "current_name": "Tuna & Prawn Pate",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grill · Tuna & Prawn in Tuna Broth · Pate/ Finely Minced"
+      ],
+      "id": "tiki-grill-pate-tuna-and-prawn-pate"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Pâté",
+      "current_name": "Tuna & Crab Pate",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grill · Tuna & Crab in Tuna Broth · Pate/ Finely Minced"
+      ],
+      "id": "tiki-grill-pate-tuna-and-crab-pate"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Whole Foods",
+      "current_name": "Hawaiian Grill Ahi Tuna",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grill · Ahi Tuna · Bits"
+      ],
+      "id": "tiki-grill-whole-foods-hawaiian-grill-ahi-tuna"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Whole Foods",
+      "current_name": "Hana Grill Ahi Tuna & Crab in Broth in Tuna Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Fish/Seafood · Hana Luau",
+        "Grill · Ahi Tuna & Crab in Broth · Bits"
+      ],
+      "id": "tiki-grill-whole-foods-hana-grill-ahi-tuna-and-crab-in-broth-in-tuna-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Whole Foods",
+      "current_name": "Manana Grill Ahi Tuna & Prawns in Broth in Tuna Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Fish/Seafood · Manana Grill",
+        "Grill · Ahi Tuna & Prawns in Broth · Bits"
+      ],
+      "id": "tiki-grill-whole-foods-manana-grill-ahi-tuna-and-prawns-in-broth-in-tuna-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Whole Foods",
+      "current_name": "Makaha Grill Mackerel & Sardines in Calamari Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grill · Mackerel & Sardine in Calamari Consommé · Bits"
+      ],
+      "id": "tiki-grill-whole-foods-makaha-grill-mackerel-and-sardines-in-calamari-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Whole Foods",
+      "current_name": "Tahitian Grill Sardine Cutlets in Sardine Consomme",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Fish/Seafood · Tahitian Grill",
+        "Grill · Sardine Cutlets in Sardine Consummé · Bits"
+      ],
+      "id": "tiki-grill-whole-foods-tahitian-grill-sardine-cutlets-in-sardine-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Whole Foods",
+      "current_name": "Bora Bora Grill Sardine Cutlets in Lobster Consomme in Lobster Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Fish/Seafood · Bora Bora Luau",
+        "Grill · Sardine Curlets in Lobster Consummé · Bits"
+      ],
+      "id": "tiki-grill-whole-foods-bora-bora-grill-sardine-cutlets-in-lobster-consomme-in-lobster-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "family": "Whole Foods",
+      "current_name": "Lanai Grill Tuna & Crab Surimi in Crab Surimi Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/grill/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Fish/Seafood · Makaha Luau",
+        "Grill · Tuna & Crab Surimi in Broth · Bits"
+      ],
+      "id": "tiki-grill-whole-foods-lanai-grill-tuna-and-crab-surimi-in-crab-surimi-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Gelée",
+      "family": "Gelée",
+      "current_name": "Gelée Stix Chicken Recipe in Gelée",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/lean-gelee/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-gelee-gelee-gelee-stix-chicken-recipe-in-gelee"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Gelée",
+      "family": "Gelée",
+      "current_name": "Gelée Tuna & Crab Recipe in Gelée",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/lean-gelee/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-gelee-gelee-gelee-tuna-and-crab-recipe-in-gelee"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Whole Foods",
+      "current_name": "Hookena Luau Ahi Tuna & Chicken Chicken in Chicken Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Chicken/Fish · Hookena Luau",
+        "Luau · Ahi Tuna & Chicken · Shreds and Bits"
+      ],
+      "id": "tiki-luau-whole-foods-hookena-luau-ahi-tuna-and-chicken-chicken-in-chicken-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Whole Foods",
+      "current_name": "Papeekeo Luau Ahi Tuna & Mackerel in Tuna Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Fish/Seafood · Papeekeo Luau",
+        "Luau · Ahi Tuna & Mackerel · Shreds and Bits"
+      ],
+      "id": "tiki-luau-whole-foods-papeekeo-luau-ahi-tuna-and-mackerel-in-tuna-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Whole Foods",
+      "current_name": "Koolina Luau Chicken & Egg in Chicken Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Chicken (no fish) · Koolina Luau",
+        "Luau · Chicken & Egg · Shreds and Bits"
+      ],
+      "id": "tiki-luau-whole-foods-koolina-luau-chicken-and-egg-in-chicken-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Whole Foods",
+      "current_name": "Oahu Luau Seabass in Seabass Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau · Seabass · Shreds and Bits"
+      ],
+      "id": "tiki-luau-whole-foods-oahu-luau-seabass-in-seabass-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Whole Foods",
+      "current_name": "Puka Puka Luau Succulent Chicken in Chicken Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Chicken (no fish) · Puka Puka Luau",
+        "Luau · Succulent Chicken · Shreds and Bits"
+      ],
+      "id": "tiki-luau-whole-foods-puka-puka-luau-succulent-chicken-in-chicken-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Whole Foods",
+      "current_name": "Kapi'Olani Luau Tilapia in Tilapia Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau · Tilapia · Shreds and Bits"
+      ],
+      "id": "tiki-luau-whole-foods-kapi-olani-luau-tilapia-in-tilapia-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Whole Foods",
+      "current_name": "Hanalei Luau Wild Salmon in Salmon Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Fish/Seafood · Hanalei Luau",
+        "Luau · Wild Salmon · Shreds and Bits"
+      ],
+      "id": "tiki-luau-whole-foods-hanalei-luau-wild-salmon-in-salmon-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Whole Foods",
+      "current_name": "Napili Luau Wild Salmon & Chicken in Chicken Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Chicken/Fish · Napili Luau",
+        "Luau · Wild Salmon & Chicken · Shreds and Bits"
+      ],
+      "id": "tiki-luau-whole-foods-napili-luau-wild-salmon-and-chicken-in-chicken-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Pâté",
+      "current_name": "Pate Tuna & Chicken Pate Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Pate · Tuna & Chicken in Tuna Broth · Pate/Fine ly Minced"
+      ],
+      "id": "tiki-luau-pate-pate-tuna-and-chicken-pate-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Pâté",
+      "current_name": "Pate Tuna & Mackerel Pate in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Pate · Tuna & Mackerel in Tuna Broth · Pate/Fine ly Minced"
+      ],
+      "id": "tiki-luau-pate-pate-tuna-and-mackerel-pate-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Pâté",
+      "current_name": "Pate Chicken & Egg Pate in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Pate · Chicken & Egg in Chicken Broth · Pate/Fine ly Minced"
+      ],
+      "id": "tiki-luau-pate-pate-chicken-and-egg-pate-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Pâté",
+      "current_name": "Pate Seabass Pate in Seabass Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Pate · Seabass in Seabass Broth · Pate/Fine ly Minced"
+      ],
+      "id": "tiki-luau-pate-pate-seabass-pate-in-seabass-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Pâté",
+      "current_name": "Pate Succulent Chicken Pate in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Pate · Succulent Chicken in Chicken Broth · Pate/Fine ly Minced"
+      ],
+      "id": "tiki-luau-pate-pate-succulent-chicken-pate-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Pâté",
+      "current_name": "Pate Tilapia Pate in Tilapia Consommé",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Pate · Tilapia in Tilapia Broth · Pate/Fine ly Minced"
+      ],
+      "id": "tiki-luau-pate-pate-tilapia-pate-in-tilapia-consomme"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Pâté",
+      "current_name": "Pate Wild Salmon Pate in Salmon Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Pate · Wild Salmon in Salmon Broth · Pate/Fine ly Minced"
+      ],
+      "id": "tiki-luau-pate-pate-wild-salmon-pate-in-salmon-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "family": "Pâté",
+      "current_name": "Pate Wild Salmon & Chicken Pate in Salmon Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/luau/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Pate · Wild Salmon & Chicken in Salmon Broth · Pate/Fine ly Minced"
+      ],
+      "id": "tiki-luau-pate-pate-wild-salmon-and-chicken-pate-in-salmon-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Velvet Mousse",
+      "family": "Mousse",
+      "current_name": "Velvet Mousse Hairball Control: Chicken & Tuna Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-velvet-mousse-mousse-velvet-mousse-hairball-control-chicken-and-tuna-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Velvet Mousse",
+      "family": "Mousse",
+      "current_name": "Velvet Mousse Chicken in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Velvet · Chicken in Broth · Mousse"
+      ],
+      "id": "tiki-velvet-mousse-mousse-velvet-mousse-chicken-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Velvet Mousse",
+      "family": "Mousse",
+      "current_name": "Velvet Mousse Chicken & Salmon in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Velvet · Chicken & Salmon in Broth · Mousse"
+      ],
+      "id": "tiki-velvet-mousse-mousse-velvet-mousse-chicken-and-salmon-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Velvet Mousse",
+      "family": "Mousse",
+      "current_name": "Velvet Mousse Chicken & Egg in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Velvet · Chicken & Egg in Broth · Mousse"
+      ],
+      "id": "tiki-velvet-mousse-mousse-velvet-mousse-chicken-and-egg-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Velvet Mousse",
+      "family": "Mousse",
+      "current_name": "Velvet Mousse Tuna & Chicken in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Velvet · Tuna & Chicken in Broth · Mousse"
+      ],
+      "id": "tiki-velvet-mousse-mousse-velvet-mousse-tuna-and-chicken-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Velvet Mousse",
+      "family": "Mousse",
+      "current_name": "Velvet Mousse Tuna & Mackerel in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Velvet · Tuna & Mackerel in Broth · Mousse"
+      ],
+      "id": "tiki-velvet-mousse-mousse-velvet-mousse-tuna-and-mackerel-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Velvet Mousse",
+      "family": "Mousse",
+      "current_name": "Velvet Mousse Salmon in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Luau Velvet · Salmon in Broth · Mousse"
+      ],
+      "id": "tiki-velvet-mousse-mousse-velvet-mousse-salmon-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Velvet Mousse",
+      "family": "Variety Pack",
+      "current_name": "Velvet Mousse Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/mousse-cat/velvet-mousse/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-velvet-mousse-variety-pack-velvet-mousse-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Pâté",
+      "current_name": "Pâté Chicken & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-pate-pate-chicken-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Pâté",
+      "current_name": "Pâté Chicken, Duck & Duck Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-pate-pate-chicken-duck-and-duck-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Pâté",
+      "current_name": "Pâté Chicken, Salmon & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-pate-pate-chicken-salmon-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Pâté",
+      "current_name": "Pâté Chicken, Tuna & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-pate-pate-chicken-tuna-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Mousse",
+      "current_name": "Mousse Salmon & Chicken in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Velvet, Kitten · Salmon & Chicken in Broth · Mousse"
+      ],
+      "id": "tiki-baby-mousse-mousse-salmon-and-chicken-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Mousse",
+      "current_name": "Mousse Chicken & Chicken Liver in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Velvet, Kitten · Chicken & Chicken Liver in Broth · Mousse"
+      ],
+      "id": "tiki-baby-mousse-mousse-chicken-and-chicken-liver-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Mousse",
+      "current_name": "Mousse Chicken, Tuna & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-mousse-mousse-chicken-tuna-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Mousse & Shreds",
+      "current_name": "Mousse & Shreds Chicken, Duck & Duck Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-mousse-and-shreds-mousse-and-shreds-chicken-duck-and-duck-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Mousse & Shreds",
+      "current_name": "Mousse & Shreds Chicken, Salmon & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-mousse-and-shreds-mousse-and-shreds-chicken-salmon-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Mousse & Shreds",
+      "current_name": "Mousse & Shreds Chicken, Tuna & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-mousse-and-shreds-mousse-and-shreds-chicken-tuna-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken & Egg Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Baby · Chicken & Egg · Bits"
+      ],
+      "id": "tiki-baby-whole-foods-whole-foods-chicken-and-egg-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken, Duck & Duck Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-whole-foods-whole-foods-chicken-duck-and-duck-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken & Salmon Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Baby · Chicken & Salmon · Bits"
+      ],
+      "id": "tiki-baby-whole-foods-whole-foods-chicken-and-salmon-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods Chicken, Tuna, & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-whole-foods-whole-foods-chicken-tuna-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Variety Pack",
+      "current_name": "Pâté Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-variety-pack-pate-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Variety Pack",
+      "current_name": "Whole Foods Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-variety-pack-whole-foods-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Variety Pack",
+      "current_name": "Favorites Mega Pack Whole Foods For Kittens",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-variety-pack-favorites-mega-pack-whole-foods-for-kittens"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Purée",
+      "current_name": "Weaning Purée: Chicken & Chicken Liver Recipe in Broth",
+      "role": "transitional_food",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-puree-weaning-puree-chicken-and-chicken-liver-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Liquid",
+      "current_name": "Milk Replacer With Goat's Milk",
+      "role": "milk_replacer",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-liquid-milk-replacer-with-goat-s-milk"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "family": "Supplement",
+      "current_name": "Thrive: Chicken & Chicken Liver Recipe Supplement",
+      "role": "supplement",
+      "manufacturer_category_url": "https://tikipets.com/cat/baby/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-baby-supplement-thrive-chicken-and-chicken-liver-recipe-supplement"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Comfort Purée",
+      "current_name": "Purée with Chicken, Chicken Liver & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-silver-comfort-puree-puree-with-chicken-chicken-liver-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Supplement",
+      "current_name": "Supplement with Chicken & Chicken Liver Recipe",
+      "role": "supplement",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-silver-supplement-supplement-with-chicken-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Mousse",
+      "current_name": "Mousse with Salmon & Pumpkin in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Silver, 11+ · Salmon & Pumpkin in Broth · Mousse",
+        "Velvet, Senior · Salmon & Pumpkin in Broth · Mousse"
+      ],
+      "id": "tiki-silver-mousse-mousse-with-salmon-and-pumpkin-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Mousse",
+      "current_name": "Mousse with Chicken, Duck & Duck Liver in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-silver-mousse-mousse-with-chicken-duck-and-duck-liver-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Mousse",
+      "current_name": "Mousse with Chicken & Pumpkin in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Silver, 11+ · Chicken & Pumpkin in Broth · Mousse",
+        "Velvet, Senior · Chicken & Pumpkin in Broth · Mousse"
+      ],
+      "id": "tiki-silver-mousse-mousse-with-chicken-and-pumpkin-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Mousse",
+      "current_name": "Mousse with Tuna, Mackerel & Pumpkin in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-silver-mousse-mousse-with-tuna-mackerel-and-pumpkin-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Mousse & Shreds",
+      "current_name": "Mousse & Shreds Chicken, Salmon & Chicken Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Baby · Chicken, Salmon & Chicken Liver · Mousse & Shreds",
+        "Silver, 11+ · Chicken, Salmon & Chicken Liver in Chicken Broth · Shreds in Mousse"
+      ],
+      "id": "tiki-silver-mousse-and-shreds-mousse-and-shreds-chicken-salmon-and-chicken-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Mousse & Shreds",
+      "current_name": "Mousse & Shreds with Chicken, Duck & Duck Liver Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Silver, 11+ · Chicken, Duck & Duck Liver in Broth · Shreds in Mousse"
+      ],
+      "id": "tiki-silver-mousse-and-shreds-mousse-and-shreds-with-chicken-duck-and-duck-liver-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Pâté",
+      "current_name": "Pâté: Chicken Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-silver-pate-pate-chicken-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Pâté",
+      "current_name": "Pâté: Chicken, Duck & Duck Liver Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-silver-pate-pate-chicken-duck-and-duck-liver-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Pâté",
+      "current_name": "Pâté: Chicken, Salmon & Chicken Liver Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-silver-pate-pate-chicken-salmon-and-chicken-liver-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Pâté",
+      "current_name": "Pâté: Tuna & Mackerel Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-silver-pate-pate-tuna-and-mackerel-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods with Tuna & Mackerel Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Silver, 11+ · Tuna & Mackerel in Tuna Broth · Shreds"
+      ],
+      "id": "tiki-silver-whole-foods-whole-foods-with-tuna-and-mackerel-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Silver",
+      "family": "Whole Foods",
+      "current_name": "Whole Foods with Chicken Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/silver/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Silver, 11+ · Chicken in Chicken Broth · Shreds"
+      ],
+      "id": "tiki-silver-whole-foods-whole-foods-with-chicken-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Solutions",
+      "family": "Mineral Balance",
+      "current_name": "Mousse: Tuna & Salmon Recipe",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/solutions/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-solutions-mineral-balance-mousse-tuna-and-salmon-recipe"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Solutions",
+      "family": "Dental",
+      "current_name": "Mousse: Chicken Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/solutions/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-solutions-dental-mousse-chicken-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Solutions",
+      "family": "Skin & Coat",
+      "current_name": "Mousse: Salmon Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/solutions/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Special, Skin & Coat · Salmon in Broth · Mousse"
+      ],
+      "id": "tiki-solutions-skin-and-coat-mousse-salmon-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Solutions",
+      "family": "Mobility",
+      "current_name": "Mousse: Chicken & Tuna Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/solutions/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-solutions-mobility-mousse-chicken-and-tuna-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Solutions",
+      "family": "Digestion",
+      "current_name": "Mousse: Chicken & Egg Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/solutions/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-solutions-digestion-mousse-chicken-and-egg-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Solutions",
+      "family": "Light",
+      "current_name": "Mousse: Chicken, Turkey & Pumpkin Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/solutions/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Special, Light · Chicken, Turkey & Pumpkin in Broth · Mousse"
+      ],
+      "id": "tiki-solutions-light-mousse-chicken-turkey-and-pumpkin-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Solutions",
+      "family": "Fussy",
+      "current_name": "Mousse: With Duck Liver & Egg Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/solutions/",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Special, Fussy · Duck Liver & Egg in Broth · Mousse"
+      ],
+      "id": "tiki-solutions-fussy-mousse-with-duck-liver-and-egg-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Solutions",
+      "family": "Liquid Meal Replacer",
+      "current_name": "With Tuna in Goat's Milk",
+      "role": "complete_liquid_meal",
+      "manufacturer_category_url": "https://tikipets.com/cat/solutions/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-solutions-liquid-meal-replacer-with-tuna-in-goat-s-milk"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Mega Packs",
+      "family": "Variety Pack",
+      "current_name": "Friends Minced: Tuna Mega Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/mega-packs/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-mega-packs-variety-pack-friends-minced-tuna-mega-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Mega Packs",
+      "family": "Variety Pack",
+      "current_name": "Baby Favorites Mega Pack Whole Foods For Kittens",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/mega-packs/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-mega-packs-variety-pack-baby-favorites-mega-pack-whole-foods-for-kittens"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Mega Packs",
+      "family": "Variety Pack",
+      "current_name": "Chicken Craves",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/mega-packs/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-mega-packs-variety-pack-chicken-craves"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Mega Packs",
+      "family": "Variety Pack",
+      "current_name": "Chicken Craves Paté",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/mega-packs/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-mega-packs-variety-pack-chicken-craves-pate"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Mega Packs",
+      "family": "Variety Pack",
+      "current_name": "Fish Favorites Paté",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/mega-packs/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-mega-packs-variety-pack-fish-favorites-pate"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Mega Packs",
+      "family": "Variety Pack",
+      "current_name": "Seafood Selects – 24 ct.",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/mega-packs/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-mega-packs-variety-pack-seafood-selects-24-ct"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Mega Packs",
+      "family": "Variety Pack",
+      "current_name": "Seafood Selects – 36 ct.",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-wet-food/shredded-cat/mega-packs/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-mega-packs-variety-pack-seafood-selects-36-ct"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Chicken Breast & Chicken Liver Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-chicken-breast-and-chicken-liver-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Chicken Breast & Duck Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-chicken-breast-and-duck-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Chicken Breast & Egg Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-chicken-breast-and-egg-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Chicken Breast & Salmon Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-chicken-breast-and-salmon-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Chicken Breast & Tuna Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-chicken-breast-and-tuna-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Chicken Breast & Turkey Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-chicken-breast-and-turkey-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Chicken Breast Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-chicken-breast-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Sardine Cutlets & Mackerel Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-sardine-cutlets-and-mackerel-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Sardine Cutlets Recipe in Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-sardine-cutlets-recipe-in-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Tuna & Crab Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-tuna-and-crab-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Tuna & Pollock Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-tuna-and-pollock-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Tuna & Salmon Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-tuna-and-salmon-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Tuna & Seabass Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-tuna-and-seabass-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Tuna & Shrimp Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-tuna-and-shrimp-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Whole Foods",
+      "current_name": "Tuna Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-whole-foods-tuna-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Mousse",
+      "current_name": "Mousse: Chicken & Chicken Liver Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-mousse-mousse-chicken-and-chicken-liver-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Mousse",
+      "current_name": "Mousse: Chicken Recipe in Chicken Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-mousse-mousse-chicken-recipe-in-chicken-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Mousse",
+      "current_name": "Mousse: Tuna & Salmon Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-mousse-mousse-tuna-and-salmon-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Mousse",
+      "current_name": "Mousse: Tuna & Shrimp Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-mousse-mousse-tuna-and-shrimp-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Mousse",
+      "current_name": "Mousse: Tuna Recipe in Tuna Broth",
+      "role": "complete_meal",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-mousse-mousse-tuna-recipe-in-tuna-broth"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Variety Pack",
+      "current_name": "Chicken Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-variety-pack-chicken-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Variety Pack",
+      "current_name": "Tuna Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-variety-pack-tuna-variety-pack"
+    },
+    {
+      "brand": "Tiki Cat",
+      "line": "Born Carnivore",
+      "family": "Variety Pack",
+      "current_name": "Mousse: Tuna Variety Pack",
+      "role": "variety_pack",
+      "manufacturer_category_url": "https://tikipets.com/product-category/tiki-cat/tiki-cat-dry-food/born-carnivore/",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "tiki-born-carnivore-variety-pack-mousse-tuna-variety-pack"
+    }
+  ],
+  "source_records": [
+    {
+      "source_id": "p53r20",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Chicken (no fish)",
+      "product": "Puka Puka Luau",
+      "style": null,
+      "source_page": 53,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p53r21",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Chicken (no fish)",
+      "product": "Koolina Luau",
+      "style": null,
+      "source_page": 53,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p53r24",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Chicken/Fish",
+      "product": "Hookena Luau",
+      "style": null,
+      "source_page": 53,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p53r25",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Chicken/Fish",
+      "product": "Napili Luau",
+      "style": null,
+      "source_page": 53,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p53r28",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Bora Bora Luau",
+      "style": null,
+      "source_page": 53,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p53r29",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Hana Luau",
+      "style": null,
+      "source_page": 53,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r04",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Hanalei Luau",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r05",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Honolulu Luau",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r06",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Lanai Luau",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r07",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Makaha Luau",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r08",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Manana Grill",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r09",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Molokai Luau",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r10",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Papeekeo Luau",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r11",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Tahitian Grill",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r12",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Waikiki Luau",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r13",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Fish/Seafood",
+      "product": "Waimea Luau",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r16",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Chicken and Liver",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r17",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Chicken with Turkey",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r18",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Chicken with Duck",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r19",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Beef Liver and Chicken",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r20",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Beef and Liver",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r21",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Beef Liver and Lamb",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r22",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Tilapia",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r23",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Seabass",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r24",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Bonito Tuna",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r27",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Chicken/Turkey & Rice",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r28",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Turkey & Giblets",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r29",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Ocean Fish, Salmon & Rice",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p54r30",
+      "dataset": "pierson_2017",
+      "brand": "TIKI CAT",
+      "line": "Gourmet Carnivore",
+      "product": "Tuna - Supplemental diet ONLY",
+      "style": null,
+      "source_page": 54,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "fdsgw-p36r08",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Beef & Beef Liver",
+      "style": "Pate",
+      "source_page": 36,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p36r09",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Beef & Beef Liver",
+      "style": "Soft Pate",
+      "source_page": 36,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p36r10",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Chicken & Beef in Broth, 2.8 oz/ 5.5 oz.",
+      "style": "Shreds",
+      "source_page": 36,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p36r11",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Chicken & Duck in Broth, 2.8 oz/ 5.5 oz.",
+      "style": "Shreds",
+      "source_page": 36,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p36r12",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Chicken & Lamb in Broth, 2.8 oz/ 5.5 oz.",
+      "style": "Shreds",
+      "source_page": 36,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r01",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Chicken & Pork in Broth, 2.8 oz/ 5.5 oz.",
+      "style": "Shreds",
+      "source_page": 37,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r02",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Chicken & Quail Egg in Broth, 2.8 oz/ 5.5 oz.",
+      "style": "Shreds",
+      "source_page": 37,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r03",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Chicken in Broth, 2.8 oz/ 5.5 oz.",
+      "style": "Shreds",
+      "source_page": 37,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r04",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Duck & Chicken Liver",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r05",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Rabbit & Chicken Liver",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r06",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark",
+      "product": "Venison & Beef Liver",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r07",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Pate+",
+      "product": "Chicken & Beef in Chicken Broth",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": "6/11/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r08",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Pate+",
+      "product": "Chicken & Duck in Chicken Broth",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": "6/11/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r09",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Pate+",
+      "product": "Chicken & Quail Egg in Chicken Broth",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": "6/11/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r10",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Pate+",
+      "product": "Chicken in Chicken Broth",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": "6/11/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r11",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Soft Pate",
+      "product": "Beef & Beef Liver",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": "1/26/26",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p37r12",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Soft Pate",
+      "product": "Chicken, Chicken Liver & Quail",
+      "style": "Pate",
+      "source_page": 37,
+      "updated": "1/26/26",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r01",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Soft Pate",
+      "product": "Duck & Chicken Liver",
+      "style": "Pate",
+      "source_page": 38,
+      "updated": "1/26/26",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r02",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Soft Pate",
+      "product": "Lamb & Beef Liver",
+      "style": "Pate",
+      "source_page": 38,
+      "updated": "1/26/26",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r03",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Soft Pate",
+      "product": "Rabbit & Chicken Liver",
+      "style": "Pate",
+      "source_page": 38,
+      "updated": "1/26/26",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r04",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Soft Pate",
+      "product": "Turkey & Turkey Giblets",
+      "style": "Pate",
+      "source_page": 38,
+      "updated": "1/26/26",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r05",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Soft Pate",
+      "product": "Venison & Beef Liver",
+      "style": "Pate",
+      "source_page": 38,
+      "updated": "1/26/26",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r06",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Velvet Mousse",
+      "product": "Chicken & Beef in Chicken Broth",
+      "style": "Mousse",
+      "source_page": 38,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r07",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Velvet Mousse",
+      "product": "Chicken & Duck in Chicken Broth",
+      "style": "Mousse",
+      "source_page": 38,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r08",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Velvet Mousse",
+      "product": "Chicken & Quail Egg in Chicken Broth",
+      "style": "Mousse",
+      "source_page": 38,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r09",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "After Dark Velvet Mousse",
+      "product": "Chicken in Chicken Broth",
+      "style": "Mousse",
+      "source_page": 38,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r10",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Chicken & Pumpkin in Broth",
+      "style": "Bits",
+      "source_page": 38,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r11",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Chicken, Pumpkin & Beef in Broth",
+      "style": "Bits",
+      "source_page": 38,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p38r12",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Chicken, Pumpkin & Duck in Broth",
+      "style": "Bits",
+      "source_page": 38,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r01",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Chicken, Pumpkin & Egg in Broth",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r02",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Chicken, Pumpkin & Lamb in Broth",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r03",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Tuna & Pumpkin in Broth, 3 oz/ 5.5 oz",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r04",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Tuna, Calamari & Pumpkin in Broth, 3 oz/ 5.5 oz",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r05",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Tuna, Ocean Whitefish & Pumpkin in Broth, 3 oz/ 5.5 oz",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r06",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Tuna, Shrimp & Pumpkin Recipe in Broth, 3 oz/5.5 oz",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r07",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Aloha Friends",
+      "product": "Tuna, Tilapia & Pumpkin in Broth, 3 oz/5.5 oz",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r08",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "product": "Chicken & Egg",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r09",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "product": "Chicken & Salmon",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r10",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "product": "Chicken, Salmon & Chicken Liver",
+      "style": "Mousse & Shreds",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r11",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Baby",
+      "product": "Thrive Plus Chicken, Salmon & Chicken Liver",
+      "style": null,
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p39r12",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Ahi Tuna",
+      "style": "Bits",
+      "source_page": 39,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r01",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Ahi Tuna & Crab in Broth",
+      "style": "Bits",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r02",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Ahi Tuna & Prawns in Broth",
+      "style": "Bits",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r03",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Mackerel & Sardine in Calamari Consommé",
+      "style": "Bits",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r04",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Mackerel & Sardines in Broth",
+      "style": "Pate/ Finely Minced",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r05",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Sardine Curlets in Lobster Consummé",
+      "style": "Bits",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r06",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Sardine Cutlets in Sardine Consummé",
+      "style": "Bits",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r07",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Sardines & Lobster Consomme in Broth",
+      "style": "Pate/ Finely Minced",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r08",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Sardines in Sardine Broth",
+      "style": "Pate/ Finely Minced",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r09",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Tuna & Crab in Tuna Broth",
+      "style": "Pate/ Finely Minced",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r10",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Tuna & Crab Surimi in Broth",
+      "style": "Bits",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r11",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Tuna & Crab Surimi in Tuna Broth",
+      "style": "Pate/ Finely Minced",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p40r12",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Grill",
+      "product": "Tuna & Prawn in Tuna Broth",
+      "style": "Pate/ Finely Minced",
+      "source_page": 40,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r01",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "product": "Ahi Tuna & Chicken",
+      "style": "Shreds and Bits",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r02",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "product": "Ahi Tuna & Mackerel",
+      "style": "Shreds and Bits",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r03",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "product": "Chicken & Egg",
+      "style": "Shreds and Bits",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r04",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "product": "Seabass",
+      "style": "Shreds and Bits",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r05",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "product": "Succulent Chicken",
+      "style": "Shreds and Bits",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r06",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "product": "Tilapia",
+      "style": "Shreds and Bits",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r07",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "product": "Wild Salmon",
+      "style": "Shreds and Bits",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r08",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau",
+      "product": "Wild Salmon & Chicken",
+      "style": "Shreds and Bits",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r09",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Pate",
+      "product": "Chicken & Egg in Chicken Broth",
+      "style": "Pate/Fine ly Minced",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r10",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Pate",
+      "product": "Seabass in Seabass Broth",
+      "style": "Pate/Fine ly Minced",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r11",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Pate",
+      "product": "Succulent Chicken in Chicken Broth",
+      "style": "Pate/Fine ly Minced",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p41r12",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Pate",
+      "product": "Tilapia in Tilapia Broth",
+      "style": "Pate/Fine ly Minced",
+      "source_page": 41,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r01",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Pate",
+      "product": "Tuna & Chicken in Tuna Broth",
+      "style": "Pate/Fine ly Minced",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r02",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Pate",
+      "product": "Tuna & Mackerel in Tuna Broth",
+      "style": "Pate/Fine ly Minced",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r03",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Pate",
+      "product": "Wild Salmon & Chicken in Salmon Broth",
+      "style": "Pate/Fine ly Minced",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r04",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Pate",
+      "product": "Wild Salmon in Salmon Broth",
+      "style": "Pate/Fine ly Minced",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r05",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Velvet",
+      "product": "Chicken & Egg in Broth",
+      "style": "Mousse",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r06",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Velvet",
+      "product": "Chicken & Salmon in Broth",
+      "style": "Mousse",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r07",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Velvet",
+      "product": "Chicken in Broth",
+      "style": "Mousse",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r08",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Velvet",
+      "product": "Salmon in Broth",
+      "style": "Mousse",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r09",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Velvet",
+      "product": "Tuna & Chicken in Broth",
+      "style": "Mousse",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r10",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Luau Velvet",
+      "product": "Tuna & Mackerel in Broth",
+      "style": "Mousse",
+      "source_page": 42,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r11",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Silver, 11+",
+      "product": "Chicken & Pumpkin in Broth",
+      "style": "Mousse",
+      "source_page": 42,
+      "updated": "9/4/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p42r12",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Silver, 11+",
+      "product": "Chicken in Chicken Broth",
+      "style": "Shreds",
+      "source_page": 42,
+      "updated": "9/4/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r01",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Silver, 11+",
+      "product": "Chicken, Duck & Duck Liver in Broth",
+      "style": "Shreds in Mousse",
+      "source_page": 43,
+      "updated": "9/4/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r02",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Silver, 11+",
+      "product": "Chicken, Salmon & Chicken Liver in Chicken Broth",
+      "style": "Shreds in Mousse",
+      "source_page": 43,
+      "updated": "9/4/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r03",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Silver, 11+",
+      "product": "Salmon & Pumpkin in Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": "9/4/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r04",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Silver, 11+",
+      "product": "Tuna & Mackerel in Tuna Broth",
+      "style": "Shreds",
+      "source_page": 43,
+      "updated": "9/4/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r05",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Special, Fussy",
+      "product": "Duck Liver & Egg in Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r06",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Special, Light",
+      "product": "Chicken, Turkey & Pumpkin in Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r07",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Special, Skin & Coat",
+      "product": "Salmon in Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r08",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Velvet, Kitten",
+      "product": "Chicken & Chicken Liver in Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r09",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Velvet, Kitten",
+      "product": "Salmon & Chicken in Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r10",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Velvet, Senior",
+      "product": "Chicken & Pumpkin in Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r11",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Velvet, Senior",
+      "product": "Salmon & Pumpkin in Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p43r12",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Veterinary Formula",
+      "product": "Chicken & Chicken Liver in Chicken Broth",
+      "style": "Mousse",
+      "source_page": 43,
+      "updated": "1/15/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p44r01",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Veterinary Formula",
+      "product": "Chicken & Chicken Liver in Chicken Broth",
+      "style": "Shreds",
+      "source_page": 44,
+      "updated": "1/15/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p44r02",
+      "dataset": "fdsg_wet",
+      "brand": "Tiki Cat",
+      "line": "Veterinary Formula",
+      "product": "Tuna & Tilapia in Tuna Broth",
+      "style": "Flaked",
+      "source_page": 44,
+      "updated": "1/15/25",
+      "fpuo": true
+    }
+  ],
+  "reconciliation": [
+    {
+      "source_id": "p53r20",
+      "current_product_id": "tiki-luau-whole-foods-puka-puka-luau-succulent-chicken-in-chicken-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p53r21",
+      "current_product_id": "tiki-luau-whole-foods-koolina-luau-chicken-and-egg-in-chicken-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p53r24",
+      "current_product_id": "tiki-luau-whole-foods-hookena-luau-ahi-tuna-and-chicken-chicken-in-chicken-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p53r25",
+      "current_product_id": "tiki-luau-whole-foods-napili-luau-wild-salmon-and-chicken-in-chicken-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p53r28",
+      "current_product_id": "tiki-grill-whole-foods-bora-bora-grill-sardine-cutlets-in-lobster-consomme-in-lobster-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p53r29",
+      "current_product_id": "tiki-grill-whole-foods-hana-grill-ahi-tuna-and-crab-in-broth-in-tuna-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p54r04",
+      "current_product_id": "tiki-luau-whole-foods-hanalei-luau-wild-salmon-in-salmon-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p54r05",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.307,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "p54r06",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.369,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "p54r07",
+      "current_product_id": "tiki-grill-whole-foods-lanai-grill-tuna-and-crab-surimi-in-crab-surimi-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p54r08",
+      "current_product_id": "tiki-grill-whole-foods-manana-grill-ahi-tuna-and-prawns-in-broth-in-tuna-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p54r09",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.356,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "p54r10",
+      "current_product_id": "tiki-luau-whole-foods-papeekeo-luau-ahi-tuna-and-mackerel-in-tuna-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p54r11",
+      "current_product_id": "tiki-grill-whole-foods-tahitian-grill-sardine-cutlets-in-sardine-consomme",
+      "status": "verified_legacy_match",
+      "confidence": 0.98,
+      "basis": "legacy Tiki product name retained on current official catalog"
+    },
+    {
+      "source_id": "p54r12",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.334,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "p54r13",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.339,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "p54r16",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r17",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r18",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r19",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r20",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r21",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r22",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r23",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r24",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r27",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r28",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r29",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "p54r30",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "fdsgw-p36r08",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-beef-and-beef-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p36r09",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-beef-and-beef-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p36r10",
+      "current_product_id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-beef-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p36r11",
+      "current_product_id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-duck-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p36r12",
+      "current_product_id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-lamb-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r01",
+      "current_product_id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-pork-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r02",
+      "current_product_id": "tiki-after-dark-whole-foods-whole-foods-chicken-and-quail-egg-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r03",
+      "current_product_id": "tiki-after-dark-whole-foods-whole-foods-chicken-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r04",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-duck-and-chicken-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r05",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-rabbit-and-chicken-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r06",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-venison-and-beef-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r07",
+      "current_product_id": "tiki-after-dark-pate-pate-chicken-and-beef-recipe-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r08",
+      "current_product_id": "tiki-after-dark-pate-pate-chicken-and-duck-recipe-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r09",
+      "current_product_id": "tiki-after-dark-pate-pate-chicken-and-quail-egg-recipe-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r10",
+      "current_product_id": "tiki-after-dark-pate-pate-chicken-recipe-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r11",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-beef-and-beef-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p37r12",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-chicken-chicken-liver-and-quail-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r01",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-duck-and-chicken-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r02",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-lamb-and-beef-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r03",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-rabbit-and-chicken-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r04",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-turkey-and-turkey-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r05",
+      "current_product_id": "tiki-after-dark-soft-pate-pate-venison-and-beef-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r06",
+      "current_product_id": "tiki-after-dark-velvet-mousse-velvet-mousse-chicken-and-beef-recipe-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r07",
+      "current_product_id": "tiki-after-dark-velvet-mousse-velvet-mousse-chicken-and-duck-recipe-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r08",
+      "current_product_id": "tiki-after-dark-velvet-mousse-velvet-mousse-chicken-and-quail-egg-recipe-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r09",
+      "current_product_id": "tiki-after-dark-velvet-mousse-velvet-mousse-chicken-recipe-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r10",
+      "current_product_id": "tiki-friends-mousse-chicken-and-pumpkin-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p38r11",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.611,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p38r12",
+      "current_product_id": "tiki-friends-mousse-chicken-pumpkin-and-duck-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r01",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.617,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p39r02",
+      "current_product_id": "tiki-friends-mousse-chicken-pumpkin-and-lamb-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r03",
+      "current_product_id": "tiki-friends-mousse-tuna-and-pumpkin-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r04",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.442,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p39r05",
+      "current_product_id": "tiki-friends-minced-tuna-ocean-whitefish-and-pumpkin-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r06",
+      "current_product_id": "tiki-friends-minced-tuna-shrimp-and-pumpkin-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r07",
+      "current_product_id": "tiki-friends-minced-tuna-tilapia-and-pumpkin-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r08",
+      "current_product_id": "tiki-baby-whole-foods-whole-foods-chicken-and-egg-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r09",
+      "current_product_id": "tiki-baby-whole-foods-whole-foods-chicken-and-salmon-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r10",
+      "current_product_id": "tiki-silver-mousse-and-shreds-mousse-and-shreds-chicken-salmon-and-chicken-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p39r11",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.733,
+      "basis": "no sufficiently strong current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p39r12",
+      "current_product_id": "tiki-grill-whole-foods-hawaiian-grill-ahi-tuna",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r01",
+      "current_product_id": "tiki-grill-whole-foods-hana-grill-ahi-tuna-and-crab-in-broth-in-tuna-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r02",
+      "current_product_id": "tiki-grill-whole-foods-manana-grill-ahi-tuna-and-prawns-in-broth-in-tuna-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r03",
+      "current_product_id": "tiki-grill-whole-foods-makaha-grill-mackerel-and-sardines-in-calamari-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r04",
+      "current_product_id": "tiki-grill-pate-mackerel-and-sardines-pate",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r05",
+      "current_product_id": "tiki-grill-whole-foods-bora-bora-grill-sardine-cutlets-in-lobster-consomme-in-lobster-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r06",
+      "current_product_id": "tiki-grill-whole-foods-tahitian-grill-sardine-cutlets-in-sardine-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r07",
+      "current_product_id": "tiki-grill-pate-sardines-and-lobster-consomme-pate",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r08",
+      "current_product_id": "tiki-grill-pate-sardines-pate",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r09",
+      "current_product_id": "tiki-grill-pate-tuna-and-crab-pate",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r10",
+      "current_product_id": "tiki-grill-whole-foods-lanai-grill-tuna-and-crab-surimi-in-crab-surimi-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r11",
+      "current_product_id": "tiki-grill-pate-tuna-and-crab-surimi-pate",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p40r12",
+      "current_product_id": "tiki-grill-pate-tuna-and-prawn-pate",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r01",
+      "current_product_id": "tiki-luau-whole-foods-hookena-luau-ahi-tuna-and-chicken-chicken-in-chicken-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r02",
+      "current_product_id": "tiki-luau-whole-foods-papeekeo-luau-ahi-tuna-and-mackerel-in-tuna-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r03",
+      "current_product_id": "tiki-luau-whole-foods-koolina-luau-chicken-and-egg-in-chicken-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r04",
+      "current_product_id": "tiki-luau-whole-foods-oahu-luau-seabass-in-seabass-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r05",
+      "current_product_id": "tiki-luau-whole-foods-puka-puka-luau-succulent-chicken-in-chicken-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r06",
+      "current_product_id": "tiki-luau-whole-foods-kapi-olani-luau-tilapia-in-tilapia-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r07",
+      "current_product_id": "tiki-luau-whole-foods-hanalei-luau-wild-salmon-in-salmon-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r08",
+      "current_product_id": "tiki-luau-whole-foods-napili-luau-wild-salmon-and-chicken-in-chicken-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r09",
+      "current_product_id": "tiki-luau-pate-pate-chicken-and-egg-pate-in-chicken-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r10",
+      "current_product_id": "tiki-luau-pate-pate-seabass-pate-in-seabass-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r11",
+      "current_product_id": "tiki-luau-pate-pate-succulent-chicken-pate-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p41r12",
+      "current_product_id": "tiki-luau-pate-pate-tilapia-pate-in-tilapia-consomme",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r01",
+      "current_product_id": "tiki-luau-pate-pate-tuna-and-chicken-pate-recipe-in-tuna-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r02",
+      "current_product_id": "tiki-luau-pate-pate-tuna-and-mackerel-pate-in-tuna-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r03",
+      "current_product_id": "tiki-luau-pate-pate-wild-salmon-and-chicken-pate-in-salmon-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r04",
+      "current_product_id": "tiki-luau-pate-pate-wild-salmon-pate-in-salmon-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r05",
+      "current_product_id": "tiki-velvet-mousse-mousse-velvet-mousse-chicken-and-egg-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r06",
+      "current_product_id": "tiki-velvet-mousse-mousse-velvet-mousse-chicken-and-salmon-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r07",
+      "current_product_id": "tiki-velvet-mousse-mousse-velvet-mousse-chicken-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r08",
+      "current_product_id": "tiki-velvet-mousse-mousse-velvet-mousse-salmon-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r09",
+      "current_product_id": "tiki-velvet-mousse-mousse-velvet-mousse-tuna-and-chicken-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r10",
+      "current_product_id": "tiki-velvet-mousse-mousse-velvet-mousse-tuna-and-mackerel-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r11",
+      "current_product_id": "tiki-silver-mousse-mousse-with-chicken-and-pumpkin-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p42r12",
+      "current_product_id": "tiki-silver-whole-foods-whole-foods-with-chicken-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r01",
+      "current_product_id": "tiki-silver-mousse-and-shreds-mousse-and-shreds-with-chicken-duck-and-duck-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r02",
+      "current_product_id": "tiki-silver-mousse-and-shreds-mousse-and-shreds-chicken-salmon-and-chicken-liver-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r03",
+      "current_product_id": "tiki-silver-mousse-mousse-with-salmon-and-pumpkin-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r04",
+      "current_product_id": "tiki-silver-whole-foods-whole-foods-with-tuna-and-mackerel-recipe",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r05",
+      "current_product_id": "tiki-solutions-fussy-mousse-with-duck-liver-and-egg-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r06",
+      "current_product_id": "tiki-solutions-light-mousse-chicken-turkey-and-pumpkin-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r07",
+      "current_product_id": "tiki-solutions-skin-and-coat-mousse-salmon-recipe-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r08",
+      "current_product_id": "tiki-baby-mousse-mousse-chicken-and-chicken-liver-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r09",
+      "current_product_id": "tiki-baby-mousse-mousse-salmon-and-chicken-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r10",
+      "current_product_id": "tiki-silver-mousse-mousse-with-chicken-and-pumpkin-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r11",
+      "current_product_id": "tiki-silver-mousse-mousse-with-salmon-and-pumpkin-in-broth",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current Tiki Pets catalog"
+    },
+    {
+      "source_id": "fdsgw-p43r12",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "fdsgw-p44r01",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    },
+    {
+      "source_id": "fdsgw-p44r02",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.0,
+      "basis": "no conservative line-level reconciliation rule"
+    }
+  ]
+}

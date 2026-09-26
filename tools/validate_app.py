@@ -59,3 +59,14 @@ assert html.count('class="icon-btn close-btn"') >= 2, 'dialog close buttons not 
 assert 'class="icon-btn close-btn" data-close-detail' in js, 'detail close button not hardened'
 assert '.sheet-head h2,' in css and '.theme-option strong,' in css, 'dialog/theme label foreground hardening missing'
 print('PASS: v0.2.8 dialog, theme-label, and X/clear contrast hardening is wired')
+
+
+# Tiki reconciliation layer regression checks (v0.2.9)
+tiki_js=(root/'data'/'tiki_cat.js').read_text(encoding='utf-8')
+tiki_json=(root/'data'/'tiki_cat.json').read_text(encoding='utf-8')
+assert './data/tiki_cat.js' in html, 'Tiki database script missing'
+assert 'window.TIKI_CAT_DB' in tiki_js, 'Tiki JS database wrapper missing'
+assert 'Tiki Cat reconciliation database' in tiki_json, 'Tiki JSON metadata missing'
+assert 'tikiLinkBySourceId' in js and 'tikiMatchFor' in js, 'Tiki current-name reconciliation not wired into app'
+assert "startsWith('verified_')" in js, 'tentative Tiki matches must not be exposed as verified aliases'
+print('PASS: v0.2.9 non-destructive Tiki Cat reconciliation database is wired')

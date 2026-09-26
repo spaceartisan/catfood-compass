@@ -3,6 +3,11 @@
   const meta = window.CATFOOD_META || {};
   const aliasRows = (window.CATFOOD_ALIASES || []).filter(a=>a&&a.source_id&&a.verified===true);
   const aliasById = new Map(aliasRows.map(a=>[a.source_id,a]));
+  const tikiDb = window.TIKI_CAT_DB || {current_products:[],reconciliation:[],meta:{}};
+  const tikiProductById = new Map((tikiDb.current_products||[]).map(p=>[p.id,p]));
+  const tikiLinkBySourceId = new Map((tikiDb.reconciliation||[])
+    .filter(r=>r&&r.source_id&&r.current_product_id&&String(r.status||'').startsWith('verified_'))
+    .map(r=>[r.source_id,r]));
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const readJSON = (k, fallback) => { try { return JSON.parse(localStorage.getItem(k)) ?? fallback; } catch { return fallback; } };
@@ -24,7 +29,26 @@
     localStorage.setItem('cfc_settings',JSON.stringify(state.settings));
   };
   const customNormalized = () => state.custom.map(x=>({...x,dataset:'custom',verification_status:'user',source_year:new Date().getFullYear(),prescription:!!x.prescription,form:x.form||'wet',data_complete:x.protein_cal_pct!=null&&x.fat_cal_pct!=null&&x.carb_cal_pct!=null&&x.phosphorus_mg_per_100kcal!=null}));
-  const aliasFor = f => aliasById.get(f.id) || null;
+  const tikiMatchFor = f => {
+    const link=tikiLinkBySourceId.get(f.id); if(!link) return null;
+    const product=tikiProductById.get(link.current_product_id); if(!product) return null;
+    const familyNorm=normalizeSearch(product.family||''), nameNorm=normalizeSearch(product.current_name||'');
+    const parts=[product.line];
+    if(product.family && !(familyNorm && nameNorm.startsWith(familyNorm))) parts.push(product.family);
+    parts.push(product.current_name);
+    return {link,product,label:parts.filter(Boolean).join(' · ')};
+  };
+  const aliasFor = f => {
+    const base=aliasById.get(f.id)||null, tiki=tikiMatchFor(f);
+    if(!tiki) return base;
+    return {
+      ...(base||{}), source_id:f.id, verified:true,
+      current_name:tiki.label,
+      aliases:[...(base?.aliases||[]),...(tiki.product.aliases||[])],
+      verified_on:tiki.product.verified_on||tikiDb.meta?.verified_on,
+      verified_source:'Tiki Pets current catalog', tiki_match:tiki
+    };
+  };
   const aliasSearchValues = f => { const a=aliasFor(f); return a ? [a.current_name,...(a.aliases||[])].filter(Boolean) : []; };
   const seafoodText = f => `${f.line||''} ${f.product||''} ${f.style||''}`.toLowerCase().replace(/fish[-\s]?free/g,'');
   const isSeafood = f => /seafood|fish|tuna|salmon|trout|mackerel|sardine|shrimp|crab|lobster|clam|mussel|prawn|tilapia|cod|sole|whitefish|oceanfish|herring|pollock|haddock|hoki|anchov|bonito|seabass|sea bass|halibut|snapper|krill|calamari|squid|oyster|scallop/.test(seafoodText(f));
@@ -265,6 +289,7 @@
     if(f.section_calorie_note) p.push(`<p><strong>Source package note:</strong> ${esc(f.section_calorie_note)}</p>`);
     if(f.analysis_shared) p.push('<p>The original PDF visually shared this analysis across multiple product rows. The app preserves that relationship.</p>');
     const a=aliasFor(f); if(a?.current_name) p.push(`<p><strong>Verified shelf alias:</strong> ${esc(a.current_name)}${a.verified_on?` · checked ${esc(a.verified_on)}`:''}${a.verified_source?` · ${esc(a.verified_source)}`:''}. The source product name above remains unchanged.</p>`);
+    const tm=tikiMatchFor(f); if(tm) p.push(`<p><strong>Tiki reconciliation:</strong> this source record is linked to the current Tiki Cat catalog entry <em>${esc(tm.label)}</em>. The nutrition values shown above still come from the original ${esc(sourceLabel(f))} record and are not overwritten by the current catalog.</p>`);
     return p.join('');
   }
 
