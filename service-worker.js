@@ -1,5 +1,5 @@
-const CACHE='catfood-compass-v0.3.4';
-const ASSETS=['./','./index.html','./styles.css','./app.js','./data/foods.js','./data/tiki_cat.js','./data/fancy_feast.js','./data/friskies.js','./data/recall_brands.js','./data/recall_brands.json','./data/recalls.js','./data/recalls.json','./data/aliases.js','./manifest.webmanifest','./icon.svg'];
+const CACHE='catfood-compass-v0.3.5';
+const ASSETS=['./','./index.html','./styles.css','./app.js','./data/foods.js','./data/tiki_cat.js','./data/fancy_feast.js','./data/friskies.js','./data/recall_brands.js','./data/recall_brands.json','./data/recalls.js','./data/recalls.json','./data/aliases.js','./data/manufacturer_nutrition.js','./data/manufacturer_nutrition.json','./manifest.webmanifest','./icon.svg'];
 
 self.addEventListener('install',e=>e.waitUntil(
   caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())

@@ -3,6 +3,9 @@
   const meta = window.CATFOOD_META || {};
   const recallBundle = window.CATFOOD_RECALLS || {records:[],generated_at:null,openfda:{}};
   const recallBrandBundle = window.CATFOOD_RECALL_BRANDS || {rules:[],strategy:'catalog_brand_whitelist'};
+  const manufacturerNutritionBundle = window.CATFOOD_MANUFACTURER_NUTRITION || {observations:[],brand_sources:[],research_summary:{}};
+  const manufacturerNutritionByFoodId = new Map((manufacturerNutritionBundle.observations||[]).map(x=>[x.food_id,x]));
+  const manufacturerNutritionFor = f => manufacturerNutritionByFoodId.get(f.id) || null;
   const aliasRows = (window.CATFOOD_ALIASES || []).filter(a=>a&&a.source_id&&a.verified===true);
   const aliasById = new Map(aliasRows.map(a=>[a.source_id,a]));
   const brandCatalogSpecs = [
@@ -383,6 +386,7 @@
     if(!f.data_complete) b+='<span class="badge missing">Partial data</span>';
     if(f.source_anomaly) b+='<span class="badge danger">Source anomaly</span>';
     if(f.analysis_shared) b+='<span class="badge">Shared analysis</span>';
+    if(manufacturerNutritionFor(f)) b+='<span class="badge manufacturer" title="Current manufacturer nutrient information is available as a separate provenance layer">Manufacturer data</span>';
     const recalls=currentRecallMatchForFood(f); if(recalls.length){const advisory=recalls.every(r=>r.record_type==='advisory');b+=`<span class="badge ${advisory?'recall-advisory':'recall-alert'}" title="FDA recall/advisory information exists for this brand; check lot/product details">${advisory?'FDA advisory':'Recall info'}</span>`;}
     return b;
   }
@@ -514,6 +518,46 @@
     return p.join('');
   }
 
+  const manufacturerLabel = key => ({
+    protein:'Protein',fat:'Fat',fiber:'Fiber',soluble_fiber:'Soluble fiber',carbohydrate:'Carbohydrate',carbohydrate_nfe:'Carbohydrate / NFE',carbohydrate_digestible_max:'Digestible carbohydrate',ash:'Ash',ash_max_pct:'Ash (max)',phosphorus:'Phosphorus',phosphorus_pct:'Phosphorus',magnesium:'Magnesium',magnesium_pct:'Magnesium',calcium:'Calcium',calcium_pct:'Calcium',sodium:'Sodium',potassium:'Potassium',taurine:'Taurine'
+  }[key]||String(key).replace(/_pct$/,'').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase()));
+  const manufacturerPercentList = values => Object.entries(values||{}).map(([k,v])=>{
+    if(v==null)return '';
+    const label=manufacturerLabel(k), suffix=k==='carbohydrate_digestible_max'?`<${fmt(v,2)}%`:`${fmt(v,2)}%`;
+    return `<div><span>${esc(label)}</span><strong>${esc(suffix)}</strong></div>`;
+  }).filter(Boolean).join('');
+  const manufacturerGaList = values => Object.entries(values||{}).map(([k,v])=>{
+    if(v==null)return '';
+    const raw=String(k).replace(/_pct$/,'');
+    const qualifier=raw.endsWith('_min')?' (min)':raw.endsWith('_max')?' (max)':'';
+    const base=raw.replace(/_(min|max)$/,'').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
+    return `<div><span>${esc(base+qualifier)}</span><strong>${esc(fmt(v,2))}%</strong></div>`;
+  }).filter(Boolean).join('');
+  const manufacturerPer100List = values => Object.entries(values||{}).map(([k,v])=>{
+    if(v==null)return '';
+    const mg=k.endsWith('_mg'), g=k.endsWith('_g');
+    const label=String(k).replace(/_(mg|g)$/,'').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
+    return `<div><span>${esc(label)}</span><strong>${esc(fmt(v,2))} ${mg?'mg':'g'}</strong></div>`;
+  }).filter(Boolean).join('');
+  const manufacturerEnergyList = values => Object.entries(values||{}).map(([k,v])=>{
+    if(v==null)return '';
+    const labels={kcal_per_kg:'kcal/kg',kcal_per_cup:'kcal/cup',kcal_per_can:'kcal/can',kcal_per_3oz_can:'kcal/3 oz can',kcal_per_5_5oz_can:'kcal/5.5 oz can',dry_weight_me_kcal_per_kg:'Dry-weight ME kcal/kg'};
+    return `<div><span>${esc(labels[k]||k.replaceAll('_',' '))}</span><strong>${esc(fmt(v,0))}</strong></div>`;
+  }).filter(Boolean).join('');
+  function manufacturerNutritionHtml(f){
+    const m=manufacturerNutritionFor(f); if(!m)return '';
+    const groups=[];
+    if(m.percent_ME) groups.push(`<section><h4>% metabolizable energy</h4><div class="manufacturer-grid">${manufacturerPercentList(m.percent_ME)}</div></section>`);
+    if(m.per_100_kcal) groups.push(`<section><h4>Per 100 kcal</h4><div class="manufacturer-grid">${manufacturerPer100List(m.per_100_kcal)}</div></section>`);
+    if(m.dry_matter_pct) groups.push(`<section><h4>Dry matter / dry weight %</h4><div class="manufacturer-grid">${manufacturerPercentList(m.dry_matter_pct)}</div></section>`);
+    if(m.as_fed_pct) groups.push(`<section><h4>As-fed %</h4><div class="manufacturer-grid">${manufacturerPercentList(m.as_fed_pct)}</div></section>`);
+    if(m.typical_percent) groups.push(`<section><h4>Manufacturer typical analysis %</h4><div class="manufacturer-grid">${manufacturerPercentList(m.typical_percent)}</div></section>`);
+    if(m.guaranteed_analysis) groups.push(`<section><h4>Guaranteed Analysis</h4><div class="manufacturer-grid">${manufacturerGaList(m.guaranteed_analysis)}</div></section>`);
+    if(m.energy) groups.push(`<section><h4>Energy</h4><div class="manufacturer-grid">${manufacturerEnergyList(m.energy)}</div></section>`);
+    const notes=(m.basis_notes||[]).map(n=>`<li>${esc(n)}</li>`).join('');
+    return `<div class="detail-manufacturer"><div class="manufacturer-head"><div><span class="manufacturer-kicker">Current manufacturer nutrition</span><h3>${esc(m.current_product_name||f.product)}</h3></div><span class="manufacturer-date">Checked ${esc(m.retrieved_on||'—')}</span></div><p class="subtle">This is a separate current-manufacturer observation. It does <strong>not</strong> overwrite the Pierson/FDSG values above or silently mix nutrient bases.</p>${groups.join('')}${notes?`<ul class="manufacturer-notes">${notes}</ul>`:''}${m.source_url?`<a class="manufacturer-source" href="${esc(m.source_url)}" target="_blank" rel="noopener">Manufacturer source ↗</a>`:''}</div>`;
+  }
+
   const recallListText = values => (values||[]).filter(Boolean).join(', ') || '—';
   const foodRecallDetailHtml = f => {
     const matches=currentRecallMatchForFood(f);
@@ -617,6 +661,7 @@
       <div class="badge-row">${badges(f)}</div>
       <div class="detail-profile"><strong>${esc(p.label)} profile</strong><span>${esc(profileText)}</span></div>
       <div class="detail-grid"><div class="detail-value${targetClassForMetric(f,'protein_cal_pct')}"><span>Protein</span><strong>${rangeFmt(f,'protein_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'fat_cal_pct')}"><span>Fat</span><strong>${rangeFmt(f,'fat_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'carb_cal_pct')}"><span>Carbohydrate</span><strong>${rangeFmt(f,'carb_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'phosphorus_mg_per_100kcal')}"><span>Phosphorus</span><strong>${rangeFmt(f,'phosphorus_mg_per_100kcal',' mg/100 kcal')}</strong></div><div class="detail-value"><span>Calories</span><strong>${esc(calorieText(f))}</strong></div><div class="detail-value"><span>Active profile</span><strong>${esc(p.label)}</strong></div>${extraMinerals.map(([k,v])=>`<div class="detail-value"><span>${k}</span><strong>${esc(v)}</strong></div>`).join('')}</div>
+      ${manufacturerNutritionHtml(f)}
       ${foodRecallDetailHtml(f)}
       <div class="detail-notes">${sourceNotes(f)}</div>
       <button class="primary-btn" data-close-detail>Done</button></div>`;

@@ -1,8 +1,18 @@
-# CatFood Compass v0.3.4
+# CatFood Compass v0.3.5
+
+## Current manufacturer nutrition layer
+
+v0.3.5 adds a **separate current-manufacturer nutrient observation layer**. It is deliberately additive: none of the 2,024 Pierson/FDSG source records are rewritten, and unlike nutrient bases are not silently merged into the profile filters.
+
+The first pass researched 13 official manufacturer source families and links **24 exact current products** already present in CatFood Compass. Exact linked observations currently cover ACANA, ORIJEN, RAWZ, Young Again, FirstMate, Hill's Science Diet, and Dr. Elsey's. Additional high-value bulk sources have been identified for ZIWI Peak, Weruva, Fromm, Farmina, Royal Canin, and The Honest Kitchen.
+
+`data/manufacturer_nutrition.json` / `data/manufacturer_nutrition.js` preserve the manufacturer's own basis and source URL. Depending on the manufacturer, a record may contain % metabolizable energy, as-fed %, dry-matter %, per-100-kcal values, typical mineral percentages, Guaranteed Analysis, or calculated energy. Food cards receive a **Manufacturer data** badge when an exact link exists; the Details screen shows each basis in a separately labeled section alongside a direct manufacturer-source link.
+
+Manufacturer data is currently a **comparison and provenance layer only**. For example, a dry-matter carbohydrate value is not substituted into a `% ME` carbohydrate filter. A later release can selectively promote directly compatible manufacturer fields after basis-specific validation.
 
 ## Catalog-brand recall matching
 
-v0.3.4 changes the recall updater from broad feline-text matching to a **catalog-brand whitelist**. Machine-imported openFDA records are retained only when the product description both has feline context and matches a brand already represented in CatFood Compass.
+v0.3.4 changed the recall updater from broad feline-text matching to a **catalog-brand whitelist**. Machine-imported openFDA records are retained only when the product description both has feline context and matches a brand already represented in CatFood Compass.
 
 `tools/build_recall_brands.py` derives a stable whitelist from the 107 source brand labels in `data/foods.js`, collapses known historical/current duplicates, and writes 89 canonical brand rules to `data/recall_brands.json` / `data/recall_brands.js`. Ambiguous shorthand labels such as `BLUE`, `GO`, and `DAVE'S` are not used as bare FDA aliases; they map to safer names such as `Blue Buffalo`, `GO! Solutions`, and `Dave's Pet Food`.
 
@@ -18,7 +28,7 @@ The app still contains the same **2,024 source nutrition records**:
 - 838 FDSG wet-food records (FPUO flag preserved in the UI/data).
 - 25 FDSG dry/air-dried/steam-dried records.
 
-No source nutrition row was rewritten for v0.3.4.
+No source nutrition row was rewritten for v0.3.5.
 
 ## Nutrition profiles
 
@@ -95,6 +105,7 @@ Then open `http://localhost:8000`.
 - `tools/build_purina_brand_dbs.py` — Fancy Feast + Friskies current catalog/reconciliation layers.
 - `tools/build_recall_brands.py` — builds the catalog-brand recall whitelist from the food database.
 - `tools/update_recalls.py` — FDA/openFDA recall snapshot updater.
+- `tools/validate_manufacturer_nutrition.py` — verifies exact product links, source provenance, numeric sanity, JS/JSON parity, and basis-isolation guardrails.
 - `tools/validate_data.py` / `tools/validate_app.py` / `tools/validate_brand_dbs.py` / `tools/validate_recalls.py` — regression checks.
 
 The original PDFs are not bundled in the web app.

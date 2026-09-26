@@ -403,3 +403,12 @@ html[data-theme="midnight"] .search-clear:hover{background:var(--brand-2);border
   .recall-summary{align-items:flex-start}.recall-summary-count strong{font-size:22px}
   .recall-toolbar{grid-template-columns:1fr}.recall-meta-grid{grid-template-columns:1fr}.recall-card-head{display:block}.recall-date{display:block;margin-top:6px}
 }
+
+/* v0.3.5 — additive current-manufacturer nutrient observations */
+.badge.manufacturer{background:var(--brand-2);color:var(--brand);border:1px solid var(--brand-line)}
+.detail-manufacturer{margin-top:12px;padding:13px;border:1px solid var(--brand-line);border-left:4px solid var(--brand);border-radius:7px;background:color-mix(in srgb,var(--brand-2) 48%,var(--panel))}
+.manufacturer-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.manufacturer-head h3{font-size:14px;margin:2px 0 0}.manufacturer-kicker{display:block;color:var(--brand);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.055em}.manufacturer-date{white-space:nowrap;color:var(--muted);font-size:10px;font-weight:800}
+.detail-manufacturer>p{font-size:12px;line-height:1.45;margin:7px 0 9px}.detail-manufacturer section{margin-top:10px}.detail-manufacturer h4{font-size:10px;text-transform:uppercase;letter-spacing:.045em;color:var(--muted);margin:0 0 5px}
+.manufacturer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.manufacturer-grid>div{padding:7px 8px;border:1px solid var(--line);background:var(--panel);border-radius:5px;min-width:0}.manufacturer-grid span{display:block;color:var(--muted);font-size:9px;line-height:1.15;text-transform:uppercase}.manufacturer-grid strong{display:block;margin-top:3px;font-size:12px;overflow-wrap:anywhere}
+.manufacturer-notes{margin:9px 0;padding-left:18px;color:var(--muted);font-size:11px;line-height:1.4}.manufacturer-notes li+li{margin-top:4px}.manufacturer-source{display:inline-flex;margin-top:4px;color:var(--brand);font-weight:900;font-size:11px;text-decoration:none}.manufacturer-source:hover{text-decoration:underline}
+@media(max-width:520px){.manufacturer-head{display:block}.manufacturer-date{display:block;margin-top:4px}.manufacturer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

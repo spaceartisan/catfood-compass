@@ -32,7 +32,7 @@ DATA = ROOT / "data"
 OPENFDA = "https://api.fda.gov/food/enforcement.json"
 FDA_RECALLS = "https://www.fda.gov/animal-veterinary/safety-health/recalls-withdrawals"
 QUERY_TERMS = ["cat", "feline", "kitten", "kitty"]
-UA = "CatFood-Compass-recall-updater/0.3.4 (+GitHub Pages data refresh)"
+UA = "CatFood-Compass-recall-updater/0.3.5 (+GitHub Pages data refresh)"
 
 
 def read_json(path: Path, fallback):

@@ -101,3 +101,13 @@ assert (root/'.github'/'workflows'/'update-recalls.yml').exists(), 'Scheduled re
 assert 'A missing match is <strong>not proof that a product has never been recalled</strong>' in html, 'Recall absence disclaimer missing'
 assert 'catalog-brand whitelist' in html.lower(), 'Catalog-brand recall filtering explanation missing'
 print('PASS: v0.3.4 catalog-whitelisted FDA recall/advisory view, live check, product matching, and scheduled updater are wired')
+
+
+# Current manufacturer nutrient provenance layer regression checks (v0.3.5)
+manufacturer_js=(root/'data'/'manufacturer_nutrition.js').read_text(encoding='utf-8')
+assert './data/manufacturer_nutrition.js' in html, 'Manufacturer nutrition script missing'
+assert 'window.CATFOOD_MANUFACTURER_NUTRITION' in manufacturer_js, 'Manufacturer nutrition JS wrapper missing'
+assert 'manufacturerNutritionFor' in js and 'manufacturerNutritionHtml' in js, 'Manufacturer nutrition helpers missing'
+assert 'Manufacturer data' in js and 'Current manufacturer nutrition' in js, 'Manufacturer nutrition UI missing'
+assert 'v0.3.5 — additive current-manufacturer nutrient observations' in css, 'Manufacturer nutrition CSS marker missing'
+print('PASS: v0.3.5 additive manufacturer nutrient layer is wired without replacing source observations')
