@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#12211b" />
+  <meta name="description" content="CatFood Compass: a nutrient-first cat food shopping companion." />
+  <title>CatFood Compass</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brandmark" aria-hidden="true">🐾</div>
+    <div class="brandcopy">
+      <h1>CatFood Compass</h1>
+      <p>Shop by nutrients, not marketing.</p>
+    </div>
+    <button id="settingsBtn" class="icon-btn" aria-label="Open target settings" title="Targets">⚙️</button>
+  </header>
+
+  <main>
+    <section id="browseView" class="view active" aria-labelledby="browseTitle">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Multi-source nutrition database</p>
+          <h2 id="browseTitle">Find food that fits your targets</h2>
+          <p class="subtle">Macros are shown as percent of calories when available. Phosphorus is mg/100 kcal. Newer FDSG rows sit alongside the historical 2017 reference and are source-dated when the sheet provides a date.</p>
+        </div>
+        <div class="hero-stat">
+          <strong id="recordCount">—</strong>
+          <span>foods indexed</span>
+        </div>
+      </div>
+
+      <div class="search-panel sticky-panel">
+        <div class="search-row">
+          <label class="searchbox">
+            <span aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="Search brand + line + recipe…" aria-label="Search foods across brand, line, recipe, and texture" />
+          </label>
+          <button id="filterBtn" class="secondary-btn" type="button">Filters <span id="filterCount" class="count-badge hidden">0</span></button>
+        </div>
+        <div class="quick-row" aria-label="Quick filters">
+          <button id="storeModeBtn" class="chip mode-chip" type="button" aria-pressed="false">🛒 Store mode</button>
+          <button class="chip active" data-quick="carb">≤ <span id="quickCarbValue">10</span>% carbs</button>
+          <button class="chip" data-quick="complete">Complete data</button>
+          <button class="chip" data-quick="favorites">★ Favorites</button>
+          <button class="chip" data-quick="wet">Wet only</button>
+          <button class="chip" data-quick="seafood">No seafood</button>
+        </div>
+        <div class="result-toolbar">
+          <span id="resultCount" class="subtle">— foods</span>
+          <label class="sort-label">Sort
+            <select id="sortSelect">
+              <option value="carb_asc">Carbs: low → high</option>
+              <option value="phos_asc">Phosphorus: low → high</option>
+              <option value="protein_desc">Protein: high → low</option>
+              <option value="fat_asc">Fat: low → high</option>
+              <option value="updated_desc">Source: newest first</option>
+              <option value="brand_asc">Brand A → Z</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div id="foodGrid" class="food-grid" aria-live="polite"></div>
+      <button id="loadMoreBtn" class="load-more hidden">Show more</button>
+    </section>
+
+    <section id="compareView" class="view" aria-labelledby="compareTitle">
+      <div class="section-head">
+        <div><p class="eyebrow">Side-by-side</p><h2 id="compareTitle">Compare foods</h2></div>
+        <button id="clearCompareBtn" class="text-btn">Clear</button>
+      </div>
+      <div id="compareEmpty" class="empty-state">
+        <div class="empty-icon">⇄</div><h3>No foods selected yet</h3>
+        <p>Use “Compare” on any food card. You can line up to four foods.</p>
+        <button class="primary-btn" data-nav="browse">Browse foods</button>
+      </div>
+      <div id="compareTableWrap" class="compare-wrap hidden"></div>
+    </section>
+
+    <section id="addView" class="view" aria-labelledby="addTitle">
+      <div class="section-head"><div><p class="eyebrow">Your own data</p><h2 id="addTitle">Add or estimate a food</h2></div></div>
+      <div class="two-col">
+        <form id="customFoodForm" class="panel form-panel">
+          <h3>Add manufacturer/TNA values</h3>
+          <p class="subtle">Use this when a company gives you protein/fat/carbohydrate as % of calories and phosphorus as mg/100 kcal.</p>
+          <div class="form-grid">
+            <label>Brand<input required name="brand" placeholder="Brand" /></label>
+            <label>Product<input required name="product" placeholder="Recipe or flavor" /></label>
+            <label>Food form<select name="form"><option value="wet">Wet</option><option value="dry">Dry</option><option value="air-dried">Air-dried</option><option value="steam-dried">Steam & dried</option></select></label>
+            <label>Protein % calories<input required name="protein" type="number" min="0" max="100" step="0.1" /></label>
+            <label>Fat % calories<input required name="fat" type="number" min="0" max="100" step="0.1" /></label>
+            <label>Carb % calories<input required name="carb" type="number" min="0" max="100" step="0.1" /></label>
+            <label>Phosphorus mg/100 kcal<input name="phos" type="number" min="0" step="1" /></label>
+            <label>Calories/package<input name="calories" type="number" min="0" step="1" /></label>
+            <label>Package description<input name="package" placeholder="3 oz can" /></label>
+            <label class="span-2">Source / note<input name="source" placeholder="Manufacturer email, website, can label…" /></label>
+          </div>
+          <div id="macroSumNote" class="callout hidden"></div>
+          <button class="primary-btn" type="submit">Save to this device</button>
+        </form>
+
+        <form id="gaCalcForm" class="panel form-panel">
+          <h3>Guaranteed Analysis estimator</h3>
+          <p class="subtle">A rough shopping estimate only. Package values are minima/maxima, so this is not equivalent to Typical Nutrient Analysis.</p>
+          <div class="form-grid">
+            <label>Protein % as-fed<input required name="protein" type="number" min="0" max="100" step="0.1" /></label>
+            <label>Fat % as-fed<input required name="fat" type="number" min="0" max="100" step="0.1" /></label>
+            <label>Fiber % as-fed<input required name="fiber" type="number" min="0" max="100" step="0.1" /></label>
+            <label>Moisture % as-fed<input required name="moisture" type="number" min="0" max="100" step="0.1" /></label>
+            <label>Ash % as-fed<input required name="ash" type="number" min="0" max="100" step="0.1" /></label>
+          </div>
+          <button class="secondary-btn" type="submit">Estimate calorie distribution</button>
+          <div id="gaResult" class="calc-result hidden"></div>
+        </form>
+      </div>
+      <div id="customFoodsPanel" class="panel custom-list-panel">
+        <div class="panel-title-row"><h3>My saved foods</h3><button id="exportCustomBtn" class="text-btn">Export JSON</button></div>
+        <div id="customFoodsList"></div>
+      </div>
+    </section>
+
+    <section id="aboutView" class="view" aria-labelledby="aboutTitle">
+      <div class="section-head"><div><p class="eyebrow">Know what the numbers mean</p><h2 id="aboutTitle">About the data</h2></div></div>
+      <div class="about-grid">
+        <article class="panel">
+          <h3>What this app displays</h3>
+          <p>The seed chart reports <strong>protein, fat, and carbohydrate as percent of calories</strong>, phosphorus as <strong>mg per 100 kcal</strong>, and calories per the package size noted by the source.</p>
+          <p>That is different from the as-fed Guaranteed Analysis printed on most cans.</p>
+        </article>
+        <article class="panel">
+          <h3>Multiple source generations</h3>
+          <p>The original 2017 Pierson chart remains available as a historical reference. Newer FDSG wet-food rows include source dates when present, and the FDSG dry list is intentionally carb-focused rather than pretending missing macros or minerals are known.</p>
+        </article>
+        <article class="panel">
+          <h3>Carbohydrate uncertainty</h3>
+          <p>The source notes that carbohydrate is calculated by subtraction rather than directly measured, and small differences should not be treated as precise. The default ≤10% carb target is a shopping filter, not a safety guarantee.</p>
+        </article>
+        <article class="panel">
+          <h3>Blank and unusual values stay visible</h3>
+          <p>If a source did not provide a value, this app keeps it missing rather than substituting zero. Source arithmetic anomalies are flagged and preserved rather than silently “fixed.”</p>
+        </article>
+        <article class="panel">
+          <h3>Historical names stay historical</h3>
+          <p>Source product names are never overwritten by modern shelf names. Verified current-name mappings live in a separate alias layer, so a search can find a modern package without changing the historical record.</p>
+        </article>
+      </div>
+      <div class="panel source-panel">
+        <h3>Included sources</h3>
+        <p><strong>Cat Food – Nutritional Composition</strong> (Lisa A. Pierson, DVM, 2017), plus the supplied <strong>Known values for Cat Foods – Wet</strong> and <strong>Dry Food List – Compiled for FDSG</strong>.</p>
+        <p class="subtle"><strong>FPUO:</strong> the supplied FDSG wet compilation is marked “For personal use only.” Those records remain in this single app and are visibly tagged <strong>FPUO</strong> so their provenance is never hidden.</p>
+        <p class="subtle">This app is a shopping and record-keeping aid. Nutrient targets and treatment decisions for a cat with diabetes or other disease should stay aligned with the cat's veterinary plan.</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Primary">
+    <button class="nav-item active" data-nav="browse"><span>⌕</span>Browse</button>
+    <button class="nav-item" data-nav="compare"><span>⇄</span>Compare <b id="compareNavCount" class="nav-count hidden">0</b></button>
+    <button class="nav-item" data-nav="add"><span>＋</span>Add</button>
+    <button class="nav-item" data-nav="about"><span>ⓘ</span>About</button>
+  </nav>
+
+  <dialog id="filterDialog" class="sheet-dialog">
+    <form method="dialog" class="sheet">
+      <div class="sheet-head"><div><p class="eyebrow">Narrow the list</p><h2>Filters</h2></div><button class="icon-btn" value="cancel" aria-label="Close">✕</button></div>
+      <div class="form-grid">
+        <label>Brand<select id="brandFilter"><option value="">All brands</option></select></label>
+        <label>Max carbs (% calories)<input id="carbMaxFilter" type="number" min="0" max="100" step="1" /></label>
+        <label>Min protein (% calories)<input id="proteinMinFilter" type="number" min="0" max="100" step="1" placeholder="No minimum" /></label>
+        <label>Max phosphorus (mg/100 kcal)<input id="phosMaxFilter" type="number" min="0" step="10" placeholder="No maximum" /></label>
+        <label>Max fat (% calories)<input id="fatMaxFilter" type="number" min="0" max="100" step="1" placeholder="No maximum" /></label>
+        <label>Dataset<select id="sourceFilter"><option value="">All</option><option value="fdsg_wet">FDSG wet compilation</option><option value="fdsg_dry">FDSG dry list</option><option value="pierson_2017">Pierson 2017 historical</option><option value="custom">My saved foods</option></select></label>
+        <label>Food form<select id="formFilter"><option value="">All forms</option><option value="wet">Wet</option><option value="dryish">Dry / air-dried / steam-dried</option><option value="dry">Dry kibble</option><option value="air-dried">Air-dried</option><option value="steam-dried">Steam & dried</option></select></label>
+        <label>Texture<select id="textureFilter"><option value="">All textures</option><option value="pate">Pâté / loaf</option><option value="shreds">Shreds / flakes</option><option value="pieces">Minced / bits / chunks / slices</option><option value="gravy">Gravy / sauce / stew</option><option value="broth">Broth / consommé / aspic</option><option value="mousse">Mousse</option></select></label>
+      </div>
+      <label class="switch-row"><input id="hideRxFilter" type="checkbox" /> Hide prescription/veterinary foods</label>
+      <label class="switch-row"><input id="excludeSeafoodFilter" type="checkbox" /> Exclude fish / seafood flavors</label>
+      <label class="switch-row"><input id="completeOnlyFilter" type="checkbox" /> Require macro + phosphorus data</label>
+      <div class="sheet-actions"><button id="resetFiltersBtn" type="button" class="text-btn">Reset</button><button id="applyFiltersBtn" value="default" class="primary-btn">Apply filters</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog" class="sheet-dialog">
+    <form method="dialog" class="sheet">
+      <div class="sheet-head"><div><p class="eyebrow">Personalize</p><h2>My targets</h2></div><button class="icon-btn" value="cancel" aria-label="Close">✕</button></div>
+      <p class="subtle">These are shopping filters, not medical pass/fail rules. The seed chart's default carbohydrate target is 10% of calories.</p>
+      <div class="form-grid">
+        <label>Carb target (% calories)<input id="settingCarbTarget" type="number" min="0" max="100" step="1" /></label>
+        <label>Phosphorus target (mg/100 kcal)<input id="settingPhosTarget" type="number" min="0" step="10" placeholder="Optional" /></label>
+      </div>
+      <div class="sheet-actions"><button id="resetSettingsBtn" type="button" class="text-btn">Defaults</button><button id="saveSettingsBtn" value="default" class="primary-btn">Save targets</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="detailDialog" class="detail-dialog"><div id="detailContent"></div></dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./data/foods.js"></script>
+  <script src="./data/aliases.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
