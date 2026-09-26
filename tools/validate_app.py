@@ -61,12 +61,15 @@ assert '.sheet-head h2,' in css and '.theme-option strong,' in css, 'dialog/them
 print('PASS: v0.2.8 dialog, theme-label, and X/clear contrast hardening is wired')
 
 
-# Tiki reconciliation layer regression checks (v0.2.9)
+# Current-manufacturer reconciliation layer regression checks (v0.3.0)
 tiki_js=(root/'data'/'tiki_cat.js').read_text(encoding='utf-8')
-tiki_json=(root/'data'/'tiki_cat.json').read_text(encoding='utf-8')
-assert './data/tiki_cat.js' in html, 'Tiki database script missing'
-assert 'window.TIKI_CAT_DB' in tiki_js, 'Tiki JS database wrapper missing'
-assert 'Tiki Cat reconciliation database' in tiki_json, 'Tiki JSON metadata missing'
-assert 'tikiLinkBySourceId' in js and 'tikiMatchFor' in js, 'Tiki current-name reconciliation not wired into app'
-assert "startsWith('verified_')" in js, 'tentative Tiki matches must not be exposed as verified aliases'
-print('PASS: v0.2.9 non-destructive Tiki Cat reconciliation database is wired')
+fancy_js=(root/'data'/'fancy_feast.js').read_text(encoding='utf-8')
+friskies_js=(root/'data'/'friskies.js').read_text(encoding='utf-8')
+for rel,var,label in [('./data/tiki_cat.js','window.TIKI_CAT_DB','Tiki'),('./data/fancy_feast.js','window.FANCY_FEAST_DB','Fancy Feast'),('./data/friskies.js','window.FRISKIES_DB','Friskies')]:
+    assert rel in html, f'{label} database script missing'
+for blob,var,label in [(tiki_js,'window.TIKI_CAT_DB','Tiki'),(fancy_js,'window.FANCY_FEAST_DB','Fancy Feast'),(friskies_js,'window.FRISKIES_DB','Friskies')]:
+    assert var in blob, f'{label} JS database wrapper missing'
+assert 'brandCatalogSpecs' in js and 'currentCatalogMatchBySourceId' in js and 'currentCatalogMatchFor' in js, 'generic manufacturer reconciliation registry missing'
+assert "startsWith('verified_')" in js, 'tentative manufacturer matches must not be exposed as verified aliases'
+assert 'Current catalog reconciliation:' in js, 'generic reconciliation provenance note missing'
+print('PASS: v0.3.0 Tiki, Fancy Feast, and Friskies non-destructive catalog reconciliation layers are wired')

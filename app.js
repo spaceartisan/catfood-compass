@@ -3,11 +3,20 @@
   const meta = window.CATFOOD_META || {};
   const aliasRows = (window.CATFOOD_ALIASES || []).filter(a=>a&&a.source_id&&a.verified===true);
   const aliasById = new Map(aliasRows.map(a=>[a.source_id,a]));
-  const tikiDb = window.TIKI_CAT_DB || {current_products:[],reconciliation:[],meta:{}};
-  const tikiProductById = new Map((tikiDb.current_products||[]).map(p=>[p.id,p]));
-  const tikiLinkBySourceId = new Map((tikiDb.reconciliation||[])
-    .filter(r=>r&&r.source_id&&r.current_product_id&&String(r.status||'').startsWith('verified_'))
-    .map(r=>[r.source_id,r]));
+  const brandCatalogSpecs = [
+    {key:'tiki', label:'Tiki Cat', source:'Tiki Pets current catalog', db:window.TIKI_CAT_DB || {current_products:[],reconciliation:[],meta:{}}},
+    {key:'fancy_feast', label:'Fancy Feast', source:'Purina Fancy Feast current catalog', db:window.FANCY_FEAST_DB || {current_products:[],reconciliation:[],meta:{}}},
+    {key:'friskies', label:'Friskies', source:'Purina Friskies current catalog', db:window.FRISKIES_DB || {current_products:[],reconciliation:[],meta:{}}}
+  ];
+  const currentCatalogMatchBySourceId = new Map();
+  for(const spec of brandCatalogSpecs){
+    const productById=new Map((spec.db.current_products||[]).map(p=>[p.id,p]));
+    for(const link of (spec.db.reconciliation||[])){
+      if(!link?.source_id || !link?.current_product_id || !String(link.status||'').startsWith('verified_')) continue;
+      const product=productById.get(link.current_product_id);
+      if(product) currentCatalogMatchBySourceId.set(link.source_id,{spec,link,product});
+    }
+  }
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const readJSON = (k, fallback) => { try { return JSON.parse(localStorage.getItem(k)) ?? fallback; } catch { return fallback; } };
@@ -29,24 +38,27 @@
     localStorage.setItem('cfc_settings',JSON.stringify(state.settings));
   };
   const customNormalized = () => state.custom.map(x=>({...x,dataset:'custom',verification_status:'user',source_year:new Date().getFullYear(),prescription:!!x.prescription,form:x.form||'wet',data_complete:x.protein_cal_pct!=null&&x.fat_cal_pct!=null&&x.carb_cal_pct!=null&&x.phosphorus_mg_per_100kcal!=null}));
-  const tikiMatchFor = f => {
-    const link=tikiLinkBySourceId.get(f.id); if(!link) return null;
-    const product=tikiProductById.get(link.current_product_id); if(!product) return null;
-    const familyNorm=normalizeSearch(product.family||''), nameNorm=normalizeSearch(product.current_name||'');
-    const parts=[product.line];
-    if(product.family && !(familyNorm && nameNorm.startsWith(familyNorm))) parts.push(product.family);
+  const currentCatalogMatchFor = f => {
+    const match=currentCatalogMatchBySourceId.get(f.id); if(!match) return null;
+    const {spec,link,product}=match;
+    const nameNorm=normalizeSearch(product.current_name||'');
+    const lineNorm=normalizeSearch(product.line||'');
+    const familyNorm=normalizeSearch(product.family||'');
+    const parts=[];
+    if(product.line && !(lineNorm && nameNorm.startsWith(lineNorm))) parts.push(product.line);
+    if(product.family && !(familyNorm && nameNorm.startsWith(familyNorm)) && normalizeSearch(product.family)!==lineNorm) parts.push(product.family);
     parts.push(product.current_name);
-    return {link,product,label:parts.filter(Boolean).join(' · ')};
+    return {spec,link,product,label:parts.filter(Boolean).join(' · ')};
   };
   const aliasFor = f => {
-    const base=aliasById.get(f.id)||null, tiki=tikiMatchFor(f);
-    if(!tiki) return base;
+    const base=aliasById.get(f.id)||null, catalog=currentCatalogMatchFor(f);
+    if(!catalog) return base;
     return {
       ...(base||{}), source_id:f.id, verified:true,
-      current_name:tiki.label,
-      aliases:[...(base?.aliases||[]),...(tiki.product.aliases||[])],
-      verified_on:tiki.product.verified_on||tikiDb.meta?.verified_on,
-      verified_source:'Tiki Pets current catalog', tiki_match:tiki
+      current_name:catalog.label,
+      aliases:[...(base?.aliases||[]),...(catalog.product.aliases||[]),catalog.product.raw_title].filter(Boolean),
+      verified_on:catalog.product.verified_on||catalog.spec.db.meta?.verified_on,
+      verified_source:catalog.spec.source, catalog_match:catalog
     };
   };
   const aliasSearchValues = f => { const a=aliasFor(f); return a ? [a.current_name,...(a.aliases||[])].filter(Boolean) : []; };
@@ -289,7 +301,7 @@
     if(f.section_calorie_note) p.push(`<p><strong>Source package note:</strong> ${esc(f.section_calorie_note)}</p>`);
     if(f.analysis_shared) p.push('<p>The original PDF visually shared this analysis across multiple product rows. The app preserves that relationship.</p>');
     const a=aliasFor(f); if(a?.current_name) p.push(`<p><strong>Verified shelf alias:</strong> ${esc(a.current_name)}${a.verified_on?` · checked ${esc(a.verified_on)}`:''}${a.verified_source?` · ${esc(a.verified_source)}`:''}. The source product name above remains unchanged.</p>`);
-    const tm=tikiMatchFor(f); if(tm) p.push(`<p><strong>Tiki reconciliation:</strong> this source record is linked to the current Tiki Cat catalog entry <em>${esc(tm.label)}</em>. The nutrition values shown above still come from the original ${esc(sourceLabel(f))} record and are not overwritten by the current catalog.</p>`);
+    const cm=currentCatalogMatchFor(f); if(cm) p.push(`<p><strong>Current catalog reconciliation:</strong> this source record is linked to the ${esc(cm.spec.label)} manufacturer catalog entry <em>${esc(cm.label)}</em>${cm.product.catalog_status==='discontinued'?' (manufacturer listing marked discontinued)':''}. The nutrition values shown above still come from the original ${esc(sourceLabel(f))} record and are not overwritten by the current catalog.</p>`);
     return p.join('');
   }
 

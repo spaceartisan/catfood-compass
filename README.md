@@ -1,68 +1,59 @@
-# CatFood Compass v0.2.9
+# CatFood Compass v0.3.0
 
-A mobile-friendly, static cat-food shopping app designed for GitHub Pages. **There is one canonical build only; all included source records live in this app.** It compares foods primarily by **protein, fat, and carbohydrate as percent of metabolizable calories**, **phosphorus in mg/100 kcal**, and **calorie density/package calories when the source provides them**.
+A mobile-first, static cat-food nutrition lookup app designed for GitHub Pages. There is **one canonical build only**. Historical and supplied nutrition records remain immutable source observations; current manufacturer catalogs are stored as separate reconciliation layers.
 
-## Included data
+## Core nutrition data
 
-The app currently contains **2,024 records** from three supplied reference sets:
+The app still contains the same **2,024 source nutrition records**:
 
-- **1,161 Pierson 2017 records** from *Cat Food - Nutritional Composition* (Lisa A. Pierson, DVM). These remain clearly marked historical.
-- **838 FDSG wet-food records** extracted from *Known values for Cat Foods - Wet*. These include protein/fat/carbohydrate %ME where supplied, kcal/100 g, phosphorus, magnesium, calcium, sodium, and row update dates where present.
-- **25 FDSG dry / air-dried / steam-dried records** from *Dry Food List - Compiled for FDSG*. This source is mainly a carbohydrate list, so missing protein, fat, phosphorus, and calorie data remain blank.
+- 1,161 Lisa A. Pierson, DVM 2017 wet-food records.
+- 838 FDSG wet-food records (FPUO flag preserved in the UI/data).
+- 25 FDSG dry/air-dried/steam-dried records.
 
-Source anomalies are preserved and flagged rather than silently corrected. Examples include negative calculated carbohydrate values and macro totals that do not add to approximately 100% in the supplied wet-food sheet.
+No source nutrition row was rewritten for v0.3.0.
 
+## Dedicated current-manufacturer catalog databases
 
-## Dedicated Tiki Cat reconciliation database
+Three additive reconciliation databases now live in `data/`:
 
-`data/tiki_cat.json` / `data/tiki_cat.js` is an **additive** Tiki Cat-specific database. `data/tiki_cat_reconciliation.csv` is a human-reviewable reconciliation table. It does not modify or replace any Pierson or FDSG nutrition record. Instead, it stores the current Tiki Pets wet-food catalog separately and links historical/source observations to current manufacturer catalog entries when the identity can be reconciled conservatively.
+- `tiki_cat.json` / `tiki_cat.js` / `tiki_cat_reconciliation.csv`
+- `fancy_feast.json` / `fancy_feast.js` / `fancy_feast_reconciliation.csv`
+- `friskies.json` / `friskies.js` / `friskies_reconciliation.csv`
 
-Current snapshot (verified 2026-09-26):
+All three use the same rule: **current catalog identity and source nutrition are separate observations**. Verified current-name links improve search and appear as a secondary shelf/current-catalog name, but protein/fat/carbohydrate/phosphorus values continue to come from the original Pierson/FDSG record.
 
-- **161 current Tiki wet-food/catalog entries** across After Dark, Baby, Born Carnivore, Friends, Gelée, Grill, Luau, Mega Packs, Silver, Solutions, and Velvet Mousse.
-- **120 existing Tiki source observations** remain in the original 2,024-record source database.
-- **95 verified current-name/legacy-name links** are used by the app for current-name search and shelf-name display.
-- **25 unresolved source records** remain deliberately unresolved rather than being forced onto a current SKU.
-- Only verified links are exposed to the app as current-name aliases; unresolved rows keep their source names only.
+### Tiki Cat
 
-This allows, for example, an old `Aloha Friends` source row to remain exactly as sourced while current `Friends` terminology can also be found in search. The nutrition values continue to come from the original source row; current manufacturer naming does not overwrite source nutrition.
+The existing v0.2.9 database is retained unchanged: 161 catalog entries, 120 Tiki source observations, 95 verified links, 25 unresolved.
 
-## What it does
+### Fancy Feast
 
-- Ranked, typo-tolerant search across brand, product line/collection, recipe, style, source, and independently verified modern shelf-name aliases. Search words can match different fields, so `Fancy Feast Classic` and `Tiki Cat After Dark` work as expected. Best matches rise to the top, and the app offers mobile-friendly brand/line/product suggestions.
-- Search diagnostics distinguish a true no-match from a match hidden by active nutrition/quick filters, with a one-tap option to clear those filters.
-- Default quick filter: carbohydrate at or below 10% of calories (user-adjustable).
-- Filter/sort by protein, fat, carbohydrate, phosphorus, brand, source dataset, food form, texture, prescription status, seafood/fish exclusion, and data completeness.
-- Distinguish wet, dry, air-dried, and steam-dried foods.
-- One-tap **No seafood** filtering and texture filters for pâté/loaf, shreds/flakes, minced/bits/chunks/slices, gravy/sauce/stew, broth/consommé/aspic, and mousse.
-- **Store Mode** hides the large landing panel and tightens the mobile shopping cards while keeping the core nutrient values, warnings, favorites, details, and comparison controls.
-- Six persistent visual themes: **Catnip**, **Midnight**, **Ocean**, **Berry**, **Sunset**, and **Lavender**. Theme selection is stored locally and applies before first paint to avoid flashing the default palette.
-- Sharper visual language with tighter corner radii, flatter cards, crisper nutrient tiles, and less pill-shaped chrome while preserving touch-friendly controls.
-- Mobile layout repair: Store Mode is applied before first paint, only the search row remains sticky, quick filters scroll cleanly, the result/sort row stays within the viewport, and bottom-nav safe spacing is improved.
-- Theme contrast hardening: dialog surfaces, headings, theme labels, form controls, close buttons, and clear controls now receive explicit foreground/background colors. All dismiss/clear “X” controls use a currentColor SVG rather than an inherited text glyph, and search has its own visible clear button.
-- Show source dates on FDSG rows when the source provides them.
-- Show phosphorus plus additional magnesium/calcium/sodium in details when available.
-- Favorite foods locally and compare up to four side-by-side.
-- Add current manufacturer/TNA values and keep them on the device using `localStorage`.
-- Estimate caloric macro distribution from a complete Guaranteed Analysis entry (including ash), clearly labeled as an estimate.
-- Works offline after first load through a service worker.
-- No backend, accounts, tracking, build step, or external JavaScript libraries.
+Snapshot verified 2026-09-26 from Purina's official Fancy Feast wet-food catalog. The captured catalog contains 136 listing entries (135 currently listed plus one page explicitly marked discontinued), across Classic Paté, Grilled, Gravy Lovers, Gravy Lovers Paté in Gravy, Delights With Cheddar, Savory Centers, Flaked, Sliced, Minced, Chunky, Marinated Morsels, Medleys, Gourmet Naturals, Petites, Gems, Senior 7+, and Kitten. The broader Purina Fancy Feast product index reports 164 wet-cat-food products, so the dated reconciliation database records the catalog snapshot it actually captured rather than pretending those counts are identical.
 
-## FPUO source flag
+There are 108 existing Fancy Feast source nutrition observations. Only conservative verified links are exposed to the app; uncertain historical-to-current relationships remain unresolved.
 
-The supplied **FDSG wet-food PDF is marked “For personal use only.”** CatFood Compass uses one canonical build: those records are included in the same database and carry `source_personal_use_only: true`. The UI displays an **FPUO** badge on those records so the source restriction remains visible.
+### Friskies
 
-## GitHub Pages deployment
+Snapshot verified 2026-09-26 from Purina's official Friskies wet-food catalog. The captured catalog contains 102 listing entries including individual foods and variety packs. Purina describes the line as having more than 60 wet-food varieties. Current catalog families include Paté, Shreds, Prime Filets, Tasty Treasures, Farm Favorites, Ocean Favorites, Wild Favorites Mini Bites, Indoor, Extra Gravy, Gravy Sensations, Meaty Bits, Fully Load'd, and Glaz'd & Infuz'd. Lil' Soups is explicitly stored as a **complement**, not a complete meal.
 
-1. Create a GitHub repository.
-2. Put the contents of this folder in the repository root.
-3. Push to `main`.
-4. In **Settings -> Pages**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`.
-5. Open the Pages URL. All paths are relative, so project-site URLs such as `https://username.github.io/repository/` work correctly.
+There are 74 existing Friskies source nutrition observations. Historical lines that do not have a sufficiently strong current identity match remain unresolved rather than being forced onto a modern SKU.
 
-## Local test
+Purina also states that Friskies wet foods are rolling out without artificial colors or preservatives during 2026; that rollout is stored as brand-level source metadata rather than used to overwrite old nutrition/formula observations.
 
-Run a small web server from this directory:
+## Search and UI
+
+Search remains ranked and typo-tolerant across brand, line, source recipe/style, verified shelf aliases, and now all three verified manufacturer reconciliation layers. Thus old source terminology can remain intact while current shelf terminology is searchable.
+
+The six-theme system, Store Mode, mobile layout repairs, FPUO badges, source-anomaly behavior, favorites, compare view, and nutrition filters are unchanged.
+
+## GitHub Pages
+
+1. Put this folder's contents at the repository root.
+2. Push to `main`.
+3. In GitHub **Settings -> Pages**, deploy from `main` and `/ (root)`.
+4. Relative paths make the app work at project-site URLs such as `https://username.github.io/repository/`.
+
+For local testing:
 
 ```bash
 python -m http.server 8000
@@ -70,52 +61,13 @@ python -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-## Data files and extraction
+## Development tools
 
-`data/foods.js` is the browser-ready merged dataset.
+- `tools/extract_seed_pdf.py` — Pierson PDF extraction.
+- `tools/extract_fdsg_wet.py` — FDSG wet PDF extraction.
+- `tools/build_data.py` — core 2,024-record source dataset.
+- `tools/build_tiki_db.py` — Tiki current catalog/reconciliation layer.
+- `tools/build_purina_brand_dbs.py` — Fancy Feast + Friskies current catalog/reconciliation layers.
+- `tools/validate_data.py` / `tools/validate_app.py` — regression checks.
 
-The development folder also contains:
-
-- `data/fdsg_wet.json` - extracted wet-food records.
-- `data/fdsg_dry.json` - structured dry-food records.
-- `tools/extract_seed_pdf.py` - original Pierson chart extractor.
-- `tools/extract_fdsg_wet.py` - coordinate-based FDSG wet PDF extractor.
-- `tools/build_data.py` - merges all supplied datasets into `foods.js`.
-- `tools/validate_data.py` - regression and integrity checks.
-
-The original PDFs are **not** included in the app package.
-
-Run integrity checks with:
-
-```bash
-python tools/validate_data.py
-```
-
-## Data model notes
-
-The core nutrient fields are:
-
-- `protein_cal_pct`
-- `fat_cal_pct`
-- `carb_cal_pct`
-- `phosphorus_mg_per_100kcal`
-- `kcal_per_100g` for newer wet-source rows where supplied
-- `calories` / package metadata for historical rows where supplied
-
-The newer wet sheet also supplies optional:
-
-- `magnesium_mg_per_100kcal`
-- `calcium_mg_per_100kcal`
-- `sodium_mg_per_100kcal`
-- `updated`
-
-Qualitative dry-food entries such as **Trace** or **under 6%** remain qualitative rather than being converted into invented exact values.
-
-
-### Source names and current shelf names
-
-`data/foods.js` remains the source-of-record dataset. Historical/source product names are never overwritten. `data/aliases.js` is a separate, initially empty mapping layer for independently verified modern shelf names. The app only uses alias rows marked `verified: true`; aliases can improve search and appear as a secondary “Shelf” label while the original source name remains primary.
-
-## Important limitation
-
-Commercial formulas change and all of these numbers inherit the uncertainty of their source. CatFood Compass is intended to make comparison and record-keeping easier, not to declare a food medically safe or replace a veterinary plan.
+The original PDFs are not bundled in the web app.

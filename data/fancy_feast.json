@@ -1,0 +1,3906 @@
+{
+  "meta": {
+    "database": "Fancy Feast reconciliation database",
+    "schema_version": "1.0",
+    "verified_on": "2026-09-26",
+    "scope": "Fancy Feast official wet-food catalog snapshot plus non-destructive links to existing CatFood Compass source records",
+    "source_of_current_catalog": "Purina official website",
+    "current_catalog_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+    "preservation_rule": "Existing Pierson/FDSG records remain immutable source observations. This database links to them; it does not overwrite them.",
+    "current_listing_count": 135,
+    "catalog_entry_count": 136,
+    "source_record_count": 108,
+    "reconciliation_counts": {
+      "verified_name_match": 69,
+      "unresolved": 39
+    },
+    "current_line_counts": {
+      "Chunky": 1,
+      "Classic Paté": 18,
+      "Delights With Cheddar": 4,
+      "Flaked": 5,
+      "Gems": 6,
+      "Gourmet Naturals": 10,
+      "Gravy Lovers": 8,
+      "Gravy Lovers Paté in Gravy": 5,
+      "Grilled": 11,
+      "Kitten": 6,
+      "Marinated Morsels": 6,
+      "Medleys": 32,
+      "Minced": 1,
+      "Other": 1,
+      "Petites": 7,
+      "Savory Centers": 5,
+      "Senior 7+": 5,
+      "Sliced": 5
+    },
+    "role_counts": {
+      "complete_meal": 109,
+      "variety_pack": 27
+    },
+    "notes": [
+      "Current manufacturer catalog names are stored separately from historical/source names.",
+      "A missing current match means unresolved, not discontinued, unless separately verified.",
+      "Only verified links are exposed to the app as current-name aliases.",
+      "The Purina product catalog is dynamic; this is a dated snapshot rather than a guarantee that a SKU remains on shelf."
+    ]
+  },
+  "sources": {
+    "catalog": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+    "all_products": "https://www.purina.com/fancy-feast/products",
+    "pate": "https://www.purina.com/fancy-feast/products/pate-wet-cat-food",
+    "formula_update": "https://www.purina.com/fancy-feast/no-artificial-colors"
+  },
+  "current_products": [
+    {
+      "brand": "Fancy Feast",
+      "line": "Kitten",
+      "family": "Pâté",
+      "current_name": "Kitten Tender Chicken Feast Paté",
+      "raw_title": "Fancy Feast Kitten Tender Chicken Feast Paté Wet Kitten Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-kitten-kitten-tender-chicken-feast-pate"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Kitten",
+      "family": "Pâté",
+      "current_name": "Kitten Tender Salmon Feast Paté",
+      "raw_title": "Fancy Feast Kitten Tender Salmon Feast Paté Wet Kitten Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-kitten-kitten-tender-salmon-feast-pate"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Delights With Cheddar",
+      "family": "Grilled",
+      "current_name": "Delights With Cheddar Grilled Whitefish & Cheddar Cheese Feast",
+      "raw_title": "Purina Fancy Feast Delights With Cheddar Grilled Whitefish & Cheddar Cheese Feast Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Delights with Cheddar · Grilled Whitefish & Cheddar Cheese in Gravy"
+      ],
+      "id": "fancy-delights-with-cheddar-delights-with-cheddar-grilled-whitefish-and-cheddar-cheese-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers",
+      "family": "Gravy",
+      "current_name": "Gravy Lovers Beef Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Beef Feast Gourmet Cat Food in Wet Cat Food Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Gravy Lovers Gourmet Beef Feast in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-gravy-lovers-beef-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers",
+      "family": "Gravy",
+      "current_name": "Gravy Lovers Chicken and Beef Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Chicken and Beef Feast Gourmet Cat Food in Wet Cat Food Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Gravy Lovers Chicken & Beef Feast in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-gravy-lovers-chicken-and-beef-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Tender Beef Feast",
+      "raw_title": "Fancy Feast Classic Paté Tender Beef Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Tender Beef Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-tender-beef-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Tender Beef & Liver Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Tender Beef & Liver Feast In Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Tender Beef & Liver in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-tender-beef-and-liver-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Liver & Chicken Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Liver & Chicken Feast In Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Liver & Chicken Feast in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-liver-and-chicken-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Savory Centers",
+      "family": "Pâté",
+      "current_name": "Savory Centers Paté With Beef and a Gourmet Gravy Center",
+      "raw_title": "Fancy Feast Savory Centers Paté With Beef and a Gourmet Gravy Center",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-savory-centers-savory-centers-pate-with-beef-and-a-gourmet-gravy-center"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Chicken & Beef Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Chicken & Beef Feast In Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Chicken & Beef in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-chicken-and-beef-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Flaked",
+      "family": "Flaked",
+      "current_name": "Flaked Tuna Feast",
+      "raw_title": "Purina Fancy Feast Wet Cat Food Flaked Tuna Feast",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Roasted/Flaked/Chunky · Flaked Tuna Feast"
+      ],
+      "id": "fancy-flaked-flaked-tuna-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Sliced",
+      "family": "Sliced",
+      "current_name": "Sliced Chicken Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Sliced Chicken Feast Wet Cat Food in Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Sliced in Gravy · Sliced Chicken in Gravy"
+      ],
+      "id": "fancy-sliced-sliced-chicken-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Sliced",
+      "family": "Sliced",
+      "current_name": "Sliced Chicken Hearts and Liver Feast",
+      "raw_title": "Purina Fancy Feast Sliced Chicken Hearts and Liver Feast Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Sliced in Gravy · Sliced Chicken Hearts & Liver in Gravy"
+      ],
+      "id": "fancy-sliced-sliced-chicken-hearts-and-liver-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Kitten",
+      "family": "Pâté",
+      "current_name": "Kitten Tender Ocean Whitefish Feast Paté",
+      "raw_title": "Fancy Feast Kitten Tender Ocean Whitefish Feast Paté Wet Kitten Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Kitten · Kitten Tender Ocean Whitefish Feast"
+      ],
+      "id": "fancy-kitten-kitten-tender-ocean-whitefish-feast-pate"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Kitten",
+      "family": "Pâté",
+      "current_name": "Kitten Tender Turkey Feast Paté",
+      "raw_title": "Fancy Feast Kitten Tender Turkey Feast Paté Wet Kitten Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Kitten · Kitten Tender Turkey Feast"
+      ],
+      "id": "fancy-kitten-kitten-tender-turkey-feast-pate"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Turkey Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Turkey Feast In Gravy Gourmet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Turkey Feast in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-turkey-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Chicken Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Chicken Feast In Gravy Gourmet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Chicken Feast in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-chicken-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Ocean Whitefish & Tuna Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Ocean Whitefish & Tuna Feast In Gravy Gourmet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Ocean Whitefish & Tuna in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-ocean-whitefish-and-tuna-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Salmon & Shrimp Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Salmon & Shrimp Feast In Gravy Gourmet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Salmon & Shrimp in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-salmon-and-shrimp-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Salmon & Shrimp Feast",
+      "raw_title": "Fancy Feast Classic Paté Salmon & Shrimp Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Salmon & Shrimp Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-salmon-and-shrimp-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Chunky",
+      "family": "Chunky",
+      "current_name": "Chunky Chicken Feast",
+      "raw_title": "Purina Fancy Feast Chunky Chicken Feast Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Roasted/Flaked/Chunky · Chunky Chicken Feast"
+      ],
+      "id": "fancy-chunky-chunky-chicken-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Flaked",
+      "family": "Flaked",
+      "current_name": "Flaked Fish and Shrimp Feast",
+      "raw_title": "Purina Fancy Feast Wet Cat Food Flaked Fish and Shrimp Feast",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-flaked-flaked-fish-and-shrimp-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Flaked",
+      "family": "Flaked",
+      "current_name": "Flaked Trout Feast",
+      "raw_title": "Purina Fancy Feast Wet Cat Food Flaked Trout Feast",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Roasted/Flaked/Chunky · Flaked Trout Feast"
+      ],
+      "id": "fancy-flaked-flaked-trout-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Tender Chicken and Liver Feast",
+      "raw_title": "Fancy Feast Classic Paté Tender Chicken and Liver Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Tender Liver & Chicken Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-tender-chicken-and-liver-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Chopped Grill Feast",
+      "raw_title": "Fancy Feast Classic Paté Chopped Grill Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Chopped Grill Feast",
+        "Classic Pate · Chopped Grill · Pate"
+      ],
+      "id": "fancy-classic-pate-classic-pate-chopped-grill-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Ocean Whitefish & Tuna Feast",
+      "raw_title": "Fancy Feast Classic Paté Ocean Whitefish & Tuna Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Ocean Whitefish & Tuna Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-ocean-whitefish-and-tuna-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Turkey & Giblets Feast",
+      "raw_title": "Fancy Feast Classic Paté Turkey & Giblets Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Turkey and Giblets Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-turkey-and-giblets-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Salmon Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Salmon Feast In Gravy Gourmet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Salmon in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-salmon-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers",
+      "family": "Gravy",
+      "current_name": "Gravy Lovers Salmon Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Salmon Feast Gourmet Cat Food in Wet Cat Food Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Gravy Lovers Salmon Feast in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-gravy-lovers-salmon-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Tender Beef & Chicken Feast",
+      "raw_title": "Fancy Feast Classic Paté Tender Beef & Chicken Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Tender Beef & Chicken Feast",
+        "Classic Pate · Beef & Chicken · Pate"
+      ],
+      "id": "fancy-classic-pate-classic-pate-tender-beef-and-chicken-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Flaked",
+      "family": "Flaked",
+      "current_name": "Flaked Chicken and Tuna Feast",
+      "raw_title": "Purina Fancy Feast Wet Cat Food Flaked Chicken and Tuna Feast",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Roasted/Flaked/Chunky · Flaked Chicken & Tuna Feast"
+      ],
+      "id": "fancy-flaked-flaked-chicken-and-tuna-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Flaked",
+      "family": "Flaked",
+      "current_name": "Flaked Tuna and Mackerel Feast",
+      "raw_title": "Purina Fancy Feast Wet Cat Food Flaked Tuna and Mackerel Feast",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Roasted/Flaked/Chunky · Flaked Tuna & Mackerel Feast"
+      ],
+      "id": "fancy-flaked-flaked-tuna-and-mackerel-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers",
+      "family": "Gravy",
+      "current_name": "Gravy Lovers Chicken Hearts and Liver Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Chicken Hearts and Liver Feast Gourmet Cat Food in Wet Cat Food Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Gravy Lovers Chicken Hearts & Liver Feast in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-gravy-lovers-chicken-hearts-and-liver-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Savory Centers",
+      "family": "Pâté",
+      "current_name": "Savory Centers Paté With Chicken and a Gourmet Gravy Center",
+      "raw_title": "Fancy Feast Savory Centers Paté With Chicken and a Gourmet Gravy Center",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-savory-centers-savory-centers-pate-with-chicken-and-a-gourmet-gravy-center"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Savory Centers",
+      "family": "Pâté",
+      "current_name": "Savory Centers Paté With Tuna and a Gourmet Gravy Center",
+      "raw_title": "Fancy Feast Savory Centers Paté With Tuna and a Gourmet Gravy Center",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-savory-centers-savory-centers-pate-with-tuna-and-a-gourmet-gravy-center"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Tender Beef & Liver Feast",
+      "raw_title": "Fancy Feast Classic Paté Tender Beef & Liver Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Tender Beef & Liver Feast",
+        "Classic Pate · Beef & Liver · Pate"
+      ],
+      "id": "fancy-classic-pate-classic-pate-tender-beef-and-liver-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Sliced",
+      "family": "Sliced",
+      "current_name": "Sliced Beef in Gravy",
+      "raw_title": "Fancy Feast Sliced Beef Gourmet Wet Cat Food in Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Sliced in Gravy · Sliced Beef in Gravy"
+      ],
+      "id": "fancy-sliced-sliced-beef-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Minced",
+      "family": "Minced",
+      "current_name": "Minced Turkey in Sauce",
+      "raw_title": "Fancy Feast Minced Turkey Gourmet Wet Cat Food in Sauce",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-minced-minced-turkey-in-sauce"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Beef Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Beef Feast In Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Beef in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-beef-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Marinated Morsels",
+      "family": "Morsels",
+      "current_name": "Marinated Morsels Turkey in Gravy",
+      "raw_title": "Fancy Feast Marinated Morsels Turkey Gourmet Wet Cat Food in Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Marinated Morsels in Gravy · Marinated Morsels Turkey Feast in Gravy"
+      ],
+      "id": "fancy-marinated-morsels-marinated-morsels-turkey-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Marinated Morsels",
+      "family": "Morsels",
+      "current_name": "Marinated Morsels Tuna in Gravy",
+      "raw_title": "Fancy Feast Marinated Morsels Tuna Gourmet Wet Cat Food in Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Marinated Morsels in Gravy · Marinated Morsels Tuna Feast in Gravy"
+      ],
+      "id": "fancy-marinated-morsels-marinated-morsels-tuna-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Marinated Morsels",
+      "family": "Morsels",
+      "current_name": "Marinated Morsels Salmon in Gravy",
+      "raw_title": "Fancy Feast Marinated Morsels Salmon Gourmet Wet Cat Food in Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Marinated Morsels in Gravy · Marinated Morsels Salmon Feast in Gravy"
+      ],
+      "id": "fancy-marinated-morsels-marinated-morsels-salmon-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Marinated Morsels",
+      "family": "Morsels",
+      "current_name": "Marinated Morsels Chicken in Gravy",
+      "raw_title": "Fancy Feast Marinated Morsels Chicken Gourmet Wet Cat Food in Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Marinated Morsels in Gravy · Marinated Morsels Chicken Feast in Gravy"
+      ],
+      "id": "fancy-marinated-morsels-marinated-morsels-chicken-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Marinated Morsels",
+      "family": "Morsels",
+      "current_name": "Marinated Morsels Beef in Gravy",
+      "raw_title": "Fancy Feast Marinated Morsels Beef Gourmet Wet Cat Food in Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Marinated Morsels in Gravy · Marinated Morsels Beef Feast in Gravy"
+      ],
+      "id": "fancy-marinated-morsels-marinated-morsels-beef-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Delights With Cheddar",
+      "family": "Grilled",
+      "current_name": "Delights With Cheddar Grilled Tuna & Cheddar Cheese Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Delights With Cheddar Grilled Tuna & Cheddar Cheese Feast in Wet Cat Food Gravy Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Delights with Cheddar · Grilled Tuna & Cheddar Cheese in Gravy"
+      ],
+      "id": "fancy-delights-with-cheddar-delights-with-cheddar-grilled-tuna-and-cheddar-cheese-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Delights With Cheddar",
+      "family": "Grilled",
+      "current_name": "Delights With Cheddar Grilled Chicken & Cheddar Cheese Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Delights With Cheddar Grilled Chicken & Cheddar Cheese Feast in Wet Cat Food Gravy Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Delights with Cheddar · Grilled Chicken & Cheddar Cheese in Gravy"
+      ],
+      "id": "fancy-delights-with-cheddar-delights-with-cheddar-grilled-chicken-and-cheddar-cheese-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Delights With Cheddar",
+      "family": "Grilled",
+      "current_name": "Delights With Cheddar Grilled Turkey & Cheddar Cheese Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Delights With Cheddar Grilled Turkey & Cheddar Cheese Feast in Wet Cat Food Gravy Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Delights with Cheddar · Grilled Turkey & Cheddar Cheese in Gravy"
+      ],
+      "id": "fancy-delights-with-cheddar-delights-with-cheddar-grilled-turkey-and-cheddar-cheese-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Variety Pack",
+      "current_name": "Classic Paté Seafood Collection Variety Pack - 45 cans",
+      "raw_title": "Fancy Feast Classic Paté Seafood Collection Variety Pack Cat Food - 45 cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-classic-pate-classic-pate-seafood-collection-variety-pack-45-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Savory Centers",
+      "family": "Pâté",
+      "current_name": "Savory Centers Paté With Salmon and a Gourmet Gravy Center",
+      "raw_title": "Fancy Feast Savory Centers Paté With Salmon and a Gourmet Gravy Center",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-savory-centers-savory-centers-pate-with-salmon-and-a-gourmet-gravy-center"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers",
+      "family": "Gravy",
+      "current_name": "Gravy Lovers Salmon and Sole Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Salmon and Sole Feast Gourmet Cat Food in Wet Cat Food Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Gravy Lovers Salmon & Sole Feast in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-gravy-lovers-salmon-and-sole-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers",
+      "family": "Gravy",
+      "current_name": "Gravy Lovers Turkey Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Turkey Feast Gourmet Cat Food in Wet Cat Food Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Gravy Lovers Turkey Feast in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-gravy-lovers-turkey-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Seafood Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Seafood Feast In Gravy Gourmet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Seafood in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-seafood-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Variety Pack",
+      "current_name": "Classic Paté Chicken Feast Variety Pack - 24 Cans",
+      "raw_title": "Fancy Feast Classic Paté Chicken Feast Wet Cat Food Variety Pack – 24 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-classic-pate-classic-pate-chicken-feast-variety-pack-24-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gems",
+      "family": "Mousse",
+      "current_name": "Gems Mousse Paté With Beef and a Halo of Savory Gravy",
+      "raw_title": "Fancy Feast Gems Mousse Paté With Beef and a Halo of Savory Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gems-gems-mousse-pate-with-beef-and-a-halo-of-savory-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gems",
+      "family": "Mousse",
+      "current_name": "Gems Mousse Paté With Chicken and a Halo of Savory Gravy",
+      "raw_title": "Fancy Feast Gems Mousse Paté With Chicken and a Halo of Savory Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gems-gems-mousse-pate-with-chicken-and-a-halo-of-savory-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gems",
+      "family": "Mousse",
+      "current_name": "Gems Mousse Paté With Salmon and a Halo of Savory Gravy",
+      "raw_title": "Fancy Feast Gems Mousse Paté With Salmon and a Halo of Savory Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gems-gems-mousse-pate-with-salmon-and-a-halo-of-savory-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gems",
+      "family": "Variety Pack",
+      "current_name": "Gems Exquisite Mousse Collection Variety Pack - 12 Dual Packs",
+      "raw_title": "Fancy Feast Gems Exquisite Mousse Collection Variety Pack – 12 Dual Packs",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gems-gems-exquisite-mousse-collection-variety-pack-12-dual-packs"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers Paté in Gravy",
+      "family": "Pâté",
+      "current_name": "Gravy Lovers Beef Feast Paté in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Beef Feast Paté in Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Beef · Pate in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-beef-feast-pate-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers Paté in Gravy",
+      "family": "Pâté",
+      "current_name": "Gravy Lovers Chicken Feast Paté in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Chicken Feast Paté in Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Chicken · Pate in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-chicken-feast-pate-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers Paté in Gravy",
+      "family": "Pâté",
+      "current_name": "Gravy Lovers Ocean Whitefish & Tuna Feast Paté in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Ocean Whitefish & Tuna Feast Paté in Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Ocean Whitefish · Pate in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-ocean-whitefish-and-tuna-feast-pate-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers Paté in Gravy",
+      "family": "Pâté",
+      "current_name": "Gravy Lovers Salmon Feast Paté in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Salmon Feast Paté in Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Salmon · Pate in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-salmon-feast-pate-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers Paté in Gravy",
+      "family": "Variety Pack",
+      "current_name": "Gravy Lovers Paté in Gravy Variety Pack - 24 Cans",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Paté in Gravy Wet Cat Food Variety Pack - 24 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-pate-in-gravy-variety-pack-24-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Chicken Feast",
+      "raw_title": "Fancy Feast Classic Paté Chicken Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Chicken Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-chicken-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers",
+      "family": "Gravy",
+      "current_name": "Gravy Lovers Chicken Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Chicken Feast in Gravy Gourmet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Gravy Lovers Gourmet Chicken Feast in Gravy"
+      ],
+      "id": "fancy-gravy-lovers-gravy-lovers-chicken-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gravy Lovers",
+      "family": "Gravy",
+      "current_name": "Gravy Lovers Ocean Whitefish and Tuna Feast in Gravy",
+      "raw_title": "Purina Fancy Feast Gravy Lovers Ocean Whitefish and Tuna Feast Gourmet Cat Food in Wet Cat Food Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gravy Lovers · Gravy Lovers Ocean Whitefish & Tuna Feast Gravy"
+      ],
+      "id": "fancy-gravy-lovers-gravy-lovers-ocean-whitefish-and-tuna-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Gravy",
+      "current_name": "Gourmet Naturals Natural White Meat Chicken Recipe In Gravy",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural White Meat Chicken Recipe In Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Gourmet Naturals · White Meat Chicken in Gravy · Bits"
+      ],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-white-meat-chicken-recipe-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Wild Salmon Primavera With Tomatoes, Carrots & Spinach in a Silky Broth",
+      "raw_title": "Fancy Feast Medleys Wild Salmon Primavera With Tomatoes, Carrots & Spinach in a Silky Broth",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-wild-salmon-primavera-with-tomatoes-carrots-and-spinach-in-a-silky-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Beef & Pork Milanese with Potatoes and Carrots in Savory Juices",
+      "raw_title": "Fancy Feast Medleys Beef & Pork Milanese with Potatoes and Carrots in Savory Juices Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-beef-and-pork-milanese-with-potatoes-and-carrots-in-savory-juices"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Sauce",
+      "current_name": "Medleys Beef Ragù with Tomatoes & Pasta in a Savory Sauce",
+      "raw_title": "Fancy Feast Medleys Beef Ragù with Tomatoes & Pasta in a Savory Sauce Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-beef-ragu-with-tomatoes-and-pasta-in-a-savory-sauce"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Sliced",
+      "family": "Sliced",
+      "current_name": "Sliced Turkey Feast in Gravy",
+      "raw_title": "Fancy Feast Sliced Turkey Feast Wet Cat Food in Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Sliced in Gravy · Sliced Turkey in Gravy",
+        "Sliced · Turkey in Gravy · Sliced"
+      ],
+      "id": "fancy-sliced-sliced-turkey-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Kitten",
+      "family": "Variety Pack",
+      "current_name": "Kitten Classic Paté Salmon, Ocean Whitefish, Turkey & Chicken Variety Pack - 24 Cans",
+      "raw_title": "Fancy Feast Kitten Classic Paté Salmon, Ocean Whitefish, Turkey & Chicken Variety Pack Wet Kitten Food - 24 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-kitten-kitten-classic-pate-salmon-ocean-whitefish-turkey-and-chicken-variety-pack-24-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Variety Pack",
+      "current_name": "Medleys Primavera Variety Pack - 24 Cans",
+      "raw_title": "Fancy Feast Medleys Primavera Wet Cat Food Variety Pack - 24 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-primavera-variety-pack-24-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Wild Salmon Florentine with Spinach in a Light Broth",
+      "raw_title": "Fancy Feast Medleys Wild Salmon Florentine with Spinach in a Light Broth Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-wild-salmon-florentine-with-spinach-in-a-light-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Turkey Florentine with Spinach in a Light Broth",
+      "raw_title": "Fancy Feast Medleys Turkey Florentine with Spinach in a Light Broth Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-turkey-florentine-with-spinach-in-a-light-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Tuna Florentine with Spinach in a Light Broth",
+      "raw_title": "Fancy Feast Medleys Tuna Florentine with Spinach in a Light Broth Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-tuna-florentine-with-spinach-in-a-light-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys White Meat Chicken Florentine with Spinach in a Light Broth",
+      "raw_title": "Fancy Feast Medleys White Meat Chicken Florentine with Spinach in a Light Broth Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-white-meat-chicken-florentine-with-spinach-in-a-light-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Wet Food",
+      "current_name": "Gourmet Naturals Natural Beef Recipe",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural Beef Recipe Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-beef-recipe"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Wet Food",
+      "current_name": "Gourmet Naturals Natural White Meat Chicken Recipe",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural White Meat Chicken Recipe Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-white-meat-chicken-recipe"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Wet Food",
+      "current_name": "Gourmet Naturals Natural Trout & Tuna Recipe",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural Trout & Tuna Recipe Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-trout-and-tuna-recipe"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Gravy",
+      "current_name": "Gourmet Naturals Natural Beef Recipe In Gravy",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural Beef Recipe In Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-beef-recipe-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Gravy",
+      "current_name": "Gourmet Naturals Natural Wild Alaskan Salmon & Shrimp Recipe In Gravy",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural Wild Alaskan Salmon & Shrimp Recipe In Gravy Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-wild-alaskan-salmon-and-shrimp-recipe-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Wet Food",
+      "current_name": "Gourmet Naturals Natural Whitefish Recipe",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural Whitefish Recipe Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-whitefish-recipe"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Wet Food",
+      "current_name": "Gourmet Naturals Natural White Meat Chicken & Beef Recipe",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural White Meat Chicken & Beef Recipe Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-white-meat-chicken-and-beef-recipe"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys White Meat Chicken Primavera With Tomatoes, Carrots & Spinach in a Silky Broth",
+      "raw_title": "Fancy Feast Medleys White Meat Chicken Primavera With Tomatoes, Carrots & Spinach in a Silky Broth",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-white-meat-chicken-primavera-with-tomatoes-carrots-and-spinach-in-a-silky-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys White Meat Chicken With Carrots & Spinach in a Demi-Glace",
+      "raw_title": "Fancy Feast Medleys White Meat Chicken With Carrots & Spinach in a Demi-Glace",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-white-meat-chicken-with-carrots-and-spinach-in-a-demi-glace"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Pâté",
+      "current_name": "Medleys White Meat Chicken Florentine Paté With Cheese & Spinach",
+      "raw_title": "Fancy Feast Medleys White Meat Chicken Florentine Paté With Cheese & Spinach",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Florentine · White Meat Chicken Florentine Pate"
+      ],
+      "id": "fancy-medleys-medleys-white-meat-chicken-florentine-pate-with-cheese-and-spinach"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Sauce",
+      "current_name": "Medleys Wild Alaskan Salmon With Carrots & Spinach in a Creamy Velouté Sauce",
+      "raw_title": "Fancy Feast Medleys Wild Alaskan Salmon With Carrots & Spinach in a Creamy Velouté Sauce",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-wild-alaskan-salmon-with-carrots-and-spinach-in-a-creamy-veloute-sauce"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Sauce",
+      "current_name": "Medleys Tuna Tuscany With Long Grain Rice & Spinach in a Savory Sauce",
+      "raw_title": "Fancy Feast Medleys Tuna Tuscany With Long Grain Rice & Spinach in a Savory Sauce",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Tuscany · Tuna Tuscany in a Savory Sauce"
+      ],
+      "id": "fancy-medleys-medleys-tuna-tuscany-with-long-grain-rice-and-spinach-in-a-savory-sauce"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Sauce",
+      "current_name": "Medleys Ocean Whitefish With Carrots & Spinach in a Creamy Béchamel Sauce",
+      "raw_title": "Fancy Feast Medleys Ocean Whitefish With Carrots & Spinach in a Creamy Béchamel Sauce",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-ocean-whitefish-with-carrots-and-spinach-in-a-creamy-bechamel-sauce"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Pâté",
+      "current_name": "Medleys White Meat Chicken Primavera Paté With Tomatoes, Carrots & Spinach",
+      "raw_title": "Fancy Feast Medleys White Meat Chicken Primavera Paté With Tomatoes, Carrots & Spinach",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Primavera · White Meat Chicken Primavera Pate"
+      ],
+      "id": "fancy-medleys-medleys-white-meat-chicken-primavera-pate-with-tomatoes-carrots-and-spinach"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Sauce",
+      "current_name": "Medleys White Meat Chicken Tuscany With Long Grain Rice & Spinach in a Savory Sauce",
+      "raw_title": "Fancy Feast Medleys White Meat Chicken Tuscany Wet Cat Food With Long Grain Rice & Spinach in a Savory Sauce",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Tuscany · White Meat Chicken Tuscany in a Savory Sauce"
+      ],
+      "id": "fancy-medleys-medleys-white-meat-chicken-tuscany-with-long-grain-rice-and-spinach-in-a-savory-sauce"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Sauce",
+      "current_name": "Medleys Tender Turkey Tuscany With Long Grain Rice & Spinach in a Savory Sauce",
+      "raw_title": "Fancy Feast Medleys Tender Turkey Tuscany With Long Grain Rice & Spinach in a Savory Sauce",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Tuscany · Tender Turkey Tuscany in a Savory Sauce"
+      ],
+      "id": "fancy-medleys-medleys-tender-turkey-tuscany-with-long-grain-rice-and-spinach-in-a-savory-sauce"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Seafood Feast",
+      "raw_title": "Fancy Feast Classic Paté Seafood Feast Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Seafood Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-seafood-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Grilled",
+      "family": "Grilled",
+      "current_name": "Grilled Tuna Feast In Gravy",
+      "raw_title": "Fancy Feast Grilled Tuna Feast In Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Grilled in Gravy · Grilled Tuna in Gravy"
+      ],
+      "id": "fancy-grilled-grilled-tuna-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Cod, Sole & Shrimp",
+      "raw_title": "Fancy Feast Classic Paté Cod, Sole & Shrimp Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Cod, Sole & Shrimp Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-cod-sole-and-shrimp"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Pâté",
+      "current_name": "Classic Paté Savory Salmon",
+      "raw_title": "Fancy Feast Classic Paté Savory Salmon Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Classic · Savory Salmon Feast"
+      ],
+      "id": "fancy-classic-pate-classic-pate-savory-salmon"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Wet Food",
+      "current_name": "Gourmet Naturals Natural Wild Alaskan Salmon Recipe",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural Wild Alaskan Salmon Recipe Wet Kitten Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-wild-alaskan-salmon-recipe"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gourmet Naturals",
+      "family": "Wet Food",
+      "current_name": "Gourmet Naturals Natural Wild Alaskan Salmon Recipe",
+      "raw_title": "Fancy Feast Gourmet Naturals Natural Wild Alaskan Salmon Recipe Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gourmet-naturals-gourmet-naturals-natural-wild-alaskan-salmon-recipe-2"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Variety Pack",
+      "current_name": "Medleys Florentine Variety Pack - 24 Cans",
+      "raw_title": "Fancy Feast Medleys Florentine Wet Cat Food Variety Pack - 24 Cans",
+      "role": "variety_pack",
+      "catalog_status": "discontinued",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-florentine-variety-pack-24-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Variety Pack",
+      "current_name": "Classic Paté Seafood Collection Variety Pack - 12 Cans",
+      "raw_title": "Fancy Feast Classic Paté Seafood Collection Wet Cat Food Variety Pack – 12 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-classic-pate-classic-pate-seafood-collection-variety-pack-12-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Sliced",
+      "family": "Variety Pack",
+      "current_name": "Sliced Poultry Favorites in Gravy 24 Ct Variety Pack",
+      "raw_title": "Purina Fancy Feast Sliced Poultry Favorites in Wet Cat Food Gravy 24 Ct Variety Pack",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-sliced-sliced-poultry-favorites-in-gravy-24-ct-variety-pack"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Variety Pack",
+      "current_name": "Medleys Poultry Collection Variety Pack",
+      "raw_title": "Fancy Feast Medleys Poultry Collection Gourmet Wet Cat Food Variety Pack",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-poultry-collection-variety-pack"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Variety Pack",
+      "current_name": "Medleys Taste of Italy Collection Variety Pack - 30 Cans",
+      "raw_title": "Fancy Feast Medleys Taste of Italy Collection Wet Cat Food Variety Pack – 30 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-taste-of-italy-collection-variety-pack-30-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Variety Pack",
+      "current_name": "Classic Paté Seafood Collection Variety Pack - 24 Cans",
+      "raw_title": "Fancy Feast Classic Paté Seafood Collection Wet Cat Food Variety Pack – 24 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-classic-pate-classic-pate-seafood-collection-variety-pack-24-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Variety Pack",
+      "current_name": "Classic Paté Seafood Collection Variety Pack - 30 Cans",
+      "raw_title": "Fancy Feast Classic Paté Seafood Collection Wet Cat Food Variety Pack – 30 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-classic-pate-classic-pate-seafood-collection-variety-pack-30-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Marinated Morsels",
+      "family": "Variety Pack",
+      "current_name": "Marinated Morsels Poultry & Beef Variety Pack - 24 Cans",
+      "raw_title": "Fancy Feast Marinated Morsels Poultry & Beef Gourmet Wet Cat Food Variety Pack - 24 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-marinated-morsels-marinated-morsels-poultry-and-beef-variety-pack-24-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Senior 7+",
+      "family": "Pâté",
+      "current_name": "Senior 7+ Paté Chicken Feast",
+      "raw_title": "Fancy Feast Senior 7+ Paté Chicken Feast",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-senior-7-senior-7-pate-chicken-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Senior 7+",
+      "family": "Minced",
+      "current_name": "Senior 7+ Minced Chicken Feast In Gravy",
+      "raw_title": "Fancy Feast Senior 7+ Minced Chicken Feast In Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-senior-7-senior-7-minced-chicken-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Senior 7+",
+      "family": "Pâté",
+      "current_name": "Senior 7+ Paté Beef Feast",
+      "raw_title": "Fancy Feast Senior 7+ Paté Beef Feast",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-senior-7-senior-7-pate-beef-feast"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Senior 7+",
+      "family": "Minced",
+      "current_name": "Senior 7+ Minced Tuna Feast In Gravy",
+      "raw_title": "Fancy Feast Senior 7+ Minced Tuna Feast In Gravy",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-senior-7-senior-7-minced-tuna-feast-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Petites",
+      "family": "Gravy",
+      "current_name": "Petites Seared Salmon Entrée With Spinach in Gravy",
+      "raw_title": "Fancy Feast Petites Seared Salmon Entrée With Spinach in Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-petites-petites-seared-salmon-entree-with-spinach-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Petites",
+      "family": "Grilled",
+      "current_name": "Petites Grilled Chicken Entrée With Rice In Gravy",
+      "raw_title": "Fancy Feast Petites Grilled Chicken Entrée With Rice In Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-petites-petites-grilled-chicken-entree-with-rice-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Petites",
+      "family": "Gravy",
+      "current_name": "Petites Ocean Whitefish Entrée With Tomato in Gravy",
+      "raw_title": "Fancy Feast Petites Ocean Whitefish Entrée With Tomato in Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-petites-petites-ocean-whitefish-entree-with-tomato-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Petites",
+      "family": "Gravy",
+      "current_name": "Petites Tender Beef Entrée with Carrots in Gravy",
+      "raw_title": "Fancy Feast Petites Tender Beef Entrée with Carrots in Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-petites-petites-tender-beef-entree-with-carrots-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Petites",
+      "family": "Gravy",
+      "current_name": "Petites Roasted Turkey Entrée with Sweet Potato in Gravy",
+      "raw_title": "Fancy Feast Petites Roasted Turkey Entrée with Sweet Potato in Gravy Gourmet Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-petites-petites-roasted-turkey-entree-with-sweet-potato-in-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Tuna Primavera With Tomatoes, Carrots & Spinach in a Silky Broth",
+      "raw_title": "Fancy Feast Medleys Tuna Primavera With Tomatoes, Carrots & Spinach in a Silky Broth",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-tuna-primavera-with-tomatoes-carrots-and-spinach-in-a-silky-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Tender Turkey Primavera With Tomatoes, Carrots & Spinach in a Silky Broth",
+      "raw_title": "Fancy Feast Medleys Tender Turkey Primavera With Tomatoes, Carrots & Spinach in a Silky Broth",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-tender-turkey-primavera-with-tomatoes-carrots-and-spinach-in-a-silky-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Shredded Wild Salmon Fare With Spinach in a Savory Broth",
+      "raw_title": "Fancy Feast Medleys Shredded Wild Salmon Fare With Spinach in a Savory Broth Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Shredded · Shredded Wild Salmon Fare"
+      ],
+      "id": "fancy-medleys-medleys-shredded-wild-salmon-fare-with-spinach-in-a-savory-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Shredded White Meat Chicken Fare With Spinach in a Savory Broth",
+      "raw_title": "Fancy Feast Medleys Shredded White Meat Chicken Fare With Spinach in a Savory Broth Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Shredded · Shredded White Meat Chicken Fare"
+      ],
+      "id": "fancy-medleys-medleys-shredded-white-meat-chicken-fare-with-spinach-in-a-savory-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Shredded Turkey Fare With Spinach in a Savory Broth",
+      "raw_title": "Fancy Feast Medleys Shredded Turkey Fare With Spinach in a Savory Broth Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Shredded · Shredded Turkey Fare"
+      ],
+      "id": "fancy-medleys-medleys-shredded-turkey-fare-with-spinach-in-a-savory-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Shredded Tuna Fare With Spinach in a Savory Broth",
+      "raw_title": "Fancy Feast Medleys Shredded Tuna Fare With Spinach in a Savory Broth Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [
+        "Medleys Shredded · Shredded Tuna Fare"
+      ],
+      "id": "fancy-medleys-medleys-shredded-tuna-fare-with-spinach-in-a-savory-broth"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Variety Pack",
+      "current_name": "Medleys Tuscany Collection Variety Pack - 12 Cans",
+      "raw_title": "Fancy Feast Medleys Tuscany Collection Variety Pack – 12 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-tuscany-collection-variety-pack-12-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Variety Pack",
+      "current_name": "Medleys Seafood Collection Variety Pack - 30 Cans",
+      "raw_title": "Fancy Feast Medleys Seafood Collection Wet Cat Food Variety Pack – 30 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-seafood-collection-variety-pack-30-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Classic Paté",
+      "family": "Variety Pack",
+      "current_name": "Classic Paté Chicken Feast Variety Pack - 12 Cans",
+      "raw_title": "Fancy Feast Classic Paté Chicken Feast Wet Cat Food Variety Pack – 12 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-classic-pate-classic-pate-chicken-feast-variety-pack-12-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Savory Centers",
+      "family": "Variety Pack",
+      "current_name": "Savory Centers with a Gourmet Gravy Center 12 Count Variety Pack - Chicken, Salmon, Beef, and Tuna Paté",
+      "raw_title": "Fancy Feast Savory Centers Wet Cat Food with a Gourmet Gravy Center 12 Count Variety Pack - Chicken, Salmon, Beef, and Tuna Paté",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-savory-centers-savory-centers-with-a-gourmet-gravy-center-12-count-variety-pack-chicken-salmon-beef-and-tuna-pa"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Kitten",
+      "family": "Variety Pack",
+      "current_name": "Kitten Classic Paté Ocean Whitefish & Turkey Collection Variety Pack - 12 cans",
+      "raw_title": "Fancy Feast Kitten Classic Paté Ocean Whitefish & Turkey Collection Variety Pack Wet Kitten Food - 12 cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-kitten-kitten-classic-pate-ocean-whitefish-and-turkey-collection-variety-pack-12-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Other",
+      "family": "Variety Pack",
+      "current_name": "Chicken Variety Pack - 24 Cans",
+      "raw_title": "Fancy Feast Chicken Gourmet Wet Cat Food Variety Pack - 24 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-other-chicken-variety-pack-24-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Senior 7+",
+      "family": "Variety Pack",
+      "current_name": "Senior Classic Chicken Paté, Beef Paté, Chicken In Gravy & Tuna In Gravy Variety Pack - 12 Cans",
+      "raw_title": "Fancy Feast Senior Classic Chicken Paté, Beef Paté, Chicken In Gravy & Tuna In Gravy Variety Pack Wet Cat Food – 12 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-senior-7-senior-classic-chicken-pate-beef-pate-chicken-in-gravy-and-tuna-in-gravy-variety-pack-12-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Variety Pack",
+      "current_name": "Medleys Shredded Fare Variety Pack - 12 Cans",
+      "raw_title": "Fancy Feast Medleys Shredded Fare Wet Cat Food Variety Pack - 12 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-shredded-fare-variety-pack-12-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Variety Pack",
+      "current_name": "Medleys Primavera Variety Pack - 12 Cans",
+      "raw_title": "Fancy Feast Medleys Primavera Wet Cat Food Variety Pack – 12 Cans",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-primavera-variety-pack-12-cans"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Petites",
+      "family": "Variety Pack",
+      "current_name": "Petites Single-Serve In Gravy Collection Variety 24 Pack",
+      "raw_title": "Fancy Feast Petites Single-Serve Wet Cat Food In Gravy Collection Variety 24 Pack",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-petites-petites-single-serve-in-gravy-collection-variety-24-pack"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Pork Barbacoa Recipe With Rice, Tomatoes & Carrots in Savory Juices",
+      "raw_title": "Fancy Feast Medleys Pork Barbacoa Recipe With Rice, Tomatoes & Carrots in Savory Juices Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-pork-barbacoa-recipe-with-rice-tomatoes-and-carrots-in-savory-juices"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Medleys",
+      "family": "Wet Food",
+      "current_name": "Medleys Carne Asada Recipe With Potatoes & Carrots in Savory Juices",
+      "raw_title": "Fancy Feast Medleys Carne Asada Recipe With Potatoes & Carrots in Savory Juices Wet Cat Food",
+      "role": "complete_meal",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-medleys-medleys-carne-asada-recipe-with-potatoes-and-carrots-in-savory-juices"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gems",
+      "family": "Variety Pack",
+      "current_name": "Gems Mousse Paté Salmon & Tuna Collection Topped With Savory Gravy Variety Pack",
+      "raw_title": "Purina Fancy Feast Gems Mousse Paté Salmon & Tuna Collection Topped With Savory Gravy Wet Cat Food Variety Pack",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gems-gems-mousse-pate-salmon-and-tuna-collection-topped-with-savory-gravy-variety-pack"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Gems",
+      "family": "Variety Pack",
+      "current_name": "Gems Mousse Paté Chicken & Beef Variety Pack Topped With Savory Gravy",
+      "raw_title": "Fancy Feast Gems Mousse Paté Chicken & Beef Variety Pack Topped With Savory Gravy Wet Cat Food",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-gems-gems-mousse-pate-chicken-and-beef-variety-pack-topped-with-savory-gravy"
+    },
+    {
+      "brand": "Fancy Feast",
+      "line": "Petites",
+      "family": "Variety Pack",
+      "current_name": "Petites Single-Serve Gravy Collection Variety Pack - 12 Packs",
+      "raw_title": "Fancy Feast Petites Single-Serve Gravy Collection Variety Pack Wet Cat Food - 12 Packs",
+      "role": "variety_pack",
+      "catalog_status": "current",
+      "manufacturer_category_url": "https://www.purina.com/fancy-feast/products/wet-cat-food",
+      "verified_on": "2026-09-26",
+      "aliases": [],
+      "id": "fancy-petites-petites-single-serve-gravy-collection-variety-pack-12-packs"
+    }
+  ],
+  "source_records": [
+    {
+      "source_id": "p14r04",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Chicken Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r05",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Tender Liver & Chicken Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r06",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Turkey and Giblets Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r07",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Chopped Grill Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r08",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Tender Beef Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r09",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Tender Beef & Liver Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r10",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Tender Beef & Chicken Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r11",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Seafood Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r12",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Ocean Whitefish & Tuna Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r13",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Salmon & Shrimp Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r14",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Savory Salmon Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r15",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Classic",
+      "product": "Cod, Sole & Shrimp Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r18",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Roasted Chicken Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r19",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Roasted Turkey Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r20",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Flaked Chicken & Tuna Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r21",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Flaked Tuna Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r22",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Flaked Tuna & Mackerel Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r23",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Flaked Salmon & Ocean Whitefish Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r24",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Flaked Trout Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r25",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Chunky Chopped Grill Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r26",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Chunky Chicken Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r27",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Roasted/Flaked/Chunky",
+      "product": "Chunky Turkey Feast",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p14r30",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Liver & Chicken Feast in Gravy",
+      "style": null,
+      "source_page": 14,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r04",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Turkey Feast in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r05",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Chicken Feast in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r06",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Turkey & Giblets in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r07",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Chicken & Beef in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r08",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Beef in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r09",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Tender Beef & Liver in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r10",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Ocean Whitefish & Tuna in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r11",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Salmon in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r12",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Seafood in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r13",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Tuna in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r14",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Grilled in Gravy",
+      "product": "Grilled Salmon & Shrimp in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r17",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Sliced in Gravy",
+      "product": "Sliced Chicken in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r18",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Sliced in Gravy",
+      "product": "Sliced Turkey in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r19",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Sliced in Gravy",
+      "product": "Sliced Chicken Hearts & Liver in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r20",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Sliced in Gravy",
+      "product": "Sliced Beef in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r23",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Marinated Morsels in Gravy",
+      "product": "Marinated Morsels Turkey Feast in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r24",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Marinated Morsels in Gravy",
+      "product": "Marinated Morsels Beef Feast in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r25",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Marinated Morsels in Gravy",
+      "product": "Marinated Morsels Tuna Feast in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p15r26",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Marinated Morsels in Gravy",
+      "product": "Marinated Morsels Salmon Feast in Gravy",
+      "style": null,
+      "source_page": 15,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r04",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Marinated Morsels in Gravy",
+      "product": "Marinated Morsels Chicken Feast in Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r07",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Gravy Lovers",
+      "product": "Gravy Lovers Gourmet Beef Feast in Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r08",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Gravy Lovers",
+      "product": "Gravy Lovers Gourmet Chicken Feast in Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r09",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Gravy Lovers",
+      "product": "Gravy Lovers Ocean Whitefish & Tuna Feast Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r10",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Gravy Lovers",
+      "product": "Gravy Lovers Salmon Feast in Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r11",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Gravy Lovers",
+      "product": "Gravy Lovers Turkey Feast in Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r12",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Gravy Lovers",
+      "product": "Gravy Lovers Chicken & Beef Feast in Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r13",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Gravy Lovers",
+      "product": "Gravy Lovers Chicken Hearts & Liver Feast in Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r14",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Gravy Lovers",
+      "product": "Gravy Lovers Salmon & Sole Feast in Gravy",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r17",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Natural",
+      "product": "Natural White Meat Chicken & Flaked Tuna in Broth",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r18",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Natural",
+      "product": "Natural Flaked Skipjack Tuna in Broth",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r19",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Natural",
+      "product": "Natural Seabass & Shrimp in Broth",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r20",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Natural",
+      "product": "Natural Tender Tongol Tuna in Broth",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r21",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Natural",
+      "product": "Natural White Meat Chicken in Broth",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r22",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Natural",
+      "product": "Natural White Meat Chicken & Beef in Broth",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p16r23",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Natural",
+      "product": "Natural Wild Alaskan Salmon & White Meat in Broth",
+      "style": null,
+      "source_page": 16,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r05",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Florentine",
+      "product": "White Meat Chicken Florentine Pate",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r06",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Florentine",
+      "product": "Ocean Whitefish and Tuna Florentine Pate",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r07",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Florentine",
+      "product": "White Meat Chicken Florentine in a Delicate Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r08",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Florentine",
+      "product": "Turkey Florentine with Garden Greens",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r09",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Florentine",
+      "product": "Wild Salmon Florentine in a Delicate Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r10",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Florentine",
+      "product": "Tuna Florentine in a Delicate Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r13",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Tuscany",
+      "product": "White Meat Chicken Tuscany in a Savory Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r14",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Tuscany",
+      "product": "Tender Turkey Tuscany in a Savory Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r15",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Tuscany",
+      "product": "Tuna Tuscany in a Savory Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r16",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Tuscany",
+      "product": "Wild Salmon Tuscany in a Savory Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r19",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Primavera",
+      "product": "White Meat Chicken Primavera Pate",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r20",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Primavera",
+      "product": "Wild Salmon Primavera Pate",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r21",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Primavera",
+      "product": "Tender Turkey Primavera in a Classic Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r22",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Primavera",
+      "product": "White Meat Chicken Primavera in a Classic Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p17r23",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Primavera",
+      "product": "Wild Salmon Primavera in a Classic Sauce",
+      "style": null,
+      "source_page": 17,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r04",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Primavera",
+      "product": "Tuna Primavera in a Classic Sauce",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r07",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Shredded",
+      "product": "Shredded White Meat Chicken Fare",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r08",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Shredded",
+      "product": "Shredded Turkey Fare",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r09",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Shredded",
+      "product": "Shredded Wild Salmon Fare",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r10",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys Shredded",
+      "product": "Shredded Tuna Fare",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r13",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys in Gravy or Broth",
+      "product": "Tuna & Shrimp Recipe in Gravy",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r14",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys in Gravy or Broth",
+      "product": "Turkey & White Meat Chicken Recipe in Gravy",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r15",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys in Gravy or Broth",
+      "product": "Whitefish & Shrimp Recipe Gravy",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r16",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Medleys in Gravy or Broth",
+      "product": "White Meat Chicken & Tuna Recipe Broth",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r19",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Delights with Cheddar",
+      "product": "Grilled Turkey & Cheddar Cheese in Gravy",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r20",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Delights with Cheddar",
+      "product": "Grilled Chicken & Cheddar Cheese in Gravy",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r21",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Delights with Cheddar",
+      "product": "Grilled Tuna & Cheddar Cheese in Gravy",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p18r22",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Delights with Cheddar",
+      "product": "Grilled Whitefish & Cheddar Cheese in Gravy",
+      "style": null,
+      "source_page": 18,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p19r04",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Kitten",
+      "product": "Kitten Tender Ocean Whitefish Feast",
+      "style": null,
+      "source_page": 19,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "p19r05",
+      "dataset": "pierson_2017",
+      "brand": "FANCY FEAST",
+      "line": "Kitten",
+      "product": "Kitten Tender Turkey Feast",
+      "style": null,
+      "source_page": 19,
+      "updated": null,
+      "fpuo": false
+    },
+    {
+      "source_id": "fdsgw-p05r11",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Classic Pate",
+      "product": "Beef & Chicken",
+      "style": "Pate",
+      "source_page": 5,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p05r12",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Classic Pate",
+      "product": "Beef & Liver",
+      "style": "Pate",
+      "source_page": 5,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r01",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Classic Pate",
+      "product": "Chopped Grill",
+      "style": "Pate",
+      "source_page": 6,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r02",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gourmet Naturals",
+      "product": "Beef",
+      "style": "Pate",
+      "source_page": 6,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r03",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gourmet Naturals",
+      "product": "Beef in Gravy",
+      "style": "Bits",
+      "source_page": 6,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r04",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gourmet Naturals",
+      "product": "Rainbow Trout in Gravy",
+      "style": "Bits",
+      "source_page": 6,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r05",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gourmet Naturals",
+      "product": "Trout & Tuna",
+      "style": "Pate",
+      "source_page": 6,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r06",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gourmet Naturals",
+      "product": "Turkey",
+      "style": "Pate",
+      "source_page": 6,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r07",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gourmet Naturals",
+      "product": "White Meat Chicken",
+      "style": "Pate",
+      "source_page": 6,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r08",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gourmet Naturals",
+      "product": "White Meat Chicken in Gravy",
+      "style": "Bits",
+      "source_page": 6,
+      "updated": null,
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r09",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gravy Lovers",
+      "product": "Beef",
+      "style": "Pate in Gravy",
+      "source_page": 6,
+      "updated": "8/7/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r10",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gravy Lovers",
+      "product": "Chicken",
+      "style": "Pate in Gravy",
+      "source_page": 6,
+      "updated": "8/7/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r11",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gravy Lovers",
+      "product": "Ocean Whitefish",
+      "style": "Pate in Gravy",
+      "source_page": 6,
+      "updated": "8/7/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p06r12",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Gravy Lovers",
+      "product": "Salmon",
+      "style": "Pate in Gravy",
+      "source_page": 6,
+      "updated": "8/7/24",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p07r01",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Petites",
+      "product": "Beef",
+      "style": null,
+      "source_page": 7,
+      "updated": "11/26/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p07r02",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Petites",
+      "product": "Chicken",
+      "style": "Pate",
+      "source_page": 7,
+      "updated": "11/26/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p07r03",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Petites",
+      "product": "Ocean Whitefish & Tuna",
+      "style": null,
+      "source_page": 7,
+      "updated": "11/26/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p07r04",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Petites",
+      "product": "Salmon",
+      "style": null,
+      "source_page": 7,
+      "updated": "11/26/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p07r05",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Petites",
+      "product": "Turkey",
+      "style": null,
+      "source_page": 7,
+      "updated": "11/26/25",
+      "fpuo": true
+    },
+    {
+      "source_id": "fdsgw-p07r06",
+      "dataset": "fdsg_wet",
+      "brand": "Fancy Feast/ Purina",
+      "line": "Sliced",
+      "product": "Turkey in Gravy",
+      "style": "Sliced",
+      "source_page": 7,
+      "updated": null,
+      "fpuo": true
+    }
+  ],
+  "reconciliation": [
+    {
+      "source_id": "p14r04",
+      "current_product_id": "fancy-classic-pate-classic-pate-chicken-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r05",
+      "current_product_id": "fancy-classic-pate-classic-pate-tender-chicken-and-liver-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r06",
+      "current_product_id": "fancy-classic-pate-classic-pate-turkey-and-giblets-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r07",
+      "current_product_id": "fancy-classic-pate-classic-pate-chopped-grill-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r08",
+      "current_product_id": "fancy-classic-pate-classic-pate-tender-beef-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r09",
+      "current_product_id": "fancy-classic-pate-classic-pate-tender-beef-and-liver-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r10",
+      "current_product_id": "fancy-classic-pate-classic-pate-tender-beef-and-chicken-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r11",
+      "current_product_id": "fancy-classic-pate-classic-pate-seafood-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r12",
+      "current_product_id": "fancy-classic-pate-classic-pate-ocean-whitefish-and-tuna-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r13",
+      "current_product_id": "fancy-classic-pate-classic-pate-salmon-and-shrimp-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r14",
+      "current_product_id": "fancy-classic-pate-classic-pate-savory-salmon",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r15",
+      "current_product_id": "fancy-classic-pate-classic-pate-cod-sole-and-shrimp",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r18",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.452,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p14r19",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.43,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p14r20",
+      "current_product_id": "fancy-flaked-flaked-chicken-and-tuna-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r21",
+      "current_product_id": "fancy-flaked-flaked-tuna-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r22",
+      "current_product_id": "fancy-flaked-flaked-tuna-and-mackerel-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r23",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.446,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p14r24",
+      "current_product_id": "fancy-flaked-flaked-trout-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "manual reconciliation against current official Purina catalog"
+    },
+    {
+      "source_id": "p14r25",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.355,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p14r26",
+      "current_product_id": "fancy-chunky-chunky-chicken-feast",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p14r27",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.475,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p14r30",
+      "current_product_id": "fancy-grilled-grilled-liver-and-chicken-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r04",
+      "current_product_id": "fancy-grilled-grilled-turkey-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r05",
+      "current_product_id": "fancy-grilled-grilled-chicken-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r06",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.767,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p15r07",
+      "current_product_id": "fancy-grilled-grilled-chicken-and-beef-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r08",
+      "current_product_id": "fancy-grilled-grilled-beef-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r09",
+      "current_product_id": "fancy-grilled-grilled-tender-beef-and-liver-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r10",
+      "current_product_id": "fancy-grilled-grilled-ocean-whitefish-and-tuna-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r11",
+      "current_product_id": "fancy-grilled-grilled-salmon-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r12",
+      "current_product_id": "fancy-grilled-grilled-seafood-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r13",
+      "current_product_id": "fancy-grilled-grilled-tuna-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r14",
+      "current_product_id": "fancy-grilled-grilled-salmon-and-shrimp-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r17",
+      "current_product_id": "fancy-sliced-sliced-chicken-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r18",
+      "current_product_id": "fancy-sliced-sliced-turkey-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r19",
+      "current_product_id": "fancy-sliced-sliced-chicken-hearts-and-liver-feast",
+      "status": "verified_name_match",
+      "confidence": 0.82,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r20",
+      "current_product_id": "fancy-sliced-sliced-beef-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r23",
+      "current_product_id": "fancy-marinated-morsels-marinated-morsels-turkey-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r24",
+      "current_product_id": "fancy-marinated-morsels-marinated-morsels-beef-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r25",
+      "current_product_id": "fancy-marinated-morsels-marinated-morsels-tuna-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p15r26",
+      "current_product_id": "fancy-marinated-morsels-marinated-morsels-salmon-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r04",
+      "current_product_id": "fancy-marinated-morsels-marinated-morsels-chicken-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r07",
+      "current_product_id": "fancy-gravy-lovers-gravy-lovers-beef-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r08",
+      "current_product_id": "fancy-gravy-lovers-gravy-lovers-chicken-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r09",
+      "current_product_id": "fancy-gravy-lovers-gravy-lovers-ocean-whitefish-and-tuna-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r10",
+      "current_product_id": "fancy-gravy-lovers-gravy-lovers-salmon-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r11",
+      "current_product_id": "fancy-gravy-lovers-gravy-lovers-turkey-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r12",
+      "current_product_id": "fancy-gravy-lovers-gravy-lovers-chicken-and-beef-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r13",
+      "current_product_id": "fancy-gravy-lovers-gravy-lovers-chicken-hearts-and-liver-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r14",
+      "current_product_id": "fancy-gravy-lovers-gravy-lovers-salmon-and-sole-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 1.0,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p16r17",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.489,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p16r18",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.233,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p16r19",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.286,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p16r20",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.298,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p16r21",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.689,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p16r22",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.744,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p16r23",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.494,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r05",
+      "current_product_id": "fancy-medleys-medleys-white-meat-chicken-florentine-pate-with-cheese-and-spinach",
+      "status": "verified_name_match",
+      "confidence": 0.818,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p17r06",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.374,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r07",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.587,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r08",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.418,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r09",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.511,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r10",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.422,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r13",
+      "current_product_id": "fancy-medleys-medleys-white-meat-chicken-tuscany-with-long-grain-rice-and-spinach-in-a-savory-sauce",
+      "status": "verified_name_match",
+      "confidence": 0.758,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p17r14",
+      "current_product_id": "fancy-medleys-medleys-tender-turkey-tuscany-with-long-grain-rice-and-spinach-in-a-savory-sauce",
+      "status": "verified_name_match",
+      "confidence": 0.692,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p17r15",
+      "current_product_id": "fancy-medleys-medleys-tuna-tuscany-with-long-grain-rice-and-spinach-in-a-savory-sauce",
+      "status": "verified_name_match",
+      "confidence": 0.687,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p17r16",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.541,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r19",
+      "current_product_id": "fancy-medleys-medleys-white-meat-chicken-primavera-pate-with-tomatoes-carrots-and-spinach",
+      "status": "verified_name_match",
+      "confidence": 0.778,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p17r20",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.551,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r21",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.396,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r22",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.561,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p17r23",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.476,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p18r04",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.392,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p18r07",
+      "current_product_id": "fancy-medleys-medleys-shredded-white-meat-chicken-fare-with-spinach-in-a-savory-broth",
+      "status": "verified_name_match",
+      "confidence": 0.818,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p18r08",
+      "current_product_id": "fancy-medleys-medleys-shredded-turkey-fare-with-spinach-in-a-savory-broth",
+      "status": "verified_name_match",
+      "confidence": 0.754,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p18r09",
+      "current_product_id": "fancy-medleys-medleys-shredded-wild-salmon-fare-with-spinach-in-a-savory-broth",
+      "status": "verified_name_match",
+      "confidence": 0.789,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p18r10",
+      "current_product_id": "fancy-medleys-medleys-shredded-tuna-fare-with-spinach-in-a-savory-broth",
+      "status": "verified_name_match",
+      "confidence": 0.749,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p18r13",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.25,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p18r14",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.489,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p18r15",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.262,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p18r16",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.646,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "p18r19",
+      "current_product_id": "fancy-delights-with-cheddar-delights-with-cheddar-grilled-turkey-and-cheddar-cheese-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.903,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p18r20",
+      "current_product_id": "fancy-delights-with-cheddar-delights-with-cheddar-grilled-chicken-and-cheddar-cheese-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.903,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p18r21",
+      "current_product_id": "fancy-delights-with-cheddar-delights-with-cheddar-grilled-tuna-and-cheddar-cheese-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.901,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p18r22",
+      "current_product_id": "fancy-delights-with-cheddar-delights-with-cheddar-grilled-whitefish-and-cheddar-cheese-feast",
+      "status": "verified_name_match",
+      "confidence": 0.74,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p19r04",
+      "current_product_id": "fancy-kitten-kitten-tender-ocean-whitefish-feast-pate",
+      "status": "verified_name_match",
+      "confidence": 0.892,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "p19r05",
+      "current_product_id": "fancy-kitten-kitten-tender-turkey-feast-pate",
+      "status": "verified_name_match",
+      "confidence": 0.851,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p05r11",
+      "current_product_id": "fancy-classic-pate-classic-pate-tender-beef-and-chicken-feast",
+      "status": "verified_name_match",
+      "confidence": 0.827,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p05r12",
+      "current_product_id": "fancy-classic-pate-classic-pate-tender-beef-and-liver-feast",
+      "status": "verified_name_match",
+      "confidence": 0.818,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p06r01",
+      "current_product_id": "fancy-classic-pate-classic-pate-chopped-grill-feast",
+      "status": "verified_name_match",
+      "confidence": 0.831,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p06r02",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.414,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p06r03",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.593,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p06r04",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.264,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p06r05",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.593,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p06r06",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.083,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p06r07",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.692,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p06r08",
+      "current_product_id": "fancy-gourmet-naturals-gourmet-naturals-natural-white-meat-chicken-recipe-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.748,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p06r09",
+      "current_product_id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-beef-feast-pate-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.852,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p06r10",
+      "current_product_id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-chicken-feast-pate-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.859,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p06r11",
+      "current_product_id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-ocean-whitefish-and-tuna-feast-pate-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.832,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p06r12",
+      "current_product_id": "fancy-gravy-lovers-pate-in-gravy-gravy-lovers-salmon-feast-pate-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.857,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    },
+    {
+      "source_id": "fdsgw-p07r01",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.591,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p07r02",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.362,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p07r03",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.545,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p07r04",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.579,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p07r05",
+      "current_product_id": null,
+      "status": "unresolved",
+      "confidence": 0.559,
+      "basis": "no sufficiently strong unambiguous current-catalog match"
+    },
+    {
+      "source_id": "fdsgw-p07r06",
+      "current_product_id": "fancy-sliced-sliced-turkey-feast-in-gravy",
+      "status": "verified_name_match",
+      "confidence": 0.926,
+      "basis": "source recipe tokens match current official catalog entry within compatible product line"
+    }
+  ]
+}
