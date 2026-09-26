@@ -541,7 +541,7 @@
   }).filter(Boolean).join('');
   const manufacturerEnergyList = values => Object.entries(values||{}).map(([k,v])=>{
     if(v==null)return '';
-    const labels={kcal_per_kg:'kcal/kg',kcal_per_cup:'kcal/cup',kcal_per_can:'kcal/can',kcal_per_3oz_can:'kcal/3 oz can',kcal_per_5_5oz_can:'kcal/5.5 oz can',dry_weight_me_kcal_per_kg:'Dry-weight ME kcal/kg'};
+    const labels={kcal_per_kg:'kcal/kg',kcal_per_cup:'kcal/cup',kcal_per_can:'kcal/can',kcal_per_2_8oz_can:'kcal/2.8 oz can',kcal_per_2_8oz_box:'kcal/2.8 oz box',kcal_per_3oz_can:'kcal/3 oz can',kcal_per_5_5oz_can:'kcal/5.5 oz can',kcal_per_5_5oz_box:'kcal/5.5 oz box',dry_weight_me_kcal_per_kg:'Dry-weight ME kcal/kg'};
     return `<div><span>${esc(labels[k]||k.replaceAll('_',' '))}</span><strong>${esc(fmt(v,0))}</strong></div>`;
   }).filter(Boolean).join('');
   function manufacturerNutritionHtml(f){
@@ -555,7 +555,9 @@
     if(m.guaranteed_analysis) groups.push(`<section><h4>Guaranteed Analysis</h4><div class="manufacturer-grid">${manufacturerGaList(m.guaranteed_analysis)}</div></section>`);
     if(m.energy) groups.push(`<section><h4>Energy</h4><div class="manufacturer-grid">${manufacturerEnergyList(m.energy)}</div></section>`);
     const notes=(m.basis_notes||[]).map(n=>`<li>${esc(n)}</li>`).join('');
-    return `<div class="detail-manufacturer"><div class="manufacturer-head"><div><span class="manufacturer-kicker">Current manufacturer nutrition</span><h3>${esc(m.current_product_name||f.product)}</h3></div><span class="manufacturer-date">Checked ${esc(m.retrieved_on||'—')}</span></div><p class="subtle">This is a separate current-manufacturer observation. It does <strong>not</strong> overwrite the Pierson/FDSG values above or silently mix nutrient bases.</p>${groups.join('')}${notes?`<ul class="manufacturer-notes">${notes}</ul>`:''}${m.source_url?`<a class="manufacturer-source" href="${esc(m.source_url)}" target="_blank" rel="noopener">Manufacturer source ↗</a>`:''}</div>`;
+    const anomalyNotes=(m.anomaly_notes||[]).map(n=>`<li>${esc(n)}</li>`).join('');
+    const anomaly=m.source_anomaly?`<div class="manufacturer-anomaly"><strong>Source anomaly preserved</strong><p>The manufacturer source contains unusual calculated nutrient arithmetic. Raw published values are shown rather than silently corrected.</p>${anomalyNotes?`<ul>${anomalyNotes}</ul>`:''}</div>`:'';
+    return `<div class="detail-manufacturer"><div class="manufacturer-head"><div><span class="manufacturer-kicker">Current manufacturer nutrition</span><h3>${esc(m.current_product_name||f.product)}</h3></div><span class="manufacturer-date">Checked ${esc(m.retrieved_on||'—')}</span></div><p class="subtle">This is a separate current-manufacturer observation. It does <strong>not</strong> overwrite the Pierson/FDSG values above or silently mix nutrient bases.</p>${anomaly}${groups.join('')}${notes?`<ul class="manufacturer-notes">${notes}</ul>`:''}${m.source_url?`<a class="manufacturer-source" href="${esc(m.source_url)}" target="_blank" rel="noopener">Manufacturer source ↗</a>`:''}</div>`;
   }
 
   const recallListText = values => (values||[]).filter(Boolean).join(', ') || '—';

@@ -19,10 +19,22 @@ assert bundle.get('schema_version')==1
 assert bundle.get('policy')
 assert len(bundle.get('brand_sources') or [])>=13
 obs=bundle.get('observations') or []
-assert len(obs)>=24
+assert len(obs)>=67
 ids=[o.get('food_id') for o in obs]
 assert all(ids) and len(ids)==len(set(ids)), 'manufacturer observation food_id values must be unique'
 assert set(ids)<=food_ids, f'Unknown food IDs: {sorted(set(ids)-food_ids)}'
+assert sum(1 for o in obs if str(o.get('source_type','')).startswith('manufacturer_typical_analysis') and 'ZIWI' in str(o.get('current_product_name','')).upper()) >= 15, 'ZIWI enrichment missing'
+weruva_wx_ids={'fdsgw-p70r06','fdsgw-p70r07','fdsgw-p70r08','fdsgw-p70r09','fdsgw-p70r10'}
+assert weruva_wx_ids <= set(ids), 'Weruva WX enrichment missing'
+assert bundle.get('research_summary',{}).get('fromm_exact_matches')==12, 'Fromm enrichment count mismatch'
+assert bundle.get('research_summary',{}).get('farmina_exact_matches')==3, 'Farmina enrichment count mismatch'
+assert bundle.get('research_summary',{}).get('honest_kitchen_exact_matches')==8, 'Honest Kitchen enrichment count mismatch'
+fromm_ids={'fdsgw-p10r02','fdsgw-p10r03','fdsgw-p10r04','fdsgw-p10r05','fdsgw-p10r08','fdsgw-p11r02','fdsgw-p11r04','fdsgw-p11r05','fdsgw-p11r06','fdsgw-p11r07','fdsgw-p11r08','fdsgw-p10r11'}
+farmina_ids={'fdsgw-p07r07','fdsgw-p07r08','fdsgw-p07r09'}
+honest_ids={'fdsgw-p12r07','fdsgw-p12r08','fdsgw-p12r09','fdsgw-p12r10','fdsgw-p12r11','fdsgw-p12r12','fdsgw-p13r01','fdsgw-p13r02'}
+assert fromm_ids <= set(ids), 'Fromm enrichment missing'
+assert farmina_ids <= set(ids), 'Farmina enrichment missing'
+assert honest_ids <= set(ids), 'Honest Kitchen enrichment missing'
 
 numeric_groups={'guaranteed_analysis','typical_percent','as_fed_pct','dry_matter_pct','per_100_kcal','percent_ME','energy'}
 for o in obs:
@@ -34,7 +46,14 @@ for o in obs:
         for key,value in (o.get(group) or {}).items():
             if value is None: continue
             assert isinstance(value,(int,float)), (o.get('food_id'),group,key,value)
-            assert value>=0, (o.get('food_id'),group,key,value)
+            if value < 0:
+                allowed_negative = (
+                    key == 'carbohydrate' and
+                    group in {'as_fed_pct','dry_matter_pct','percent_ME'} and
+                    o.get('source_anomaly') is True and
+                    bool(o.get('anomaly_notes'))
+                )
+                assert allowed_negative, (o.get('food_id'),group,key,value)
 
 js=(DATA/'manufacturer_nutrition.js').read_text(encoding='utf-8').strip()
 wrapper='window.CATFOOD_MANUFACTURER_NUTRITION = '
@@ -47,4 +66,4 @@ assert 'manufacturerNutritionFor' in app and 'manufacturerNutritionHtml' in app
 assert 'does <strong>not</strong> overwrite' in app
 assert 'manufacturerNutritionFor(f)' not in app[app.index('function filterFoods'):app.index('function renderSuggestions')], 'Manufacturer layer must not silently drive filters'
 
-print(f"PASS: {len(obs)} exact manufacturer observations across {len(bundle['brand_sources'])} researched source families; existing source records remain separate")
+print(f"PASS: {len(obs)} exact manufacturer observations; v0.3.7 Fromm/Farmina/Honest Kitchen enrichment and basis guardrails validated")

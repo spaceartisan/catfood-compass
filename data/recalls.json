@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-09-26T19:55:25Z",
+  "generated_at": "2026-09-26T19:42:34Z",
   "snapshot_label": "FDA recalls matched to CatFood Compass catalog brands",
   "source_notes": [
     "CatFood Compass only retains machine-imported FDA enforcement records that match a brand represented in its nutrition catalog.",
@@ -16,14 +16,14 @@
     "source_brand_hash": "50eaa7a2aa5e21f8",
     "curated_input_count": 6,
     "curated_catalog_matches": 0,
-    "live_raw_feline_term_records": 10,
-    "live_catalog_matches": 0
+    "live_raw_feline_term_records": null,
+    "live_catalog_matches": null
   },
   "openfda": {
     "endpoint": "https://api.fda.gov/food/enforcement.json",
     "coverage": "2004-present",
     "update_frequency": "weekly",
-    "last_live_refresh": "2026-09-26T19:55:25Z",
+    "last_live_refresh": null,
     "refresh_error": null
   },
   "records": []

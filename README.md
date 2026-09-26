@@ -1,10 +1,12 @@
-# CatFood Compass v0.3.5
+# CatFood Compass v0.3.7
 
 ## Current manufacturer nutrition layer
 
-v0.3.5 adds a **separate current-manufacturer nutrient observation layer**. It is deliberately additive: none of the 2,024 Pierson/FDSG source records are rewritten, and unlike nutrient bases are not silently merged into the profile filters.
+v0.3.7 expands the **separate current-manufacturer nutrient observation layer**. It remains deliberately additive: none of the 2,024 Pierson/FDSG source records are rewritten, and unlike nutrient bases are not silently merged into the profile filters.
 
-The first pass researched 13 official manufacturer source families and links **24 exact current products** already present in CatFood Compass. Exact linked observations currently cover ACANA, ORIJEN, RAWZ, Young Again, FirstMate, Hill's Science Diet, and Dr. Elsey's. Additional high-value bulk sources have been identified for ZIWI Peak, Weruva, Fromm, Farmina, Royal Canin, and The Honest Kitchen.
+The manufacturer layer now links **67 exact current products across 12 brands**. This release adds **23 exact matches**: **12 Fromm** current wet foods from Fromm's official 2026 Nutrition Reference Guide, **3 Farmina N&D Quinoa** wet formulas from current manufacturer product pages, and **8 The Honest Kitchen** wet foods from current manufacturer product pages. The prior ACANA, ORIJEN, RAWZ, Young Again, FirstMate, Hill's Science Diet, Dr. Elsey's, ZIWI Peak, and Weruva observations remain. Royal Canin's current US catalog has also been reviewed, but legacy-to-current product reconciliation remains intentionally pending rather than forcing uncertain identity matches.
+
+Where a manufacturer publishes mathematically unusual calculated values, CatFood Compass preserves the source rather than silently correcting it. In particular, several current Weruva WX laboratory rows report negative calculated carbohydrate values; those observations are flagged as **Source anomaly preserved**, retain the raw values, and remain display/provenance data rather than inputs to profile filtering.
 
 `data/manufacturer_nutrition.json` / `data/manufacturer_nutrition.js` preserve the manufacturer's own basis and source URL. Depending on the manufacturer, a record may contain % metabolizable energy, as-fed %, dry-matter %, per-100-kcal values, typical mineral percentages, Guaranteed Analysis, or calculated energy. Food cards receive a **Manufacturer data** badge when an exact link exists; the Details screen shows each basis in a separately labeled section alongside a direct manufacturer-source link.
 
@@ -28,7 +30,7 @@ The app still contains the same **2,024 source nutrition records**:
 - 838 FDSG wet-food records (FPUO flag preserved in the UI/data).
 - 25 FDSG dry/air-dried/steam-dried records.
 
-No source nutrition row was rewritten for v0.3.5.
+No source nutrition row was rewritten for v0.3.7.
 
 ## Nutrition profiles
 
