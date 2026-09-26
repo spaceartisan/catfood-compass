@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-26T17:13:30Z",
+  "snapshot_label": "Bundled FDA feline-relevant recall/advisory snapshot",
+  "source_notes": [
+    "Curated FDA animal/veterinary recall announcements and advisories are bundled for offline use.",
+    "The scheduled updater supplements this file with feline-relevant FDA Food Enforcement records from openFDA.",
+    "A record not appearing here is not proof that a product has never been recalled.",
+    "openFDA states that enforcement status should not be treated as a live recall-lifecycle tracker."
+  ],
+  "openfda": {
+    "endpoint": "https://api.fda.gov/food/enforcement.json",
+    "coverage": "2004-present",
+    "update_frequency": "weekly",
+    "last_live_refresh": null,
+    "refresh_error": null
+  },
+  "records": [
+    {
+      "id": "fda-2026-08-28-northwest-naturals-chicken",
+      "record_type": "recall",
+      "source": "FDA company announcement",
+      "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/northwest-naturals-voluntarily-recalls-two-raw-pet-food-products-because-possible-salmonella",
+      "announcement_date": "2026-08-28",
+      "report_date": "2026-08-28",
+      "brand_names": [
+        "Northwest Naturals"
+      ],
+      "recalling_firm": "Northwest Naturals",
+      "species": [
+        "cat",
+        "dog"
+      ],
+      "product_description": "Frozen Chicken Recipe (cat food and protein topper for dogs), 2 lb bag",
+      "reason": "Potential contamination with Salmonella and/or Listeria monocytogenes",
+      "status_label": "Not marked terminated on FDA Animal & Veterinary recall table",
+      "classification": null,
+      "lot_codes": [
+        "B-5"
+      ],
+      "upcs": [
+        "087316384956"
+      ],
+      "best_by": [
+        "2028-01-26"
+      ],
+      "consumer_action": "Stop feeding the affected lot and return the unused portion to the place of purchase for a full refund.",
+      "notes": "FDA announcement states no illnesses had been reported at publication."
+    },
+    {
+      "id": "fda-2026-08-26-feline-milk-replacer",
+      "record_type": "recall",
+      "source": "FDA company announcement",
+      "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/revival-animal-health-llc-voluntarily-recalls-feline-milk-replacers-due-inconsistent-levels-vitamins",
+      "announcement_date": "2026-08-26",
+      "report_date": "2026-08-26",
+      "brand_names": [
+        "Shelter's Choice",
+        "Breeder's Edge"
+      ],
+      "recalling_firm": "Revival Animal Health",
+      "species": [
+        "cat"
+      ],
+      "product_description": "Feline Milk Replacers",
+      "reason": "Low levels of potassium, copper, folic acid, choline and/or pyridoxine (vitamin B6)",
+      "status_label": "Not marked terminated on FDA Animal & Veterinary recall table",
+      "classification": null,
+      "lot_codes": [],
+      "upcs": [
+        "817160011032",
+        "817160011049",
+        "817160011063",
+        "817160010196",
+        "817160011278",
+        "817160010103"
+      ],
+      "best_by": [
+        "Multiple dates; see FDA notice"
+      ],
+      "consumer_action": "Stop feeding affected product and contact the company regarding return/refund.",
+      "notes": "Feline milk replacer rather than conventional cat food; retained because it is a feline nutrition product."
+    },
+    {
+      "id": "fda-2026-06-08-steves-real-food-chicken",
+      "record_type": "recall",
+      "source": "FDA company announcement",
+      "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/go-raw-llc-expands-voluntary-recall-include-one-lot-steves-real-food-freeze-dried-chicken-recipe-due",
+      "announcement_date": "2026-06-08",
+      "report_date": "2026-06-08",
+      "brand_names": [
+        "Steve's Real Food"
+      ],
+      "recalling_firm": "Go Raw, LLC.",
+      "species": [
+        "cat",
+        "dog"
+      ],
+      "product_description": "Steve's Real Food Chicken Recipe Freeze Dried, 1.25 lb bag",
+      "reason": "May contain low levels of thiamine (Vitamin B1)",
+      "status_label": "Not marked terminated on FDA Animal & Veterinary recall table",
+      "classification": null,
+      "lot_codes": [
+        "C26022"
+      ],
+      "upcs": [
+        "6-91730-16402-7"
+      ],
+      "best_by": [
+        "2028-01-22"
+      ],
+      "consumer_action": "Stop feeding the affected lot and follow the FDA/company return instructions.",
+      "notes": "Expansion of the earlier Quest Cat Food thiamine recalls."
+    },
+    {
+      "id": "fda-2026-03-13-quest-thiamine-advisory",
+      "record_type": "advisory",
+      "source": "FDA Center for Veterinary Medicine advisory",
+      "source_url": "https://www.fda.gov/animal-veterinary/outbreaks-and-advisories/fda-advisory-certain-lots-quest-cat-food-pose-serious-health-risks-due-extremely-low-levels-thiamine",
+      "announcement_date": "2026-03-13",
+      "report_date": "2026-03-13",
+      "brand_names": [
+        "Quest"
+      ],
+      "recalling_firm": "Go Raw LLC dba Steve's Real Food",
+      "species": [
+        "cat"
+      ],
+      "product_description": "Eight FDA-tested lots of Quest Cat Food frozen and freeze-dried products",
+      "reason": "Extremely low or no thiamine (Vitamin B1) in FDA-tested lots",
+      "status_label": "FDA advisory — not all advised lots were recalled by the firm at publication",
+      "classification": null,
+      "lot_codes": [
+        "C25288",
+        "MCD25350",
+        "MCC25321",
+        "C25358",
+        "C25318",
+        "C25337",
+        "C25336",
+        "C25321"
+      ],
+      "upcs": [],
+      "best_by": [
+        "See FDA advisory for lot-specific dates"
+      ],
+      "consumer_action": "Check the FDA advisory for the exact lot. FDA recommends consulting a veterinarian about whether to continue feeding affected products.",
+      "notes": "This is an FDA safety advisory, not a statement that all Quest products were recalled."
+    },
+    {
+      "id": "fda-2026-02-26-quest-frozen",
+      "record_type": "recall",
+      "source": "FDA company announcement",
+      "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/go-raw-llc-expands-voluntary-recall-quest-diet-cat-food-products-due-low-thiamine-levels-and-enacts",
+      "announcement_date": "2026-02-26",
+      "report_date": "2026-02-26",
+      "brand_names": [
+        "Quest"
+      ],
+      "recalling_firm": "Go Raw LLC.",
+      "species": [
+        "cat"
+      ],
+      "product_description": "Quest Cat Food Chicken Recipe Frozen Diet, 2 lb bag",
+      "reason": "May contain low levels of thiamine (Vitamin B1)",
+      "status_label": "Not marked terminated on FDA Animal & Veterinary recall table",
+      "classification": null,
+      "lot_codes": [
+        "MCD25350",
+        "MCC25321"
+      ],
+      "upcs": [
+        "6-91730-17104-9"
+      ],
+      "best_by": [
+        "2027-06-16",
+        "2027-05-17"
+      ],
+      "consumer_action": "Stop feeding affected product and return it to the place of purchase for refund or replacement.",
+      "notes": "The firm also announced a stop sale of all Quest products while addressing thiamine content."
+    },
+    {
+      "id": "fda-2026-02-17-quest-freeze-dried",
+      "record_type": "recall",
+      "source": "FDA company announcement",
+      "source_url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/go-raw-llc-issues-voluntary-recall-single-lot-quest-cat-food-chicken-recipe-freeze-dried-nuggets-due",
+      "announcement_date": "2026-02-17",
+      "report_date": "2026-02-17",
+      "brand_names": [
+        "Quest"
+      ],
+      "recalling_firm": "Go Raw LLC",
+      "species": [
+        "cat"
+      ],
+      "product_description": "Quest Cat Food Chicken Recipe Freeze Dried Nuggets, 10 oz bag",
+      "reason": "May contain low levels of thiamine (Vitamin B1)",
+      "status_label": "Not marked terminated on FDA Animal & Veterinary recall table",
+      "classification": null,
+      "lot_codes": [
+        "C25288"
+      ],
+      "upcs": [
+        "6-91730-18103-1"
+      ],
+      "best_by": [
+        "2027-10-15"
+      ],
+      "consumer_action": "Stop feeding affected product and return it to the place of purchase for a full refund.",
+      "notes": "FDA company announcement reported one confirmed illness associated with the recalled lot at publication."
+    }
+  ]
+}

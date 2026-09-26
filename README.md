@@ -1,4 +1,4 @@
-# CatFood Compass v0.3.1
+# CatFood Compass v0.3.2
 
 A mobile-first, static cat-food nutrition lookup app designed for GitHub Pages. There is **one canonical build only**. Historical and supplied nutrition records remain immutable source observations; current manufacturer catalogs and nutrition profiles are additive layers.
 
@@ -10,7 +10,7 @@ The app still contains the same **2,024 source nutrition records**:
 - 838 FDSG wet-food records (FPUO flag preserved in the UI/data).
 - 25 FDSG dry/air-dried/steam-dried records.
 
-No source nutrition row was rewritten for v0.3.1.
+No source nutrition row was rewritten for v0.3.2.
 
 ## Nutrition profiles
 
@@ -28,6 +28,22 @@ Specialized profiles change the nutrient emphasis without changing the underlyin
 For specialized profiles, a **Profile targets** quick filter appears. If numeric targets exist it can filter to records that have all required target data and meet the selected numbers. If no targets are configured, the button opens Settings rather than pretending there is a default medical cutoff.
 
 Cards, details, compare view, and sorting adapt to the selected profile. Target language is intentionally descriptive (for example, “Meets selected targets” or “Outside selected targets”) rather than declaring a food medically safe or appropriate.
+
+
+## FDA recall and advisory layer
+
+v0.3.2 adds a separate, non-destructive FDA safety layer. It does **not** alter any nutrition observation.
+
+- `data/recalls.json` / `data/recalls.js` provide the bundled offline snapshot used by the app.
+- `data/recalls_curated.json` contains a small set of feline-relevant FDA recall/advisory records with exact source links and package/lot details where available.
+- `tools/update_recalls.py` supplements the curated records with feline-relevant Food Enforcement records from the FDA Recall Enterprise System through the openFDA API. The updater uses only the Python standard library.
+- `.github/workflows/update-recalls.yml` runs the updater daily and commits the snapshot only when it changes. openFDA itself is updated weekly.
+- The **Recalls** tab works offline from the bundled snapshot and includes a manual **Check openFDA now** button for a session-only live check when the browser can reach the API.
+- The service worker uses **network-first caching for recall snapshot files only**, so installed/offline-capable copies can pick up scheduled GitHub Pages recall updates while still falling back to the last cached snapshot offline.
+- If a scheduled FDA refresh fails, the updater leaves the last known-good snapshot untouched; unchanged normalized records do not create timestamp-only daily commits.
+- Food detail screens perform conservative brand-level recall matching. A match means “check the exact FDA lot/package details,” not that every product from the brand is recalled. A missing match is explicitly **not** presented as proof that a product has never been recalled.
+
+The app treats FDA company recalls, FDA advisories, and machine-normalized openFDA enforcement records as distinct record types so an advisory is never silently labeled as a recall.
 
 ## Dedicated current-manufacturer catalog databases
 
@@ -67,6 +83,7 @@ Then open `http://localhost:8000`.
 - `tools/build_data.py` — core 2,024-record source dataset.
 - `tools/build_tiki_db.py` — Tiki current catalog/reconciliation layer.
 - `tools/build_purina_brand_dbs.py` — Fancy Feast + Friskies current catalog/reconciliation layers.
-- `tools/validate_data.py` / `tools/validate_app.py` / `tools/validate_brand_dbs.py` — regression checks.
+- `tools/update_recalls.py` — FDA/openFDA recall snapshot updater.
+- `tools/validate_data.py` / `tools/validate_app.py` / `tools/validate_brand_dbs.py` / `tools/validate_recalls.py` — regression checks.
 
 The original PDFs are not bundled in the web app.

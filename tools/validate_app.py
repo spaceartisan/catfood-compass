@@ -84,3 +84,16 @@ assert 'settingUrinaryMagnesiumMax' in html and 'settingCustomSodiumMax' in html
 assert 'v0.3.1 — nutrition profiles' in css, 'profile UI CSS missing'
 assert 'Profile targets' in html and 'no universal cancer-food cutoff is assumed' in js, 'profile target UX/caution text missing'
 print('PASS: v0.3.1 Normal-default multi-condition nutrition profile system is wired')
+
+# FDA recall/advisory layer regression checks (v0.3.2)
+recalls_js=(root/'data'/'recalls.js').read_text(encoding='utf-8')
+assert 'id="recallsView"' in html and 'data-nav="recalls"' in html, 'Recalls view/navigation missing'
+assert 'id="refreshRecallsBtn"' in html and 'id="recallSearchInput"' in html and 'id="recallStatusFilter"' in html, 'Recall controls missing'
+assert './data/recalls.js' in html and 'window.CATFOOD_RECALLS' in recalls_js, 'Bundled recall data missing'
+for symbol in ['recallBundle','foodRecallDetailHtml','renderRecalls','refreshRecallsLive','updateRecallNavCount']:
+    assert symbol in js, f'Recall helper missing: {symbol}'
+assert 'v0.3.2 — FDA recall/advisory layer' in css, 'Recall UI CSS marker missing'
+assert (root/'tools'/'update_recalls.py').exists(), 'Recall updater missing'
+assert (root/'.github'/'workflows'/'update-recalls.yml').exists(), 'Scheduled recall workflow missing'
+assert 'A missing match is <strong>not proof that a product has never been recalled</strong>' in html, 'Recall absence disclaimer missing'
+print('PASS: v0.3.2 bundled FDA recall/advisory view, live check, product matching, and scheduled updater are wired')

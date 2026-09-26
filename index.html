@@ -152,6 +152,32 @@
       </div>
     </section>
 
+
+    <section id="recallsView" class="view" aria-labelledby="recallsTitle">
+      <div class="section-head recalls-head">
+        <div><p class="eyebrow">FDA safety data</p><h2 id="recallsTitle">Cat-food recalls & advisories</h2></div>
+        <button id="refreshRecallsBtn" class="secondary-btn" type="button">Check openFDA now</button>
+      </div>
+      <div class="panel recall-summary">
+        <div class="recall-summary-copy">
+          <strong id="recallSnapshotLabel">Bundled FDA snapshot</strong>
+          <span id="recallSnapshotMeta" class="subtle">Loading recall metadata…</span>
+        </div>
+        <div class="recall-summary-count"><strong id="recallCount">—</strong><span>cat-relevant records</span></div>
+      </div>
+      <div class="recall-toolbar panel">
+        <label class="recall-search"><span>Search recall data</span><input id="recallSearchInput" type="search" autocomplete="off" placeholder="Brand, product, lot, reason…" /></label>
+        <label><span>Show</span><select id="recallStatusFilter"><option value="all">All bundled records</option><option value="not-terminated">Not marked terminated</option><option value="recall">Recalls only</option><option value="advisory">FDA advisories only</option></select></label>
+      </div>
+      <div id="recallLiveStatus" class="callout recall-live-status hidden" role="status"></div>
+      <div id="recallList" class="recall-list" aria-live="polite"></div>
+      <div class="panel recall-disclaimer">
+        <h3>How to use this</h3>
+        <p>This is a screening aid built from FDA recall/enforcement information. A missing match is <strong>not proof that a product has never been recalled</strong>. For an affected product, compare the exact lot/UPC/package details with the FDA notice before acting.</p>
+        <p class="subtle">The bundled file works offline. A scheduled GitHub Action can refresh it automatically, and “Check openFDA now” performs a supplemental live query when the browser can reach the API.</p>
+      </div>
+    </section>
+
     <section id="aboutView" class="view" aria-labelledby="aboutTitle">
       <div class="section-head"><div><p class="eyebrow">Know what the numbers mean</p><h2 id="aboutTitle">About the data</h2></div></div>
       <div class="about-grid">
@@ -182,6 +208,7 @@
         <p><strong>Cat Food – Nutritional Composition</strong> (Lisa A. Pierson, DVM, 2017), plus the supplied <strong>Known values for Cat Foods – Wet</strong> and <strong>Dry Food List – Compiled for FDSG</strong>.</p>
         <p class="subtle"><strong>Tiki Cat reconciliation layer:</strong> a separate current-catalog database links verified Tiki shelf names to historical/FDSG observations without replacing any original nutrition values.</p>
         <p class="subtle"><strong>FPUO:</strong> the supplied FDSG wet compilation is marked “For personal use only.” Those records remain in this single app and are visibly tagged <strong>FPUO</strong> so their provenance is never hidden.</p>
+        <p class="subtle"><strong>FDA recall layer:</strong> a separate bundled recall/advisory snapshot is refreshed independently of the nutrition records. Recall matching never rewrites nutrition data.</p>
         <p class="subtle">This app is a shopping and record-keeping aid. Nutrient targets and treatment decisions for a cat with diabetes or other disease should stay aligned with the cat's veterinary plan.</p>
       </div>
     </section>
@@ -191,6 +218,7 @@
     <button class="nav-item active" data-nav="browse"><span>⌕</span>Browse</button>
     <button class="nav-item" data-nav="compare"><span>⇄</span>Compare <b id="compareNavCount" class="nav-count hidden">0</b></button>
     <button class="nav-item" data-nav="add"><span>＋</span>Add</button>
+    <button class="nav-item" data-nav="recalls"><span>⚠</span>Recalls <b id="recallNavCount" class="nav-count hidden">0</b></button>
     <button class="nav-item" data-nav="about"><span>ⓘ</span>About</button>
   </nav>
 
@@ -311,6 +339,7 @@
   <script src="./data/tiki_cat.js"></script>
   <script src="./data/fancy_feast.js"></script>
   <script src="./data/friskies.js"></script>
+  <script src="./data/recalls.js"></script>
   <script src="./data/aliases.js"></script>
   <script src="./app.js"></script>
 </body>

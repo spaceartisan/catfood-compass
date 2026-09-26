@@ -1,6 +1,7 @@
 (() => {
   const baseFoods = (window.CATFOOD_DATA || []).map(x => ({...x, dataset:x.dataset || 'pierson_2017'}));
   const meta = window.CATFOOD_META || {};
+  const recallBundle = window.CATFOOD_RECALLS || {records:[],generated_at:null,openfda:{}};
   const aliasRows = (window.CATFOOD_ALIASES || []).filter(a=>a&&a.source_id&&a.verified===true);
   const aliasById = new Map(aliasRows.map(a=>[a.source_id,a]));
   const brandCatalogSpecs = [
@@ -21,7 +22,7 @@
   const $$ = s => [...document.querySelectorAll(s)];
   const readJSON = (k, fallback) => { try { return JSON.parse(localStorage.getItem(k)) ?? fallback; } catch { return fallback; } };
   const state = {
-    view:'browse', query:'', visible:48,
+    view:'browse', query:'', visible:48, recallQuery:'', recallFilter:'all', liveRecalls:[],
     favorites:new Set(readJSON('cfc_favorites',[])),
     compare:readJSON('cfc_compare',[]).slice(0,4),
     custom:readJSON('cfc_custom',[]),
@@ -77,6 +78,35 @@
     .toLowerCase().replace(/&/g,' and ').replace(/[’']/g,'')
     .replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
   const searchTokens = query => normalizeSearch(query).split(' ').filter(Boolean);
+  const parseRecallDate = value => {
+    if(!value) return null;
+    const d=new Date(String(value).length===10?`${value}T12:00:00`:value);
+    return Number.isNaN(d.getTime())?null:d;
+  };
+  const fmtRecallDate = value => { const d=parseRecallDate(value); return d?d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'Date unavailable'; };
+  const recallRecordKey = r => String(r.id||r.recall_number||`${r.product_description||''}|${r.report_date||r.announcement_date||''}`);
+  const allRecallRecords = () => {
+    const map=new Map();
+    [...(recallBundle.records||[]),...(state.liveRecalls||[])].forEach(r=>{ if(r) map.set(recallRecordKey(r),r); });
+    return [...map.values()].sort((a,b)=>(parseRecallDate(b.report_date||b.announcement_date)?.getTime()||0)-(parseRecallDate(a.report_date||a.announcement_date)?.getTime()||0));
+  };
+  const recallIsTerminated = r => !!r.termination_date || /^\s*terminated\b/i.test(String(r.status_label||''));
+  const recallSearchText = r => normalizeSearch([...(r.brand_names||[]),r.product_description,r.reason,r.recalling_firm,r.recall_number,r.event_id,...(r.lot_codes||[]),...(r.upcs||[])].filter(Boolean).join(' '));
+  const knownBrandAliasesForFood = f => {
+    const values=[f.brand];
+    const a=aliasFor(f); if(a?.current_name) values.push(String(a.current_name).split('·')[0]);
+    return [...new Set(values.map(normalizeSearch).filter(Boolean))];
+  };
+  const recallMatchesForFood = f => {
+    const aliases=knownBrandAliasesForFood(f); if(!aliases.length) return [];
+    return allRecallRecords().filter(r=>{
+      const brands=(r.brand_names||[]).map(normalizeSearch).filter(Boolean);
+      return brands.some(b=>aliases.includes(b));
+    });
+  };
+  const currentRecallMatchForFood = f => recallMatchesForFood(f).filter(r=>!recallIsTerminated(r));
+  const recallTypeLabel = r => r.record_type==='advisory'?'FDA advisory':r.record_type==='recall'?'Recall':'FDA enforcement';
+  const recallTypeClass = r => r.record_type==='advisory'?'advisory':r.record_type==='recall'?'recall':'enforcement';
   const fieldSearchValues = f => [
     ['brand', f.brand, 60], ['line', f.line, 50], ['product', f.product, 42], ['style', f.style, 24],
     ...aliasSearchValues(f).map(v=>['alias',v,46]), ['form', f.form, 8], ['source', f.source_name, 4]
@@ -325,6 +355,7 @@
     if(!f.data_complete) b+='<span class="badge missing">Partial data</span>';
     if(f.source_anomaly) b+='<span class="badge danger">Source anomaly</span>';
     if(f.analysis_shared) b+='<span class="badge">Shared analysis</span>';
+    const recalls=currentRecallMatchForFood(f); if(recalls.length){const advisory=recalls.every(r=>r.record_type==='advisory');b+=`<span class="badge ${advisory?'recall-advisory':'recall-alert'}" title="FDA recall/advisory information exists for this brand; check lot/product details">${advisory?'FDA advisory':'Recall info'}</span>`;}
     return b;
   }
 
@@ -455,6 +486,89 @@
     return p.join('');
   }
 
+  const recallListText = values => (values||[]).filter(Boolean).join(', ') || '—';
+  const foodRecallDetailHtml = f => {
+    const matches=currentRecallMatchForFood(f);
+    const checked=recallBundle.generated_at ? fmtRecallDate(recallBundle.generated_at) : 'bundled snapshot';
+    if(!matches.length) return `<div class="detail-recall"><h3>FDA recall check</h3><p>No matching non-terminated FDA recall/advisory is present in this app's bundled snapshot for <strong>${esc(f.brand)}</strong>.</p><p class="subtle">Checked against snapshot ${esc(checked)}. This is not proof that the product has never been recalled; verify current FDA information if you have a safety concern.</p></div>`;
+    const rows=matches.slice(0,3).map(r=>`<p><strong>${esc(recallTypeLabel(r))} · ${esc(fmtRecallDate(r.report_date||r.announcement_date))}</strong><br>${esc(r.product_description||'Product description unavailable')}<br><span class="subtle">${esc(r.reason||'Reason unavailable')}</span>${r.source_url?`<br><a href="${esc(r.source_url)}" target="_blank" rel="noopener">Open FDA notice ↗</a>`:''}</p>`).join('');
+    return `<div class="detail-recall has-match"><h3>⚠ FDA recall information for this brand</h3>${rows}<p class="subtle">Brand-level matching does not prove this exact recipe/package is affected. Compare lot, UPC, size, and date details in the FDA notice.</p></div>`;
+  };
+
+  function recallCard(r){
+    const date=r.report_date||r.announcement_date;
+    const brands=recallListText(r.brand_names);
+    const lots=recallListText(r.lot_codes);
+    const upcs=recallListText(r.upcs);
+    const bestBy=recallListText(r.best_by);
+    return `<article class="recall-card is-${esc(recallTypeClass(r))}">
+      <div class="recall-card-head"><div><div class="recall-brands">${esc(brands)}</div><h3>${esc(r.product_description||'FDA record')}</h3></div><span class="recall-date">${esc(fmtRecallDate(date))}</span></div>
+      <div><span class="recall-type-badge ${esc(recallTypeClass(r))}">${esc(recallTypeLabel(r))}</span>${r.classification?` <span class="badge">${esc(r.classification)}</span>`:''}</div>
+      <div class="recall-reason"><strong>Reason:</strong> ${esc(r.reason||'Not supplied')}</div>
+      <div class="recall-meta-grid">
+        <div><span>Lot / code</span><strong>${esc(lots)}</strong></div>
+        <div><span>UPC</span><strong>${esc(upcs)}</strong></div>
+        <div><span>Best by</span><strong>${esc(bestBy)}</strong></div>
+        <div><span>FDA status</span><strong>${esc(r.status_label||'See FDA record')}</strong></div>
+        ${r.recall_number?`<div><span>Recall number</span><strong>${esc(r.recall_number)}</strong></div>`:''}
+        ${r.distribution_pattern?`<div><span>Distribution</span><strong>${esc(r.distribution_pattern)}</strong></div>`:''}
+      </div>
+      ${r.consumer_action?`<div class="callout"><strong>Consumer action:</strong> ${esc(r.consumer_action)}</div>`:''}
+      <div class="recall-card-actions"><span class="subtle">${esc(r.source||'FDA')}</span>${r.source_url?`<a class="recall-source-link" href="${esc(r.source_url)}" target="_blank" rel="noopener">FDA source ↗</a>`:''}</div>
+    </article>`;
+  }
+
+  function filteredRecalls(){
+    let rows=allRecallRecords(); const q=normalizeSearch(state.recallQuery);
+    if(q) rows=rows.filter(r=>recallSearchText(r).includes(q)||searchTokens(q).every(t=>recallSearchText(r).split(' ').some(w=>w.startsWith(t))));
+    if(state.recallFilter==='not-terminated') rows=rows.filter(r=>!recallIsTerminated(r));
+    if(state.recallFilter==='recall') rows=rows.filter(r=>r.record_type==='recall');
+    if(state.recallFilter==='advisory') rows=rows.filter(r=>r.record_type==='advisory');
+    return rows;
+  }
+
+  function updateRecallNavCount(){
+    const n=allRecallRecords().filter(r=>!recallIsTerminated(r)).length, el=$('#recallNavCount'); if(!el)return;
+    el.textContent=String(n); el.classList.toggle('hidden',!n);
+  }
+
+  function renderRecalls(){
+    const all=allRecallRecords(), rows=filteredRecalls();
+    const gen=recallBundle.generated_at?fmtRecallDate(recallBundle.generated_at):'unknown date';
+    $('#recallSnapshotLabel').textContent=recallBundle.snapshot_label||'Bundled FDA snapshot';
+    $('#recallSnapshotMeta').textContent=`Bundled snapshot: ${gen}${recallBundle.openfda?.last_live_refresh?` · openFDA refresh ${fmtRecallDate(recallBundle.openfda.last_live_refresh)}`:''}`;
+    $('#recallCount').textContent=all.length.toLocaleString();
+    $('#recallList').innerHTML=rows.map(recallCard).join('')||'<div class="recall-empty"><strong>No matching recall records</strong><br>Try a broader recall search or filter.</div>';
+    updateRecallNavCount();
+  }
+
+  const browserOpenFdaRecord = row => {
+    const product=String(row.product_description||'');
+    const pn=normalizeSearch(product), known=[...new Set(allFoods().map(f=>f.brand).filter(Boolean))];
+    const brands=known.filter(b=>{const bn=normalizeSearch(b);return bn.length>=4&&(` ${pn} `).includes(` ${bn} `);});
+    const date=v=>{const s=String(v||'').replace(/\D/g,'');return s.length===8?`${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}`:null;};
+    const id=`live-${String(row.recall_number||row.event_id||product).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,90)}`;
+    return {id,record_type:'enforcement',source:'FDA Recall Enterprise System via openFDA',source_url:'https://www.fda.gov/animal-veterinary/safety-health/recalls-withdrawals',api_record:true,announcement_date:date(row.recall_initiation_date),report_date:date(row.report_date),termination_date:date(row.termination_date),brand_names:brands,recalling_firm:row.recalling_firm||null,species:['cat'],product_description:product,reason:row.reason_for_recall||null,status_label:row.termination_date?`Terminated ${date(row.termination_date)}`:`${row.status||'FDA enforcement record'} (openFDA status is not a live lifecycle tracker)`,classification:row.classification||null,recall_number:row.recall_number||null,event_id:row.event_id||null,lot_codes:row.code_info?[String(row.code_info)]:[],upcs:[],best_by:[],distribution_pattern:row.distribution_pattern||null,consumer_action:null,notes:'Live machine-normalized openFDA result; verify against FDA before acting.'};
+  };
+
+  async function refreshRecallsLive(){
+    const btn=$('#refreshRecallsBtn'), status=$('#recallLiveStatus');
+    btn.disabled=true; btn.textContent='Checking…'; status.classList.remove('hidden'); status.textContent='Checking the FDA Food Enforcement API for cat/feline/kitten records…';
+    try{
+      const terms=['cat','feline','kitten']; const rows=[];
+      for(const term of terms){
+        const params=new URLSearchParams({search:`product_description:"${term}"`,sort:'report_date:desc',limit:'100'});
+        const res=await fetch(`https://api.fda.gov/food/enforcement.json?${params.toString()}`,{headers:{Accept:'application/json'}});
+        if(res.status===404) continue; if(!res.ok) throw new Error(`FDA API returned ${res.status}`);
+        const data=await res.json(); rows.push(...(data.results||[]));
+      }
+      const map=new Map(); rows.map(browserOpenFdaRecord).forEach(r=>map.set(recallRecordKey(r),r)); state.liveRecalls=[...map.values()];
+      status.textContent=`Live openFDA check added ${state.liveRecalls.length.toLocaleString()} feline-relevant enforcement records for this session. Bundled offline data was not modified.`;
+      renderRecalls(); if(state.view==='browse')renderBrowse();
+    }catch(err){ status.textContent=`Live check could not be completed (${err?.message||'network error'}). The bundled offline FDA snapshot is still available.`; }
+    finally{btn.disabled=false;btn.textContent='Check openFDA now';}
+  }
+
   function showDetails(f){
     const extraMinerals = [
       ['Magnesium',rangeFmt(f,'magnesium_mg_per_100kcal',' mg/100 kcal')],
@@ -468,6 +582,7 @@
       <div class="badge-row">${badges(f)}</div>
       <div class="detail-profile"><strong>${esc(p.label)} profile</strong><span>${esc(profileText)}</span></div>
       <div class="detail-grid"><div class="detail-value${targetClassForMetric(f,'protein_cal_pct')}"><span>Protein</span><strong>${rangeFmt(f,'protein_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'fat_cal_pct')}"><span>Fat</span><strong>${rangeFmt(f,'fat_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'carb_cal_pct')}"><span>Carbohydrate</span><strong>${rangeFmt(f,'carb_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'phosphorus_mg_per_100kcal')}"><span>Phosphorus</span><strong>${rangeFmt(f,'phosphorus_mg_per_100kcal',' mg/100 kcal')}</strong></div><div class="detail-value"><span>Calories</span><strong>${esc(calorieText(f))}</strong></div><div class="detail-value"><span>Active profile</span><strong>${esc(p.label)}</strong></div>${extraMinerals.map(([k,v])=>`<div class="detail-value"><span>${k}</span><strong>${esc(v)}</strong></div>`).join('')}</div>
+      ${foodRecallDetailHtml(f)}
       <div class="detail-notes">${sourceNotes(f)}</div>
       <button class="primary-btn" data-close-detail>Done</button></div>`;
     $('#detailDialog').showModal();
@@ -477,7 +592,7 @@
     const wrap=$('#customFoodsList'); if(!state.custom.length){wrap.innerHTML='<p class="subtle">Nothing saved yet.</p>';return;}
     wrap.innerHTML=state.custom.map(f=>`<div class="custom-item"><div><strong>${esc(f.brand)} — ${esc(f.product)}</strong><div class="subtle">P ${fmt(f.protein_cal_pct)}% · F ${fmt(f.fat_cal_pct)}% · C ${fmt(f.carb_cal_pct)}% · Phos ${fmt(f.phosphorus_mg_per_100kcal)} mg/100 kcal</div></div><button class="text-btn" data-delete-custom="${esc(f.id)}">Delete</button></div>`).join('');
   }
-  function nav(view){state.view=view;$$('.view').forEach(v=>v.classList.toggle('active',v.id===view+'View'));$$('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.nav===view));if(view==='browse')renderBrowse();if(view==='compare')renderCompare();if(view==='add'){renderCustom();}window.scrollTo({top:0,behavior:'instant'});}
+  function nav(view){state.view=view;$$('.view').forEach(v=>v.classList.toggle('active',v.id===view+'View'));$$('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.nav===view));if(view==='browse')renderBrowse();if(view==='compare')renderCompare();if(view==='add'){renderCustom();}if(view==='recalls')renderRecalls();window.scrollTo({top:0,behavior:'instant'});}
   function populateBrands(){const brands=[...new Set(allFoods().map(f=>f.brand).filter(Boolean))].sort((a,b)=>a.localeCompare(b));$('#brandFilter').innerHTML='<option value="">All brands</option>'+brands.map(b=>`<option>${esc(b)}</option>`).join('');}
   function syncDialogs(){
     $('#brandFilter').value=state.filters.brand;$('#carbMaxFilter').value=state.filters.carbMax??'';$('#proteinMinFilter').value=state.filters.proteinMin??'';$('#phosMaxFilter').value=state.filters.phosMax??'';$('#fatMaxFilter').value=state.filters.fatMax??'';$('#sourceFilter').value=state.filters.source;$('#formFilter').value=state.filters.form;$('#textureFilter').value=state.filters.texture;$('#hideRxFilter').checked=state.filters.hideRx;$('#excludeSeafoodFilter').checked=state.filters.excludeSeafood;$('#completeOnlyFilter').checked=state.filters.completeOnly;
@@ -495,6 +610,9 @@
   }
 
   function initEvents(){
+    $('#recallSearchInput')?.addEventListener('input',e=>{state.recallQuery=e.target.value;renderRecalls();});
+    $('#recallStatusFilter')?.addEventListener('change',e=>{state.recallFilter=e.target.value;renderRecalls();});
+    $('#refreshRecallsBtn')?.addEventListener('click',refreshRecallsLive);
     document.addEventListener('click',e=>{
       const navBtn=e.target.closest('[data-nav]');if(navBtn){nav(navBtn.dataset.nav);return;}
       const cardEl=e.target.closest('.food-card');const act=e.target.closest('[data-action]');
@@ -550,5 +668,5 @@
 
   function registerSW(){if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./service-worker.js').catch(()=>{});}
   state.quick.profile=state.settings.profile!=='normal'&&profileHasTargets();
-  populateBrands();syncDialogs();initEvents();applyTheme();applyStoreMode();$('#clearSearchBtn')?.classList.toggle('hidden',!state.query);renderBrowse();renderCompare();renderCustom();registerSW();
+  populateBrands();syncDialogs();initEvents();applyTheme();applyStoreMode();$('#clearSearchBtn')?.classList.toggle('hidden',!state.query);renderBrowse();renderCompare();renderCustom();renderRecalls();registerSW();
 })();
