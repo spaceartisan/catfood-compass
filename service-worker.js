@@ -1,5 +1,5 @@
-const CACHE='catfood-compass-v0.3.2';
-const ASSETS=['./','./index.html','./styles.css','./app.js','./data/foods.js','./data/tiki_cat.js','./data/fancy_feast.js','./data/friskies.js','./data/recalls.js','./data/recalls.json','./data/aliases.js','./manifest.webmanifest','./icon.svg'];
+const CACHE='catfood-compass-v0.3.4';
+const ASSETS=['./','./index.html','./styles.css','./app.js','./data/foods.js','./data/tiki_cat.js','./data/fancy_feast.js','./data/friskies.js','./data/recall_brands.js','./data/recall_brands.json','./data/recalls.js','./data/recalls.json','./data/aliases.js','./manifest.webmanifest','./icon.svg'];
 
 self.addEventListener('install',e=>e.waitUntil(
   caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())
@@ -12,11 +12,12 @@ self.addEventListener('activate',e=>e.waitUntil(
 self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET') return;
   const url=new URL(e.request.url);
-  const isRecallSnapshot=/\/data\/recalls\.(?:js|json)$/.test(url.pathname);
+  const isRecallSnapshot=/\/data\/(?:recalls|recall_brands)\.(?:js|json)$/.test(url.pathname);
 
-  // Recall data changes independently of application releases. Use network-first
-  // so an installed/offline-capable GitHub Pages app sees GitHub Action updates,
-  // while retaining the last successful snapshot when offline.
+  // Recall snapshots and their catalog-brand whitelist can change independently
+  // of application releases. Use network-first so an installed/offline-capable
+  // GitHub Pages app sees GitHub Action updates while retaining the last good
+  // copy when offline.
   if(isRecallSnapshot){
     e.respondWith(
       fetch(e.request).then(resp=>{

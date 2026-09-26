@@ -5,6 +5,12 @@ on:
     # Daily refresh; openFDA itself is updated weekly.
     - cron: '17 14 * * *'
   workflow_dispatch:
+  push:
+    paths:
+      - 'data/foods.js'
+      - 'data/recalls_curated.json'
+      - 'tools/build_recall_brands.py'
+      - 'tools/update_recalls.py'
 
 permissions:
   contents: write
@@ -21,18 +27,24 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Rebuild catalog recall-brand whitelist
+        run: python tools/build_recall_brands.py
+
       - name: Refresh FDA recall snapshot
         run: python tools/update_recalls.py
 
-      - name: Commit changes if the snapshot changed
+      - name: Validate recall data
+        run: python tools/validate_recalls.py
+
+      - name: Commit changes if recall data changed
         shell: bash
         run: |
-          if git diff --quiet -- data/recalls.json data/recalls.js; then
+          if git diff --quiet -- data/recall_brands.json data/recall_brands.js data/recalls.json data/recalls.js; then
             echo "Recall snapshot unchanged."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/recalls.json data/recalls.js
+          git add data/recall_brands.json data/recall_brands.js data/recalls.json data/recalls.js
           git commit -m "Update FDA recall snapshot"
           git push

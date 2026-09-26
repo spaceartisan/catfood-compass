@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Refresh CatFood Compass feline-relevant FDA recall data.
+"""Refresh CatFood Compass FDA recall data for brands in its food catalog.
 
-This keeps the GitHub Pages app static while allowing a scheduled GitHub Action
-to refresh a bundled JSON/JS snapshot. It supplements a small curated set of
-FDA recall/advisory records with FDA Food Enforcement (openFDA) records whose
-product descriptions are cat/feline/kitten relevant.
+CatFood Compass is a static GitHub Pages app. A scheduled GitHub Action runs
+this script, queries FDA Food Enforcement data through openFDA, and writes a
+bundled JSON/JS snapshot.
+
+Machine-imported records are intentionally narrow: a record must (1) contain a
+feline context term and (2) match one or more explicit brand aliases generated
+from the CatFood Compass nutrition catalog. This prevents lexical false
+positives such as cat-shaped chocolate or "Black Cat" coffee and also keeps the
+recall tab focused on brands represented in the app.
 
 No third-party Python packages are required.
 """
@@ -26,8 +31,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 OPENFDA = "https://api.fda.gov/food/enforcement.json"
 FDA_RECALLS = "https://www.fda.gov/animal-veterinary/safety-health/recalls-withdrawals"
-QUERY_TERMS = ["cat", "feline", "kitten"]
-UA = "CatFood-Compass-recall-updater/0.3.2 (+GitHub Pages data refresh)"
+QUERY_TERMS = ["cat", "feline", "kitten", "kitty"]
+UA = "CatFood-Compass-recall-updater/0.3.4 (+GitHub Pages data refresh)"
 
 
 def read_json(path: Path, fallback):
@@ -38,27 +43,55 @@ def read_json(path: Path, fallback):
 
 
 def normalize(value: str | None) -> str:
-    s = (value or "").lower().replace("&", " and ")
+    s = (value or "").lower().replace("&", " and ").replace("’", "'")
     s = re.sub(r"[^a-z0-9]+", " ", s)
     return re.sub(r"\s+", " ", s).strip()
 
 
-def load_known_brands() -> list[str]:
-    """Read brands from foods.js without executing JavaScript."""
-    path = DATA / "foods.js"
-    text = path.read_text(encoding="utf-8")
-    prefix = "window.CATFOOD_DATA = "
-    start = text.find(prefix)
-    if start < 0:
-        return []
-    start += len(prefix)
-    end = text.find(";\nwindow.CATFOOD_META", start)
-    if end < 0:
-        return []
-    rows = json.loads(text[start:end])
-    brands = sorted({str(r.get("brand") or "").strip() for r in rows if r.get("brand")})
-    # Avoid tiny/generic names that can create false substring matches.
-    return [b for b in brands if len(normalize(b)) >= 4]
+def load_brand_rules() -> dict:
+    payload = read_json(DATA / "recall_brands.json", {})
+    if payload.get("strategy") != "catalog_brand_whitelist" or not payload.get("rules"):
+        raise RuntimeError(
+            "data/recall_brands.json is missing or invalid; run tools/build_recall_brands.py first"
+        )
+    return payload
+
+
+def phrase_in_text(normalized_text: str, normalized_phrase: str) -> bool:
+    if not normalized_text or not normalized_phrase:
+        return False
+    return f" {normalized_phrase} " in f" {normalized_text} "
+
+
+def match_brand_rules(text: str | None, rules: list[dict]) -> list[dict]:
+    """Return catalog rules explicitly matched in an FDA product description."""
+    n = normalize(text)
+    matches = []
+    for rule in rules:
+        aliases = rule.get("normalized_aliases") or [normalize(a) for a in rule.get("aliases", [])]
+        hit = next((alias for alias in aliases if phrase_in_text(n, alias)), None)
+        if hit:
+            matches.append({
+                "id": rule.get("id"),
+                "canonical": rule.get("canonical"),
+                "alias": hit,
+            })
+    return matches
+
+
+def match_curated_record(record: dict, rules: list[dict]) -> list[dict]:
+    """Match a manually curated record to the same catalog-brand whitelist."""
+    # Prefer the explicitly curated brand names; fall back to the product text.
+    joined = " ".join(str(x) for x in (record.get("brand_names") or []) if x)
+    matches = match_brand_rules(joined, rules)
+    if matches:
+        return matches
+    return match_brand_rules(record.get("product_description"), rules)
+
+
+def has_feline_context(value: str | None) -> bool:
+    n = normalize(value)
+    return bool(re.search(r"\b(cat|cats|feline|felines|kitten|kittens|kitty|kitties)\b", n))
 
 
 def fetch_json(url: str, timeout: int = 30) -> dict:
@@ -68,11 +101,10 @@ def fetch_json(url: str, timeout: int = 30) -> dict:
 
 
 def fetch_query(term: str, max_records: int = 5000) -> list[dict]:
-    """Fetch all practical matches for one feline term from openFDA."""
+    """Fetch practical openFDA matches for one feline term."""
     out: list[dict] = []
     limit = 100
     skip = 0
-    # Query syntax intentionally kept simple; terms are run separately and deduped.
     search = f'product_description:"{term}"'
     while skip < max_records:
         params = urllib.parse.urlencode({
@@ -116,24 +148,25 @@ def parse_yyyymmdd(value: str | None) -> str | None:
 def classify_species(text: str) -> list[str]:
     n = normalize(text)
     species = []
-    if re.search(r"\b(cat|cats|feline|felines|kitten|kittens)\b", n):
+    if re.search(r"\b(cat|cats|feline|felines|kitten|kittens|kitty|kitties)\b", n):
         species.append("cat")
     if re.search(r"\b(dog|dogs|canine|canines|puppy|puppies)\b", n):
         species.append("dog")
-    return species or ["cat"]  # Query itself was feline-oriented.
+    return species
 
 
-def match_known_brands(product_description: str, known_brands: list[str]) -> list[str]:
-    n = f" {normalize(product_description)} "
-    matched = []
-    for brand in known_brands:
-        bn = normalize(brand)
-        if bn and f" {bn} " in n:
-            matched.append(brand)
-    return sorted(set(matched), key=str.lower)
+def apply_catalog_match(record: dict, matches: list[dict]) -> dict:
+    out = dict(record)
+    out["brand_names"] = sorted(
+        {m.get("canonical") for m in matches if m.get("canonical")}, key=str.casefold
+    )
+    out["catalog_brand_ids"] = sorted({m.get("id") for m in matches if m.get("id")})
+    out["brand_match_aliases"] = sorted({m.get("alias") for m in matches if m.get("alias")})
+    out["catalog_match"] = "brand_whitelist"
+    return out
 
 
-def enforcement_to_record(row: dict, known_brands: list[str]) -> dict:
+def enforcement_to_record(row: dict, matches: list[dict]) -> dict:
     recall_no = str(row.get("recall_number") or "").strip()
     event_id = str(row.get("event_id") or "").strip()
     product = str(row.get("product_description") or "").strip()
@@ -147,7 +180,8 @@ def enforcement_to_record(row: dict, known_brands: list[str]) -> dict:
         status_label = f"Terminated {term}"
     else:
         status_label = status + " (openFDA status is not a live lifecycle tracker)"
-    return {
+
+    record = {
         "id": rid,
         "record_type": "enforcement",
         "source": "FDA Recall Enterprise System via openFDA",
@@ -156,7 +190,7 @@ def enforcement_to_record(row: dict, known_brands: list[str]) -> dict:
         "announcement_date": parse_yyyymmdd(row.get("recall_initiation_date")),
         "report_date": parse_yyyymmdd(row.get("report_date")),
         "termination_date": term,
-        "brand_names": match_known_brands(product, known_brands),
+        "brand_names": [],
         "recalling_firm": row.get("recalling_firm"),
         "species": classify_species(product),
         "product_description": product,
@@ -172,8 +206,9 @@ def enforcement_to_record(row: dict, known_brands: list[str]) -> dict:
         "product_quantity": row.get("product_quantity"),
         "voluntary_mandated": row.get("voluntary_mandated"),
         "consumer_action": None,
-        "notes": "Machine-normalized enforcement record. Verify lot/package details against FDA before acting."
+        "notes": "Machine-normalized enforcement record matched to a CatFood Compass catalog brand. Verify lot/package details against FDA before acting.",
     }
+    return apply_catalog_match(record, matches)
 
 
 def dedupe(records: list[dict]) -> list[dict]:
@@ -196,13 +231,24 @@ def dedupe(records: list[dict]) -> list[dict]:
 
 
 def build(live: bool = True) -> dict:
-    curated = read_json(DATA / "recalls_curated.json", {"records": []}).get("records") or []
-    records = list(curated)
+    brand_payload = load_brand_rules()
+    rules = brand_payload.get("rules") or []
+    curated_all = read_json(DATA / "recalls_curated.json", {"records": []}).get("records") or []
+
+    curated_kept = []
+    for record in curated_all:
+        matches = match_curated_record(record, rules)
+        if matches:
+            curated_kept.append(apply_catalog_match(record, matches))
+
+    records = list(curated_kept)
     live_ok = False
     error = None
+    raw_count = 0
+    live_catalog_matches = 0
+
     if live:
         try:
-            known_brands = load_known_brands()
             raw = []
             seen = set()
             for term in QUERY_TERMS:
@@ -212,7 +258,22 @@ def build(live: bool = True) -> dict:
                         continue
                     seen.add(key)
                     raw.append(row)
-            records.extend(enforcement_to_record(r, known_brands) for r in raw)
+            raw_count = len(raw)
+
+            for row in raw:
+                product = row.get("product_description")
+                if not has_feline_context(product):
+                    continue
+                matches = match_brand_rules(product, rules)
+                if not matches:
+                    continue
+                records.append(enforcement_to_record(row, matches))
+                live_catalog_matches += 1
+
+            print(
+                f"Catalog-brand filter retained {live_catalog_matches} of {raw_count} "
+                "deduplicated feline-term openFDA records."
+            )
             live_ok = True
         except Exception as exc:
             error = f"{type(exc).__name__}: {exc}"
@@ -220,15 +281,26 @@ def build(live: bool = True) -> dict:
 
     now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": now,
-        "snapshot_label": "Bundled FDA feline-relevant recall/advisory snapshot",
+        "snapshot_label": "FDA recalls matched to CatFood Compass catalog brands",
         "source_notes": [
-            "Curated FDA animal/veterinary recall announcements and advisories are bundled for offline use.",
-            "The scheduled updater supplements this file with feline-relevant FDA Food Enforcement records from openFDA.",
-            "A record not appearing here is not proof that a product has never been recalled.",
-            "openFDA states that enforcement status should not be treated as a live recall-lifecycle tracker."
+            "CatFood Compass only retains machine-imported FDA enforcement records that match a brand represented in its nutrition catalog.",
+            "Machine records must also contain a feline context term; unrelated human foods and dog-only products are excluded.",
+            "Curated FDA animal/veterinary notices are subjected to the same catalog-brand whitelist before appearing in the app.",
+            "A record not appearing here is not proof that a product has never been recalled; this is intentionally not a complete FDA animal-recall index.",
+            "openFDA states that enforcement status should not be treated as a live recall-lifecycle tracker.",
         ],
+        "catalog_filter": {
+            "strategy": "catalog_brand_whitelist",
+            "brand_rule_count": brand_payload.get("rule_count"),
+            "source_brand_count": brand_payload.get("source_brand_count"),
+            "source_brand_hash": brand_payload.get("source_brand_hash"),
+            "curated_input_count": len(curated_all),
+            "curated_catalog_matches": len(curated_kept),
+            "live_raw_feline_term_records": raw_count if live_ok else None,
+            "live_catalog_matches": live_catalog_matches if live_ok else None,
+        },
         "openfda": {
             "endpoint": OPENFDA,
             "coverage": "2004-present",
@@ -261,17 +333,24 @@ def main() -> int:
         return 2
 
     # A scheduled check should not create a meaningless daily Git commit just
-    # because the clock changed. If the normalized record set is unchanged and
-    # this repository already has a successful live snapshot, preserve its
-    # snapshot timestamps so git diff remains clean.
-    if (not args.offline and existing and
-            existing.get("records") == payload.get("records") and
-            existing.get("openfda", {}).get("last_live_refresh")):
+    # because the clock changed. If the normalized record set and catalog rule
+    # hash are unchanged, preserve the prior successful refresh timestamps.
+    same_filter = (
+        existing.get("catalog_filter", {}).get("source_brand_hash")
+        == payload.get("catalog_filter", {}).get("source_brand_hash")
+    )
+    if (
+        not args.offline
+        and existing
+        and existing.get("records") == payload.get("records")
+        and same_filter
+        and existing.get("openfda", {}).get("last_live_refresh")
+    ):
         payload["generated_at"] = existing.get("generated_at")
         payload["openfda"]["last_live_refresh"] = existing["openfda"].get("last_live_refresh")
 
     write_outputs(payload)
-    print(f"Wrote {len(payload['records'])} recall/advisory records to data/recalls.json and data/recalls.js")
+    print(f"Wrote {len(payload['records'])} catalog-matched recall/advisory records to data/recalls.json and data/recalls.js")
     return 0
 
 

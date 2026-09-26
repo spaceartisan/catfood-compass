@@ -87,13 +87,17 @@ print('PASS: v0.3.1 Normal-default multi-condition nutrition profile system is w
 
 # FDA recall/advisory layer regression checks (v0.3.2)
 recalls_js=(root/'data'/'recalls.js').read_text(encoding='utf-8')
+recall_brands_js=(root/'data'/'recall_brands.js').read_text(encoding='utf-8')
 assert 'id="recallsView"' in html and 'data-nav="recalls"' in html, 'Recalls view/navigation missing'
 assert 'id="refreshRecallsBtn"' in html and 'id="recallSearchInput"' in html and 'id="recallStatusFilter"' in html, 'Recall controls missing'
+assert './data/recall_brands.js' in html and 'window.CATFOOD_RECALL_BRANDS' in recall_brands_js, 'Recall brand whitelist missing'
 assert './data/recalls.js' in html and 'window.CATFOOD_RECALLS' in recalls_js, 'Bundled recall data missing'
-for symbol in ['recallBundle','foodRecallDetailHtml','renderRecalls','refreshRecallsLive','updateRecallNavCount']:
+for symbol in ['recallBundle','recallBrandBundle','recallBrandMatches','foodRecallDetailHtml','renderRecalls','refreshRecallsLive','updateRecallNavCount']:
     assert symbol in js, f'Recall helper missing: {symbol}'
 assert 'v0.3.2 — FDA recall/advisory layer' in css, 'Recall UI CSS marker missing'
+assert (root/'tools'/'build_recall_brands.py').exists(), 'Recall brand whitelist builder missing'
 assert (root/'tools'/'update_recalls.py').exists(), 'Recall updater missing'
 assert (root/'.github'/'workflows'/'update-recalls.yml').exists(), 'Scheduled recall workflow missing'
 assert 'A missing match is <strong>not proof that a product has never been recalled</strong>' in html, 'Recall absence disclaimer missing'
-print('PASS: v0.3.2 bundled FDA recall/advisory view, live check, product matching, and scheduled updater are wired')
+assert 'catalog-brand whitelist' in html.lower(), 'Catalog-brand recall filtering explanation missing'
+print('PASS: v0.3.4 catalog-whitelisted FDA recall/advisory view, live check, product matching, and scheduled updater are wired')

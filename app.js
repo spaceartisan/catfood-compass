@@ -2,6 +2,7 @@
   const baseFoods = (window.CATFOOD_DATA || []).map(x => ({...x, dataset:x.dataset || 'pierson_2017'}));
   const meta = window.CATFOOD_META || {};
   const recallBundle = window.CATFOOD_RECALLS || {records:[],generated_at:null,openfda:{}};
+  const recallBrandBundle = window.CATFOOD_RECALL_BRANDS || {rules:[],strategy:'catalog_brand_whitelist'};
   const aliasRows = (window.CATFOOD_ALIASES || []).filter(a=>a&&a.source_id&&a.verified===true);
   const aliasById = new Map(aliasRows.map(a=>[a.source_id,a]));
   const brandCatalogSpecs = [
@@ -87,19 +88,46 @@
   const recallRecordKey = r => String(r.id||r.recall_number||`${r.product_description||''}|${r.report_date||r.announcement_date||''}`);
   const allRecallRecords = () => {
     const map=new Map();
-    [...(recallBundle.records||[]),...(state.liveRecalls||[])].forEach(r=>{ if(r) map.set(recallRecordKey(r),r); });
+    [...(recallBundle.records||[]),...(state.liveRecalls||[])].forEach(r=>{
+      if(!r) return;
+      const knownIds=new Set((recallBrandBundle.rules||[]).map(rule=>rule.id));
+      const recordIds=r.catalog_brand_ids||[];
+      const idMatch=recordIds.some(id=>knownIds.has(id));
+      const legacyBrandMatch=(r.brand_names||[]).some(name=>(recallBrandBundle.rules||[]).some(rule=>(rule.normalized_aliases||[]).some(alias=>normalizeSearch(name)===alias)));
+      if(idMatch||legacyBrandMatch) map.set(recallRecordKey(r),r);
+    });
     return [...map.values()].sort((a,b)=>(parseRecallDate(b.report_date||b.announcement_date)?.getTime()||0)-(parseRecallDate(a.report_date||a.announcement_date)?.getTime()||0));
   };
   const recallIsTerminated = r => !!r.termination_date || /^\s*terminated\b/i.test(String(r.status_label||''));
   const recallSearchText = r => normalizeSearch([...(r.brand_names||[]),r.product_description,r.reason,r.recalling_firm,r.recall_number,r.event_id,...(r.lot_codes||[]),...(r.upcs||[])].filter(Boolean).join(' '));
+  const recallBrandRules = () => recallBrandBundle.rules || [];
+  const recallBrandMatches = productText => {
+    const text=normalizeSearch(productText);
+    return recallBrandRules().flatMap(rule=>{
+      const aliases=rule.normalized_aliases||[];
+      const hit=aliases.find(a=>(` ${text} `).includes(` ${a} `));
+      return hit?[{id:rule.id,canonical:rule.canonical,alias:hit}]:[];
+    });
+  };
+  const hasFelineRecallContext = value => /\b(cat|cats|feline|felines|kitten|kittens|kitty|kitties)\b/.test(normalizeSearch(value));
+  const recallRuleIdsForFood = f => {
+    const brand=normalizeSearch(f.brand);
+    return recallBrandRules().filter(rule=>(rule.source_labels||[]).some(label=>normalizeSearch(label)===brand)).map(rule=>rule.id);
+  };
   const knownBrandAliasesForFood = f => {
-    const values=[f.brand];
+    const ids=new Set(recallRuleIdsForFood(f));
+    const rules=recallBrandRules().filter(rule=>ids.has(rule.id));
+    const values=[f.brand,...rules.flatMap(rule=>[rule.canonical,...(rule.aliases||[])])];
     const a=aliasFor(f); if(a?.current_name) values.push(String(a.current_name).split('·')[0]);
     return [...new Set(values.map(normalizeSearch).filter(Boolean))];
   };
   const recallMatchesForFood = f => {
-    const aliases=knownBrandAliasesForFood(f); if(!aliases.length) return [];
+    const ids=new Set(recallRuleIdsForFood(f));
+    const aliases=knownBrandAliasesForFood(f); if(!ids.size&&!aliases.length) return [];
     return allRecallRecords().filter(r=>{
+      const recordIds=new Set(r.catalog_brand_ids||[]);
+      if([...ids].some(id=>recordIds.has(id))) return true;
+      // Backward-compatible fallback for an older cached snapshot.
       const brands=(r.brand_names||[]).map(normalizeSearch).filter(Boolean);
       return brands.some(b=>aliases.includes(b));
     });
@@ -535,35 +563,42 @@
   function renderRecalls(){
     const all=allRecallRecords(), rows=filteredRecalls();
     const gen=recallBundle.generated_at?fmtRecallDate(recallBundle.generated_at):'unknown date';
+    const filter=recallBundle.catalog_filter;
     $('#recallSnapshotLabel').textContent=recallBundle.snapshot_label||'Bundled FDA snapshot';
-    $('#recallSnapshotMeta').textContent=`Bundled snapshot: ${gen}${recallBundle.openfda?.last_live_refresh?` · openFDA refresh ${fmtRecallDate(recallBundle.openfda.last_live_refresh)}`:''}`;
+    $('#recallSnapshotMeta').textContent=`Bundled snapshot: ${gen}${recallBundle.openfda?.last_live_refresh?` · openFDA refresh ${fmtRecallDate(recallBundle.openfda.last_live_refresh)}`:''}${filter?.brand_rule_count?` · ${filter.brand_rule_count} catalog brand rules`:''}`;
     $('#recallCount').textContent=all.length.toLocaleString();
-    $('#recallList').innerHTML=rows.map(recallCard).join('')||'<div class="recall-empty"><strong>No matching recall records</strong><br>Try a broader recall search or filter.</div>';
+    $('#recallList').innerHTML=rows.map(recallCard).join('')||'<div class="recall-empty"><strong>No catalog-brand recall records in this snapshot</strong><br>The app only keeps FDA records that match brands represented in the CatFood Compass food database.</div>';
     updateRecallNavCount();
   }
 
   const browserOpenFdaRecord = row => {
     const product=String(row.product_description||'');
-    const pn=normalizeSearch(product), known=[...new Set(allFoods().map(f=>f.brand).filter(Boolean))];
-    const brands=known.filter(b=>{const bn=normalizeSearch(b);return bn.length>=4&&(` ${pn} `).includes(` ${bn} `);});
+    if(!hasFelineRecallContext(product)) return null;
+    const matches=recallBrandMatches(product);
+    if(!matches.length) return null;
+    const brands=[...new Set(matches.map(m=>m.canonical).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+    const brandIds=[...new Set(matches.map(m=>m.id).filter(Boolean))].sort();
+    const matchAliases=[...new Set(matches.map(m=>m.alias).filter(Boolean))].sort();
     const date=v=>{const s=String(v||'').replace(/\D/g,'');return s.length===8?`${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}`:null;};
     const id=`live-${String(row.recall_number||row.event_id||product).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,90)}`;
-    return {id,record_type:'enforcement',source:'FDA Recall Enterprise System via openFDA',source_url:'https://www.fda.gov/animal-veterinary/safety-health/recalls-withdrawals',api_record:true,announcement_date:date(row.recall_initiation_date),report_date:date(row.report_date),termination_date:date(row.termination_date),brand_names:brands,recalling_firm:row.recalling_firm||null,species:['cat'],product_description:product,reason:row.reason_for_recall||null,status_label:row.termination_date?`Terminated ${date(row.termination_date)}`:`${row.status||'FDA enforcement record'} (openFDA status is not a live lifecycle tracker)`,classification:row.classification||null,recall_number:row.recall_number||null,event_id:row.event_id||null,lot_codes:row.code_info?[String(row.code_info)]:[],upcs:[],best_by:[],distribution_pattern:row.distribution_pattern||null,consumer_action:null,notes:'Live machine-normalized openFDA result; verify against FDA before acting.'};
+    return {id,record_type:'enforcement',source:'FDA Recall Enterprise System via openFDA',source_url:'https://www.fda.gov/animal-veterinary/safety-health/recalls-withdrawals',api_record:true,announcement_date:date(row.recall_initiation_date),report_date:date(row.report_date),termination_date:date(row.termination_date),brand_names:brands,catalog_brand_ids:brandIds,brand_match_aliases:matchAliases,catalog_match:'brand_whitelist',recalling_firm:row.recalling_firm||null,species:['cat'],product_description:product,reason:row.reason_for_recall||null,status_label:row.termination_date?`Terminated ${date(row.termination_date)}`:`${row.status||'FDA enforcement record'} (openFDA status is not a live lifecycle tracker)`,classification:row.classification||null,recall_number:row.recall_number||null,event_id:row.event_id||null,lot_codes:row.code_info?[String(row.code_info)]:[],upcs:[],best_by:[],distribution_pattern:row.distribution_pattern||null,consumer_action:null,notes:'Live machine-normalized openFDA result matched to a CatFood Compass catalog brand; verify against FDA before acting.'};
   };
 
   async function refreshRecallsLive(){
     const btn=$('#refreshRecallsBtn'), status=$('#recallLiveStatus');
-    btn.disabled=true; btn.textContent='Checking…'; status.classList.remove('hidden'); status.textContent='Checking the FDA Food Enforcement API for cat/feline/kitten records…';
+    btn.disabled=true; btn.textContent='Checking…'; status.classList.remove('hidden'); status.textContent='Checking openFDA and retaining only records that match CatFood Compass catalog brands…';
     try{
-      const terms=['cat','feline','kitten']; const rows=[];
+      const terms=['cat','feline','kitten','kitty']; const rows=[];
       for(const term of terms){
         const params=new URLSearchParams({search:`product_description:"${term}"`,sort:'report_date:desc',limit:'100'});
         const res=await fetch(`https://api.fda.gov/food/enforcement.json?${params.toString()}`,{headers:{Accept:'application/json'}});
         if(res.status===404) continue; if(!res.ok) throw new Error(`FDA API returned ${res.status}`);
         const data=await res.json(); rows.push(...(data.results||[]));
       }
-      const map=new Map(); rows.map(browserOpenFdaRecord).forEach(r=>map.set(recallRecordKey(r),r)); state.liveRecalls=[...map.values()];
-      status.textContent=`Live openFDA check added ${state.liveRecalls.length.toLocaleString()} feline-relevant enforcement records for this session. Bundled offline data was not modified.`;
+      const map=new Map();
+      rows.map(browserOpenFdaRecord).filter(Boolean).forEach(r=>map.set(recallRecordKey(r),r));
+      state.liveRecalls=[...map.values()];
+      status.textContent=`Live openFDA check found ${state.liveRecalls.length.toLocaleString()} catalog-brand feline enforcement record${state.liveRecalls.length===1?'':'s'} for this session. Bundled offline data was not modified.`;
       renderRecalls(); if(state.view==='browse')renderBrowse();
     }catch(err){ status.textContent=`Live check could not be completed (${err?.message||'network error'}). The bundled offline FDA snapshot is still available.`; }
     finally{btn.disabled=false;btn.textContent='Check openFDA now';}
