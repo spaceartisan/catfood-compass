@@ -32,7 +32,7 @@
   const textureMatches = (f,t) => { const x=textureText(f); const pats={pate:/p[âa]t[eé]|\bpate\b|\bloaf\b/,shreds:/shred|flake/,pieces:/minc|\bbit(s)?\b|chunk|morsel|\bcut(s)?\b|slice/,gravy:/gravy|sauce|stew/,broth:/broth|consomm|aspic/,mousse:/mousse/}; return !t || !!pats[t]?.test(x); };
   const THEMES={forest:{color:'#12211b'},midnight:{color:'#0a1210'},ocean:{color:'#123b4c'},berry:{color:'#4d1f38'},sunset:{color:'#5b2c1c'},lavender:{color:'#31274d'}};
   const applyTheme = () => { const theme=THEMES[state.settings.theme]?state.settings.theme:'forest'; state.settings.theme=theme; document.documentElement.dataset.theme=theme; const m=document.querySelector('meta[name=\"theme-color\"]'); if(m)m.content=THEMES[theme].color; };
-  const applyStoreMode = () => { document.body.classList.toggle('store-mode',!!state.settings.storeMode); const b=$('#storeModeBtn'); if(b){b.classList.toggle('active',!!state.settings.storeMode);b.setAttribute('aria-pressed',String(!!state.settings.storeMode));b.textContent=state.settings.storeMode?'✓ Store mode':'🛒 Store mode';} }; 
+  const applyStoreMode = () => { const on=!!state.settings.storeMode; document.body.classList.toggle('store-mode',on); document.documentElement.classList.toggle('store-mode-preload',on); const b=$('#storeModeBtn'); if(b){b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));b.textContent=on?'✓ Store mode':'🛒 Store mode';} }; 
   const allFoods = () => [...new Map([...baseFoods,...customNormalized()].map(x=>[x.id,x])).values()];
   const esc = s => String(s ?? '').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
   const fmt = (v,d=0) => v == null || Number.isNaN(v) ? '—' : Number(v).toFixed(d).replace(/\.0$/,'');

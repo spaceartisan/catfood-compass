@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#12211b" />
   <meta name="color-scheme" content="light dark" />
-  <script>try{const s=JSON.parse(localStorage.getItem('cfc_settings')||'{}');document.documentElement.dataset.theme=s.theme||'forest'}catch{document.documentElement.dataset.theme='forest'}</script>
+  <script>try{const s=JSON.parse(localStorage.getItem('cfc_settings')||'{}');document.documentElement.dataset.theme=s.theme||'forest';document.documentElement.classList.toggle('store-mode-preload',!!s.storeMode)}catch{document.documentElement.dataset.theme='forest'}</script>
   <meta name="description" content="CatFood Compass: a nutrient-first cat food shopping companion." />
   <title>CatFood Compass</title>
   <link rel="manifest" href="./manifest.webmanifest" />
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="search-panel sticky-panel">
+      <div class="search-stick">
         <div class="search-row">
           <label class="searchbox">
             <span aria-hidden="true">⌕</span>
@@ -45,6 +45,8 @@
           <button id="filterBtn" class="secondary-btn" type="button">Filters <span id="filterCount" class="count-badge hidden">0</span></button>
         </div>
         <div id="searchSuggestions" class="search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
+      </div>
+      <div class="search-panel">
         <div class="quick-row" aria-label="Quick filters">
           <button id="storeModeBtn" class="chip mode-chip" type="button" aria-pressed="false">🛒 Store mode</button>
           <button class="chip active" data-quick="carb">≤ <span id="quickCarbValue">10</span>% carbs</button>

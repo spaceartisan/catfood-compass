@@ -15,7 +15,7 @@ all_foods=historical+wet+dry
 ids=[r['id'] for r in all_foods]
 if len(ids)!=len(set(ids)): raise SystemExit('duplicate IDs')
 meta={
-  'app_version':'0.2.0','dataset_version':'multi-source-v2','record_count':len(all_foods),
+  'app_version':'0.2.7','dataset_version':'multi-source-v2','record_count':len(all_foods),
   'counts':{'pierson_2017':len(historical),'fdsg_wet':len(wet),'fdsg_dry':len(dry)},
   'sources':[
     {'dataset':'pierson_2017','title':'Cat Food - Nutritional Composition','compiler':'Lisa A. Pierson, DVM','year':2017,'basis':'Typical Nutrient Analysis (TNA) data provided by respective companies','primary_macros':'percent of calories','phosphorus_basis':'mg per 100 kcal','historical':True},

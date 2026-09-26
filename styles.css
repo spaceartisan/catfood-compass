@@ -127,3 +127,62 @@ button:focus-visible,input:focus-visible,select:focus-visible,.theme-option:has(
   .bottom-nav{border-radius:10px}
   body.store-mode .food-card{border-radius:8px}
 }
+
+
+/* v0.2.7 — mobile layout repair from real-device screenshot */
+/* Apply persisted Store Mode before app.js loads, preventing the hero from
+   briefly reserving space and upsetting scroll restoration/sticky geometry. */
+html.store-mode-preload .hero{display:none}
+
+/* Only the search row stays sticky now. Quick filters and sorting remain in
+   normal flow, so result cards cannot disappear beneath a ~140px toolbar. */
+.search-panel{position:relative;margin:0 0 10px}
+.search-stick{position:sticky;top:72px;z-index:18;background:var(--bg);padding:8px 0 7px;margin-top:14px;border-bottom:1px solid transparent}
+.search-stick::before{content:"";position:absolute;left:-18px;right:-18px;top:0;bottom:0;background:var(--bg);z-index:-1}
+.search-suggestions{top:calc(100% - 4px)}
+
+/* Horizontal quick filters remain scrollable, but no control is hard-clipped
+   against the viewport edge and each chip lands cleanly when swiped. */
+.quick-row{padding:8px 8px 5px 0;scroll-padding-inline:0 12px;scroll-snap-type:x proximity;overscroll-behavior-inline:contain}
+.quick-row .chip{flex:0 0 auto;scroll-snap-align:start}
+
+/* Keep the results header compact and prevent the sort control from squeezing
+   the result count or extending beyond the card column. */
+.result-toolbar{gap:12px;margin-top:7px}
+.result-toolbar>.subtle{flex:0 0 auto}
+.sort-label{min-width:0;flex:0 1 245px;justify-content:flex-end}
+.sort-label select{min-width:0;max-width:100%;width:100%}
+
+/* A little breathing room makes the transition from controls to the first
+   card explicit instead of visually merging with a sticky toolbar. */
+.food-grid{padding-top:4px}
+
+@media(max-width:620px){
+  html.store-mode-preload .brandcopy p{display:none}
+  html.store-mode-preload .topbar{height:56px}
+  html.store-mode-preload main{padding-top:6px}
+
+  .search-stick{top:64px;padding-top:7px}
+  .search-stick::before{left:-12px;right:-12px}
+  body.store-mode .search-stick,html.store-mode-preload .search-stick{top:56px}
+  body.store-mode .search-stick,html.store-mode-preload .search-stick{margin-top:0}
+
+  .search-row{gap:8px}
+  .searchbox{min-width:0}
+  .searchbox input{font-size:16px;padding:12px 0}
+  .secondary-btn{white-space:nowrap;padding-inline:12px}
+
+  .quick-row{gap:6px;padding-right:12px}
+  body.store-mode .quick-row .chip{padding:8px 9px;font-size:11px}
+
+  .result-toolbar{display:grid;grid-template-columns:auto minmax(170px,1fr);align-items:center}
+  .sort-label{width:100%;flex:none}
+
+  /* Fixed bottom navigation should not make the final result/actions
+     unreachable behind the Android/iOS gesture area. */
+  body{padding-bottom:calc(96px + var(--safe-bottom))}
+  main{padding-bottom:calc(44px + var(--safe-bottom))}
+  .bottom-nav{bottom:calc(7px + var(--safe-bottom));height:60px;padding-bottom:5px}
+  .food-card{scroll-margin-top:calc(64px + 58px)}
+  body.store-mode .food-card{scroll-margin-top:calc(56px + 58px)}
+}
