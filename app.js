@@ -11,10 +11,10 @@
     favorites:new Set(readJSON('cfc_favorites',[])),
     compare:readJSON('cfc_compare',[]).slice(0,4),
     custom:readJSON('cfc_custom',[]),
-    settings:{carbTarget:10,phosTarget:null,storeMode:false,...readJSON('cfc_settings',{})},
+    settings:{carbTarget:10,phosTarget:null,storeMode:false,theme:'forest',...readJSON('cfc_settings',{})},
     quick:{carb:true,complete:false,favorites:false,wet:false,seafood:false},
     filters:{brand:'',carbMax:null,proteinMin:null,phosMax:null,fatMax:null,source:'',form:'',texture:'',hideRx:false,excludeSeafood:false,completeOnly:false},
-    sort:'carb_asc'
+    sort:'relevance'
   };
 
   const persist = () => {
@@ -30,6 +30,8 @@
   const isSeafood = f => /seafood|fish|tuna|salmon|trout|mackerel|sardine|shrimp|crab|lobster|clam|mussel|prawn|tilapia|cod|sole|whitefish|oceanfish|herring|pollock|haddock|hoki|anchov|bonito|seabass|sea bass|halibut|snapper|krill|calamari|squid|oyster|scallop/.test(seafoodText(f));
   const textureText = f => `${f.style||''} ${f.line||''} ${f.product||''}`.toLowerCase();
   const textureMatches = (f,t) => { const x=textureText(f); const pats={pate:/p[âa]t[eé]|\bpate\b|\bloaf\b/,shreds:/shred|flake/,pieces:/minc|\bbit(s)?\b|chunk|morsel|\bcut(s)?\b|slice/,gravy:/gravy|sauce|stew/,broth:/broth|consomm|aspic/,mousse:/mousse/}; return !t || !!pats[t]?.test(x); };
+  const THEMES={forest:{color:'#12211b'},midnight:{color:'#0a1210'},ocean:{color:'#123b4c'},berry:{color:'#4d1f38'},sunset:{color:'#5b2c1c'},lavender:{color:'#31274d'}};
+  const applyTheme = () => { const theme=THEMES[state.settings.theme]?state.settings.theme:'forest'; state.settings.theme=theme; document.documentElement.dataset.theme=theme; const m=document.querySelector('meta[name=\"theme-color\"]'); if(m)m.content=THEMES[theme].color; };
   const applyStoreMode = () => { document.body.classList.toggle('store-mode',!!state.settings.storeMode); const b=$('#storeModeBtn'); if(b){b.classList.toggle('active',!!state.settings.storeMode);b.setAttribute('aria-pressed',String(!!state.settings.storeMode));b.textContent=state.settings.storeMode?'✓ Store mode':'🛒 Store mode';} }; 
   const allFoods = () => [...new Map([...baseFoods,...customNormalized()].map(x=>[x.id,x])).values()];
   const esc = s => String(s ?? '').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
@@ -39,15 +41,81 @@
     .toLowerCase().replace(/&/g,' and ').replace(/[’']/g,'')
     .replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
   const searchTokens = query => normalizeSearch(query).split(' ').filter(Boolean);
-  const foodSearchText = f => normalizeSearch([
-    f.brand, f.line, f.product, f.style, f.source_name, f.dataset, f.form,
-    ...aliasSearchValues(f)
-  ].filter(Boolean).join(' '));
-  const matchesSearch = (f, query) => {
-    const tokens = searchTokens(query);
-    if(!tokens.length) return true;
-    const haystack = foodSearchText(f);
-    return tokens.every(token => haystack.includes(token));
+  const fieldSearchValues = f => [
+    ['brand', f.brand, 60], ['line', f.line, 50], ['product', f.product, 42], ['style', f.style, 24],
+    ...aliasSearchValues(f).map(v=>['alias',v,46]), ['form', f.form, 8], ['source', f.source_name, 4]
+  ].filter(([,v])=>v);
+  const foodSearchText = f => normalizeSearch(fieldSearchValues(f).map(([,v])=>v).join(' '));
+
+  const oneEditApart = (a,b) => {
+    if(a===b) return true;
+    if(Math.abs(a.length-b.length)>1) return false;
+    if(a.length===b.length){
+      const diffs=[];
+      for(let i=0;i<a.length;i++) if(a[i]!==b[i]) diffs.push(i);
+      if(diffs.length===1) return true;
+      return diffs.length===2 && diffs[1]===diffs[0]+1 && a[diffs[0]]===b[diffs[1]] && a[diffs[1]]===b[diffs[0]];
+    }
+    if(a.length>b.length) [a,b]=[b,a];
+    let i=0,j=0,edits=0;
+    while(i<a.length&&j<b.length){
+      if(a[i]===b[j]){i++;j++;continue;}
+      if(++edits>1) return false;
+      j++;
+    }
+    return true;
+  };
+  const tokenQuality = (token, value) => {
+    const norm=normalizeSearch(value);
+    if(!norm) return 0;
+    const words=norm.split(' ');
+    if(words.includes(token)) return 10;
+    if(words.some(w=>w.startsWith(token))) return 8;
+    if(norm.includes(token)) return 6;
+    if(token.length>=4 && words.some(w=>w.length>=4 && oneEditApart(token,w))) return 3;
+    return 0;
+  };
+  const searchScore = (f, query) => {
+    const q=normalizeSearch(query), tokens=searchTokens(query);
+    if(!tokens.length) return 0;
+    const fields=fieldSearchValues(f);
+    let score=0;
+    for(const token of tokens){
+      let best=0;
+      for(const [,value,weight] of fields){
+        const quality=tokenQuality(token,value);
+        if(quality) best=Math.max(best,weight+quality);
+      }
+      if(!best) return null;
+      score+=best;
+    }
+    const identity=normalizeSearch([f.brand,f.line,f.product].filter(Boolean).join(' '));
+    const brand=normalizeSearch(f.brand), line=normalizeSearch(f.line), product=normalizeSearch(f.product);
+    if(identity===q) score+=320;
+    else if(identity.includes(q)) score+=180;
+    if(brand===q) score+=260;
+    if(line===q) score+=220;
+    if(product===q) score+=180;
+    if(brand && q.startsWith(brand+' ')) score+=80;
+    return score;
+  };
+  const matchesSearch = (f, query) => searchScore(f,query)!=null;
+  const suggestionLabel = (f,level) => level==='brand' ? f.brand : level==='line' ? [f.brand,f.line].filter(Boolean).join(' · ') : [f.brand,f.line,f.product].filter(Boolean).join(' · ');
+  const suggestionQuery = label => label.replace(/ · /g,' ');
+  const buildSuggestions = query => {
+    const q=normalizeSearch(query);
+    if(q.length<2) return [];
+    const ranked=allFoods().map(f=>({f,score:searchScore(f,query)})).filter(x=>x.score!=null).sort((a,b)=>b.score-a.score).slice(0,80);
+    const seen=new Set(), out=[];
+    for(const {f,score} of ranked){
+      for(const level of ['brand','line','product']){
+        if(level==='line'&&!f.line) continue;
+        const label=suggestionLabel(f,level), key=normalizeSearch(label);
+        if(!key||seen.has(key)) continue;
+        seen.add(key);out.push({label,query:suggestionQuery(label),score:score+(level==='brand'?30:level==='line'?20:10)});
+      }
+    }
+    return out.sort((a,b)=>b.score-a.score||a.label.localeCompare(b.label)).slice(0,6);
   };
 
   const displayProp = key => ({
@@ -116,8 +184,9 @@
   }
 
   function filterFoods(){
-    let foods=allFoods(); const q=state.query.trim().toLowerCase(); const fl=state.filters;
-    if(q) foods=foods.filter(f=>matchesSearch(f,q));
+    let foods=allFoods(); const q=state.query.trim(); const fl=state.filters;
+    const scores=new Map();
+    if(q) foods=foods.filter(f=>{const score=searchScore(f,q);if(score==null)return false;scores.set(f.id,score);return true;});
     const carbMax = fl.carbMax ?? (state.quick.carb ? state.settings.carbTarget : null);
     if(carbMax!=null) foods=foods.filter(f=>carbFits(f,carbMax));
     if(fl.proteinMin!=null) foods=foods.filter(f=>f.protein_cal_pct!=null && f.protein_cal_pct>=fl.proteinMin);
@@ -133,6 +202,7 @@
     if(state.quick.favorites) foods=foods.filter(f=>state.favorites.has(f.id));
     if(state.quick.wet) foods=foods.filter(f=>f.form==='wet');
     const sorters={
+      relevance:(a,b)=>(scores.get(b.id)??0)-(scores.get(a.id)??0)||(carbFilterValue(a)??999)-(carbFilterValue(b)??999)||sourceDateValue(b)-sourceDateValue(a),
       carb_asc:(a,b)=>(carbFilterValue(a)??999)-(carbFilterValue(b)??999)||sourceDateValue(b)-sourceDateValue(a)||a.brand.localeCompare(b.brand),
       phos_asc:(a,b)=>(a.phosphorus_mg_per_100kcal??99999)-(b.phosphorus_mg_per_100kcal??99999),
       protein_desc:(a,b)=>(b.protein_cal_pct??-1)-(a.protein_cal_pct??-1),
@@ -140,12 +210,29 @@
       updated_desc:(a,b)=>sourceDateValue(b)-sourceDateValue(a)||a.brand.localeCompare(b.brand),
       brand_asc:(a,b)=>a.brand.localeCompare(b.brand)||a.product.localeCompare(b.product)
     };
-    foods.sort(sorters[state.sort]||sorters.carb_asc); return foods;
+    const chosen=(q&&state.sort==='carb_asc')?'relevance':state.sort;
+    foods.sort(sorters[chosen]||sorters.carb_asc); return foods;
+  }
+
+  const anyActiveFoodFilter = () => {
+    const fl=state.filters;
+    return state.quick.carb||state.quick.complete||state.quick.favorites||state.quick.wet||state.quick.seafood||Object.entries(fl).some(([,v])=>(typeof v==='boolean'&&v)||(typeof v!=='boolean'&&v!==null&&v!==''));
+  };
+  const searchMatchCountBeforeFilters = query => query ? allFoods().filter(f=>matchesSearch(f,query)).length : 0;
+  function renderSuggestions(){
+    const box=$('#searchSuggestions');if(!box)return;
+    const suggestions=buildSuggestions(state.query);
+    if(!suggestions.length||document.activeElement!==$('#searchInput')){box.classList.add('hidden');box.innerHTML='';return;}
+    box.innerHTML=suggestions.map((s,i)=>`<button type="button" class="search-suggestion" role="option" data-search-suggestion="${esc(s.query)}"><span>${esc(s.label)}</span>${i===0?'<small>Best match</small>':''}</button>`).join('');
+    box.classList.remove('hidden');
   }
 
   function renderBrowse(){
-    const foods=filterFoods(); $('#recordCount').textContent=allFoods().length.toLocaleString(); $('#resultCount').textContent=`${foods.length.toLocaleString()} foods`;
-    $('#foodGrid').innerHTML=foods.slice(0,state.visible).map(card).join('') || `<div class="empty-state"><div class="empty-icon">⌕</div><h3>No matches</h3><p>Try widening a target or clearing a quick filter.</p></div>`;
+    const foods=filterFoods(), query=state.query.trim(); $('#recordCount').textContent=allFoods().length.toLocaleString(); $('#resultCount').textContent=`${foods.length.toLocaleString()} foods`;
+    if(!foods.length&&query&&anyActiveFoodFilter()){
+      const raw=searchMatchCountBeforeFilters(query);
+      $('#foodGrid').innerHTML=raw?`<div class="empty-state"><div class="empty-icon">⌕</div><h3>${raw.toLocaleString()} search ${raw===1?'match is':'matches are'} hidden</h3><p>Your search works, but one or more nutrition/quick filters remove the results.</p><button class="primary-btn" data-clear-food-filters>Clear food filters</button></div>`:`<div class="empty-state"><div class="empty-icon">⌕</div><h3>No matches</h3><p>Try fewer words or a slightly different spelling.</p></div>`;
+    } else $('#foodGrid').innerHTML=foods.slice(0,state.visible).map(card).join('') || `<div class="empty-state"><div class="empty-icon">⌕</div><h3>No matches</h3><p>Try widening a target or clearing a quick filter.</p></div>`;
     $('#loadMoreBtn').classList.toggle('hidden',foods.length<=state.visible);
     $('#quickCarbValue').textContent=state.settings.carbTarget;
     applyStoreMode();
@@ -204,7 +291,7 @@
   function populateBrands(){const brands=[...new Set(allFoods().map(f=>f.brand).filter(Boolean))].sort((a,b)=>a.localeCompare(b));$('#brandFilter').innerHTML='<option value="">All brands</option>'+brands.map(b=>`<option>${esc(b)}</option>`).join('');}
   function syncDialogs(){
     $('#brandFilter').value=state.filters.brand;$('#carbMaxFilter').value=state.filters.carbMax??'';$('#proteinMinFilter').value=state.filters.proteinMin??'';$('#phosMaxFilter').value=state.filters.phosMax??'';$('#fatMaxFilter').value=state.filters.fatMax??'';$('#sourceFilter').value=state.filters.source;$('#formFilter').value=state.filters.form;$('#textureFilter').value=state.filters.texture;$('#hideRxFilter').checked=state.filters.hideRx;$('#excludeSeafoodFilter').checked=state.filters.excludeSeafood;$('#completeOnlyFilter').checked=state.filters.completeOnly;
-    $('#settingCarbTarget').value=state.settings.carbTarget;$('#settingPhosTarget').value=state.settings.phosTarget??'';
+    $('#settingCarbTarget').value=state.settings.carbTarget;$('#settingPhosTarget').value=state.settings.phosTarget??'';const theme=$(`input[name=\"theme\"][value=\"${state.settings.theme||'forest'}\"]`);if(theme)theme.checked=true;
   }
 
   function initEvents(){
@@ -215,8 +302,13 @@
       const rm=e.target.closest('[data-remove-compare]');if(rm){state.compare=state.compare.filter(x=>x!==rm.dataset.removeCompare);persist();renderCompare();renderBrowse();}
       if(e.target.closest('[data-close-detail]'))$('#detailDialog').close();
       const del=e.target.closest('[data-delete-custom]');if(del){state.custom=state.custom.filter(x=>x.id!==del.dataset.deleteCustom);persist();populateBrands();renderCustom();renderBrowse();toast('Deleted');}
+      const sug=e.target.closest('[data-search-suggestion]');if(sug){state.query=sug.dataset.searchSuggestion;$('#searchInput').value=state.query;state.visible=48;$('#searchSuggestions').classList.add('hidden');renderBrowse();$('#searchInput').focus();}
+      if(e.target.closest('[data-clear-food-filters]')){state.quick={carb:false,complete:false,favorites:false,wet:false,seafood:false};state.filters={brand:'',carbMax:null,proteinMin:null,phosMax:null,fatMax:null,source:'',form:'',texture:'',hideRx:false,excludeSeafood:false,completeOnly:false};$$('.chip[data-quick]').forEach(b=>b.classList.toggle('active',!!state.quick[b.dataset.quick]));syncDialogs();renderBrowse();}
     });
-    $('#searchInput').addEventListener('input',e=>{state.query=e.target.value;state.visible=48;renderBrowse();});
+    $('#searchInput').addEventListener('input',e=>{state.query=e.target.value;state.visible=48;renderBrowse();renderSuggestions();});
+    $('#searchInput').addEventListener('focus',renderSuggestions);
+    $('#searchInput').addEventListener('blur',()=>setTimeout(()=>{$('#searchSuggestions')?.classList.add('hidden');},140));
+    $('#searchInput').addEventListener('keydown',e=>{if(e.key==='Escape'){$('#searchSuggestions')?.classList.add('hidden');e.currentTarget.blur();}});
     $('#sortSelect').addEventListener('change',e=>{state.sort=e.target.value;renderBrowse();});
     $('#loadMoreBtn').addEventListener('click',()=>{state.visible+=48;renderBrowse();});
     $('#storeModeBtn').addEventListener('click',()=>{state.settings.storeMode=!state.settings.storeMode;persist();applyStoreMode();});
@@ -225,8 +317,8 @@
     $('#settingsBtn').addEventListener('click',()=>{syncDialogs();$('#settingsDialog').showModal();});
     $('#applyFiltersBtn').addEventListener('click',()=>{const n=id=>{const v=$(id).value;return v===''?null:Number(v)};state.filters={brand:$('#brandFilter').value,carbMax:n('#carbMaxFilter'),proteinMin:n('#proteinMinFilter'),phosMax:n('#phosMaxFilter'),fatMax:n('#fatMaxFilter'),source:$('#sourceFilter').value,form:$('#formFilter').value,texture:$('#textureFilter').value,hideRx:$('#hideRxFilter').checked,excludeSeafood:$('#excludeSeafoodFilter').checked,completeOnly:$('#completeOnlyFilter').checked};state.visible=48;renderBrowse();});
     $('#resetFiltersBtn').addEventListener('click',()=>{state.filters={brand:'',carbMax:null,proteinMin:null,phosMax:null,fatMax:null,source:'',form:'',texture:'',hideRx:false,excludeSeafood:false,completeOnly:false};syncDialogs();});
-    $('#saveSettingsBtn').addEventListener('click',()=>{state.settings.carbTarget=Number($('#settingCarbTarget').value)||10;state.settings.phosTarget=$('#settingPhosTarget').value===''?null:Number($('#settingPhosTarget').value);persist();renderBrowse();renderCompare();});
-    $('#resetSettingsBtn').addEventListener('click',()=>{$('#settingCarbTarget').value=10;$('#settingPhosTarget').value='';});
+    $('#saveSettingsBtn').addEventListener('click',()=>{state.settings.carbTarget=Number($('#settingCarbTarget').value)||10;state.settings.phosTarget=$('#settingPhosTarget').value===''?null:Number($('#settingPhosTarget').value);state.settings.theme=$('input[name=\"theme\"]:checked')?.value||'forest';persist();applyTheme();renderBrowse();renderCompare();toast('Settings saved');});
+    $('#resetSettingsBtn').addEventListener('click',()=>{$('#settingCarbTarget').value=10;$('#settingPhosTarget').value='';const t=$('input[name=\"theme\"][value=\"forest\"]');if(t)t.checked=true;});
     $('#clearCompareBtn').addEventListener('click',()=>{state.compare=[];persist();renderCompare();renderBrowse();});
     $('#customFoodForm').addEventListener('input',e=>{const fd=new FormData(e.currentTarget);const vals=['protein','fat','carb'].map(k=>Number(fd.get(k)||0));const sum=vals.reduce((a,b)=>a+b,0);const box=$('#macroSumNote');if(vals.some(v=>v>0)){box.classList.remove('hidden');box.textContent=`Macro calories sum to ${fmt(sum,1)}%. ${Math.abs(sum-100)<=3?'Looks consistent with rounding.':'Check the three values; they should be near 100%.'}`;}else box.classList.add('hidden');});
     $('#customFoodForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.currentTarget);const g=k=>Number(fd.get(k));const p=g('protein'),fat=g('fat'),carb=g('carb');if(Math.abs((p+fat+carb)-100)>5){toast('Macro percentages should add to about 100%');return;}const id='custom-'+Date.now();state.custom.push({id,brand:String(fd.get('brand')).trim(),line:null,product:String(fd.get('product')).trim(),form:String(fd.get('form')||'wet'),protein_cal_pct:p,protein_cal_pct_min:p,protein_cal_pct_max:p,fat_cal_pct:fat,fat_cal_pct_min:fat,fat_cal_pct_max:fat,carb_cal_pct:carb,carb_cal_pct_min:carb,carb_cal_pct_max:carb,phosphorus_mg_per_100kcal:fd.get('phos')?g('phos'):null,phosphorus_mg_per_100kcal_min:fd.get('phos')?g('phos'):null,phosphorus_mg_per_100kcal_max:fd.get('phos')?g('phos'):null,calories:fd.get('calories')?g('calories'):null,calories_min:fd.get('calories')?g('calories'):null,calories_max:fd.get('calories')?g('calories'):null,calories_display:fd.get('calories')?String(fd.get('calories')):null,section_calorie_note:String(fd.get('package')||''),user_source:String(fd.get('source')||''),verification_status:'user'});persist();e.currentTarget.reset();$('#macroSumNote').classList.add('hidden');populateBrands();renderCustom();renderBrowse();toast('Food saved on this device');});
@@ -234,5 +326,5 @@
     $('#exportCustomBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state.custom,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='catfood-compass-my-foods.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
   }
   function registerSW(){if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./service-worker.js').catch(()=>{});}
-  populateBrands();syncDialogs();initEvents();applyStoreMode();renderBrowse();renderCompare();renderCustom();registerSW();
+  populateBrands();syncDialogs();initEvents();applyTheme();applyStoreMode();renderBrowse();renderCompare();renderCustom();registerSW();
 })();

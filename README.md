@@ -1,4 +1,4 @@
-# CatFood Compass v0.2.3
+# CatFood Compass v0.2.6
 
 A mobile-friendly, static cat-food shopping app designed for GitHub Pages. **There is one canonical build only; all included source records live in this app.** It compares foods primarily by **protein, fat, and carbohydrate as percent of metabolizable calories**, **phosphorus in mg/100 kcal**, and **calorie density/package calories when the source provides them**.
 
@@ -14,12 +14,15 @@ Source anomalies are preserved and flagged rather than silently corrected. Examp
 
 ## What it does
 
-- Tokenized search across brand, product line/collection, recipe, style, source, and independently verified modern shelf-name aliases. Search words can match different fields, so `Fancy Feast Classic` and `Tiki Cat After Dark` work as expected.
+- Ranked, typo-tolerant search across brand, product line/collection, recipe, style, source, and independently verified modern shelf-name aliases. Search words can match different fields, so `Fancy Feast Classic` and `Tiki Cat After Dark` work as expected. Best matches rise to the top, and the app offers mobile-friendly brand/line/product suggestions.
+- Search diagnostics distinguish a true no-match from a match hidden by active nutrition/quick filters, with a one-tap option to clear those filters.
 - Default quick filter: carbohydrate at or below 10% of calories (user-adjustable).
 - Filter/sort by protein, fat, carbohydrate, phosphorus, brand, source dataset, food form, texture, prescription status, seafood/fish exclusion, and data completeness.
 - Distinguish wet, dry, air-dried, and steam-dried foods.
 - One-tap **No seafood** filtering and texture filters for pâté/loaf, shreds/flakes, minced/bits/chunks/slices, gravy/sauce/stew, broth/consommé/aspic, and mousse.
 - **Store Mode** hides the large landing panel and tightens the mobile shopping cards while keeping the core nutrient values, warnings, favorites, details, and comparison controls.
+- Six persistent visual themes: **Catnip**, **Midnight**, **Ocean**, **Berry**, **Sunset**, and **Lavender**. Theme selection is stored locally and applies before first paint to avoid flashing the default palette.
+- Sharper visual language with tighter corner radii, flatter cards, crisper nutrient tiles, and less pill-shaped chrome while preserving touch-friendly controls.
 - Show source dates on FDSG rows when the source provides them.
 - Show phosphorus plus additional magnesium/calcium/sodium in details when available.
 - Favorite foods locally and compare up to four side-by-side.

@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#12211b" />
+  <meta name="color-scheme" content="light dark" />
+  <script>try{const s=JSON.parse(localStorage.getItem('cfc_settings')||'{}');document.documentElement.dataset.theme=s.theme||'forest'}catch{document.documentElement.dataset.theme='forest'}</script>
   <meta name="description" content="CatFood Compass: a nutrient-first cat food shopping companion." />
   <title>CatFood Compass</title>
   <link rel="manifest" href="./manifest.webmanifest" />
@@ -42,6 +44,7 @@
           </label>
           <button id="filterBtn" class="secondary-btn" type="button">Filters <span id="filterCount" class="count-badge hidden">0</span></button>
         </div>
+        <div id="searchSuggestions" class="search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
         <div class="quick-row" aria-label="Quick filters">
           <button id="storeModeBtn" class="chip mode-chip" type="button" aria-pressed="false">🛒 Store mode</button>
           <button class="chip active" data-quick="carb">≤ <span id="quickCarbValue">10</span>% carbs</button>
@@ -54,6 +57,7 @@
           <span id="resultCount" class="subtle">— foods</span>
           <label class="sort-label">Sort
             <select id="sortSelect">
+              <option value="relevance">Best match</option>
               <option value="carb_asc">Carbs: low → high</option>
               <option value="phos_asc">Phosphorus: low → high</option>
               <option value="protein_desc">Protein: high → low</option>
@@ -187,13 +191,24 @@
 
   <dialog id="settingsDialog" class="sheet-dialog">
     <form method="dialog" class="sheet">
-      <div class="sheet-head"><div><p class="eyebrow">Personalize</p><h2>My targets</h2></div><button class="icon-btn" value="cancel" aria-label="Close">✕</button></div>
+      <div class="sheet-head"><div><p class="eyebrow">Personalize</p><h2>Settings</h2></div><button class="icon-btn" value="cancel" aria-label="Close">✕</button></div>
       <p class="subtle">These are shopping filters, not medical pass/fail rules. The seed chart's default carbohydrate target is 10% of calories.</p>
       <div class="form-grid">
         <label>Carb target (% calories)<input id="settingCarbTarget" type="number" min="0" max="100" step="1" /></label>
         <label>Phosphorus target (mg/100 kcal)<input id="settingPhosTarget" type="number" min="0" step="10" placeholder="Optional" /></label>
       </div>
-      <div class="sheet-actions"><button id="resetSettingsBtn" type="button" class="text-btn">Defaults</button><button id="saveSettingsBtn" value="default" class="primary-btn">Save targets</button></div>
+      <fieldset class="theme-picker">
+        <legend>Theme</legend>
+        <div class="theme-grid">
+          <label class="theme-option"><input type="radio" name="theme" value="forest" /><span class="theme-preview theme-forest"><i></i><i></i><i></i></span><span><strong>Catnip</strong><small>Original green</small></span></label>
+          <label class="theme-option"><input type="radio" name="theme" value="midnight" /><span class="theme-preview theme-midnight"><i></i><i></i><i></i></span><span><strong>Midnight</strong><small>Dark & calm</small></span></label>
+          <label class="theme-option"><input type="radio" name="theme" value="ocean" /><span class="theme-preview theme-ocean"><i></i><i></i><i></i></span><span><strong>Ocean</strong><small>Cool blue</small></span></label>
+          <label class="theme-option"><input type="radio" name="theme" value="berry" /><span class="theme-preview theme-berry"><i></i><i></i><i></i></span><span><strong>Berry</strong><small>Plum & rose</small></span></label>
+          <label class="theme-option"><input type="radio" name="theme" value="sunset" /><span class="theme-preview theme-sunset"><i></i><i></i><i></i></span><span><strong>Sunset</strong><small>Warm amber</small></span></label>
+          <label class="theme-option"><input type="radio" name="theme" value="lavender" /><span class="theme-preview theme-lavender"><i></i><i></i><i></i></span><span><strong>Lavender</strong><small>Soft violet</small></span></label>
+        </div>
+      </fieldset>
+      <div class="sheet-actions"><button id="resetSettingsBtn" type="button" class="text-btn">Defaults</button><button id="saveSettingsBtn" value="default" class="primary-btn">Save settings</button></div>
     </form>
   </dialog>
 
