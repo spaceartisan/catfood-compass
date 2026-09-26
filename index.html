@@ -27,8 +27,8 @@
       <div class="hero">
         <div>
           <p class="eyebrow">Multi-source nutrition database</p>
-          <h2 id="browseTitle">Find food that fits your targets</h2>
-          <p class="subtle">Macros are shown as percent of calories when available. Phosphorus is mg/100 kcal. Newer FDSG rows sit alongside the historical 2017 reference and are source-dated when the sheet provides a date.</p>
+          <h2 id="browseTitle">Find food by nutrition profile</h2>
+          <p class="subtle">Start in the neutral Normal profile, then switch to Diabetes, Kidney, Urinary, Weight, Oncology, or a Custom/Vet profile when you want a different nutrient lens. Source observations remain unchanged.</p>
         </div>
         <div class="hero-stat">
           <strong id="recordCount">—</strong>
@@ -50,9 +50,25 @@
         <div id="searchSuggestions" class="search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
       </div>
       <div class="search-panel">
+        <div class="profile-strip" aria-label="Nutrition profile">
+          <label class="profile-select-wrap"><span>Profile</span>
+            <select id="profileSelect" aria-label="Nutrition profile">
+              <option value="normal">Normal</option>
+              <option value="diabetes">Diabetes</option>
+              <option value="kidney">Kidney</option>
+              <option value="urinary">Urinary</option>
+              <option value="weight">Weight management</option>
+              <option value="oncology">Cancer / oncology</option>
+              <option value="custom">Custom / Vet</option>
+            </select>
+          </label>
+          <div class="profile-copy"><strong id="profileName">Normal</strong><span id="profileHint">General nutrition view with no condition-specific target filtering.</span></div>
+          <button id="profileSettingsBtn" class="text-btn" type="button">Targets</button>
+        </div>
         <div class="quick-row" aria-label="Quick filters">
           <button id="storeModeBtn" class="chip mode-chip" type="button" aria-pressed="false">🛒 Store mode</button>
-          <button class="chip active" data-quick="carb">≤ <span id="quickCarbValue">10</span>% carbs</button>
+          <button id="profileTargetChip" class="chip hidden" data-quick="profile" type="button">Profile targets</button>
+          <button id="quickCarbChip" class="chip" data-quick="carb">≤ <span id="quickCarbValue">10</span>% carbs</button>
           <button class="chip" data-quick="complete">Complete data</button>
           <button class="chip" data-quick="favorites">★ Favorites</button>
           <button class="chip" data-quick="wet">Wet only</button>
@@ -67,6 +83,9 @@
               <option value="phos_asc">Phosphorus: low → high</option>
               <option value="protein_desc">Protein: high → low</option>
               <option value="fat_asc">Fat: low → high</option>
+              <option value="magnesium_asc">Magnesium: low → high</option>
+              <option value="sodium_asc">Sodium: low → high</option>
+              <option value="calories_asc">Calories/100 g: low → high</option>
               <option value="updated_desc">Source: newest first</option>
               <option value="brand_asc">Brand A → Z</option>
             </select>
@@ -138,7 +157,7 @@
       <div class="about-grid">
         <article class="panel">
           <h3>What this app displays</h3>
-          <p>The seed chart reports <strong>protein, fat, and carbohydrate as percent of calories</strong>, phosphorus as <strong>mg per 100 kcal</strong>, and calories per the package size noted by the source.</p>
+          <p>The app starts in a neutral <strong>Normal</strong> profile. Specialized profiles change which available nutrients are emphasized and can apply user-configured shopping targets without changing the underlying source record.</p><p>The seed chart reports <strong>protein, fat, and carbohydrate as percent of calories</strong>, phosphorus as <strong>mg per 100 kcal</strong>, and calories per the package size noted by the source.</p>
           <p>That is different from the as-fed Guaranteed Analysis printed on most cans.</p>
         </article>
         <article class="panel">
@@ -146,8 +165,8 @@
           <p>The original 2017 Pierson chart remains available as a historical reference. Newer FDSG wet-food rows include source dates when present, and the FDSG dry list is intentionally carb-focused rather than pretending missing macros or minerals are known.</p>
         </article>
         <article class="panel">
-          <h3>Carbohydrate uncertainty</h3>
-          <p>The source notes that carbohydrate is calculated by subtraction rather than directly measured, and small differences should not be treated as precise. The default ≤10% carb target is a shopping filter, not a safety guarantee.</p>
+          <h3>Profiles are screening lenses</h3>
+          <p>Normal is intentionally condition-neutral. Diabetes emphasizes carbohydrate; Kidney and Urinary can emphasize minerals; Weight emphasizes calorie density; Oncology and Custom/Vet are configurable. Targets indicate whether a record fits the selected numbers, not whether a food is medically appropriate.</p>
         </article>
         <article class="panel">
           <h3>Blank and unusual values stay visible</h3>
@@ -202,10 +221,73 @@
       <div class="sheet-head"><div><p class="eyebrow">Personalize</p><h2>Settings</h2></div><button class="icon-btn close-btn" value="cancel" aria-label="Close" title="Close">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button></div>
-      <p class="subtle">These are shopping filters, not medical pass/fail rules. The seed chart's default carbohydrate target is 10% of calories.</p>
-      <div class="form-grid">
-        <label>Carb target (% calories)<input id="settingCarbTarget" type="number" min="0" max="100" step="1" /></label>
-        <label>Phosphorus target (mg/100 kcal)<input id="settingPhosTarget" type="number" min="0" step="10" placeholder="Optional" /></label>
+      <p class="subtle">Normal is the default neutral profile. Specialized profiles change which nutrients are emphasized. Numeric targets are shopping filters only; they are not a diagnosis, treatment plan, or claim that a food is medically “safe.”</p>
+      <label class="settings-profile-select">Nutrition profile
+        <select id="settingProfileSelect">
+          <option value="normal">Normal</option>
+          <option value="diabetes">Diabetes</option>
+          <option value="kidney">Kidney</option>
+          <option value="urinary">Urinary</option>
+          <option value="weight">Weight management</option>
+          <option value="oncology">Cancer / oncology</option>
+          <option value="custom">Custom / Vet</option>
+        </select>
+      </label>
+      <div class="profile-targets">
+        <section class="profile-target-group" data-profile-targets="normal">
+          <h3>Normal</h3><p class="subtle">No automatic nutrient limits. All source values remain available for browsing, sorting, and manual filters.</p>
+        </section>
+        <section class="profile-target-group hidden" data-profile-targets="diabetes">
+          <h3>Diabetes screening</h3><p class="subtle">Carbohydrate is emphasized. The source-derived starting target is ≤10% of metabolizable calories.</p>
+          <div class="form-grid"><label>Max carbs (% calories)<input id="settingCarbTarget" type="number" min="0" max="100" step="1" /></label></div>
+        </section>
+        <section class="profile-target-group hidden" data-profile-targets="kidney">
+          <h3>Kidney screening</h3><p class="subtle">No universal cutoff is assumed. Set the limits supplied for your cat's plan.</p>
+          <div class="form-grid">
+            <label>Max phosphorus (mg/100 kcal)<input id="settingPhosTarget" type="number" min="0" step="10" placeholder="Optional" /></label>
+            <label>Max sodium (mg/100 kcal)<input id="settingKidneySodiumMax" type="number" min="0" step="10" placeholder="Optional" /></label>
+            <label>Min protein (% calories)<input id="settingKidneyProteinMin" type="number" min="0" max="100" step="1" placeholder="Optional" /></label>
+            <label>Max protein (% calories)<input id="settingKidneyProteinMax" type="number" min="0" max="100" step="1" placeholder="Optional" /></label>
+          </div>
+        </section>
+        <section class="profile-target-group hidden" data-profile-targets="urinary">
+          <h3>Urinary screening</h3><p class="subtle">Use only the mineral limits that are relevant to the veterinary plan; missing source values stay missing.</p>
+          <div class="form-grid">
+            <label>Max magnesium (mg/100 kcal)<input id="settingUrinaryMagnesiumMax" type="number" min="0" step="1" placeholder="Optional" /></label>
+            <label>Max phosphorus (mg/100 kcal)<input id="settingUrinaryPhosMax" type="number" min="0" step="10" placeholder="Optional" /></label>
+            <label>Max sodium (mg/100 kcal)<input id="settingUrinarySodiumMax" type="number" min="0" step="10" placeholder="Optional" /></label>
+            <label>Max calcium (mg/100 kcal)<input id="settingUrinaryCalciumMax" type="number" min="0" step="10" placeholder="Optional" /></label>
+          </div>
+        </section>
+        <section class="profile-target-group hidden" data-profile-targets="weight">
+          <h3>Weight-management screening</h3><p class="subtle">Calorie density is emphasized when kcal/100 g is available. Package-only calorie values are still shown but are not treated as equivalent density data.</p>
+          <div class="form-grid">
+            <label>Max kcal/100 g<input id="settingWeightKcalMax" type="number" min="0" step="1" placeholder="Optional" /></label>
+            <label>Min protein (% calories)<input id="settingWeightProteinMin" type="number" min="0" max="100" step="1" placeholder="Optional" /></label>
+          </div>
+        </section>
+        <section class="profile-target-group hidden" data-profile-targets="oncology">
+          <h3>Cancer / oncology</h3><p class="subtle">There is no universal cancer-food preset. This profile is intentionally configurable so targets can follow the individual diagnosis, treatment, appetite, and veterinary plan.</p>
+          <div class="form-grid">
+            <label>Max carbs (% calories)<input id="settingOncologyCarbMax" type="number" min="0" max="100" step="1" placeholder="Optional" /></label>
+            <label>Min protein (% calories)<input id="settingOncologyProteinMin" type="number" min="0" max="100" step="1" placeholder="Optional" /></label>
+            <label>Min kcal/100 g<input id="settingOncologyKcalMin" type="number" min="0" step="1" placeholder="Optional" /></label>
+          </div>
+        </section>
+        <section class="profile-target-group hidden" data-profile-targets="custom">
+          <h3>Custom / Vet profile</h3><p class="subtle">Build a target set around whichever nutrients matter for your cat.</p>
+          <div class="form-grid">
+            <label>Max carbs (% calories)<input id="settingCustomCarbMax" type="number" min="0" max="100" step="1" placeholder="Optional" /></label>
+            <label>Min protein (% calories)<input id="settingCustomProteinMin" type="number" min="0" max="100" step="1" placeholder="Optional" /></label>
+            <label>Max fat (% calories)<input id="settingCustomFatMax" type="number" min="0" max="100" step="1" placeholder="Optional" /></label>
+            <label>Max phosphorus (mg/100 kcal)<input id="settingCustomPhosMax" type="number" min="0" step="10" placeholder="Optional" /></label>
+            <label>Max magnesium (mg/100 kcal)<input id="settingCustomMagnesiumMax" type="number" min="0" step="1" placeholder="Optional" /></label>
+            <label>Max calcium (mg/100 kcal)<input id="settingCustomCalciumMax" type="number" min="0" step="10" placeholder="Optional" /></label>
+            <label>Max sodium (mg/100 kcal)<input id="settingCustomSodiumMax" type="number" min="0" step="10" placeholder="Optional" /></label>
+            <label>Min kcal/100 g<input id="settingCustomKcalMin" type="number" min="0" step="1" placeholder="Optional" /></label>
+            <label>Max kcal/100 g<input id="settingCustomKcalMax" type="number" min="0" step="1" placeholder="Optional" /></label>
+          </div>
+        </section>
       </div>
       <fieldset class="theme-picker">
         <legend>Theme</legend>

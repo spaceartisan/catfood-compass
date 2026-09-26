@@ -319,3 +319,56 @@ html[data-theme="midnight"] .search-clear:hover{background:var(--brand-2);border
   .close-btn{width:44px;height:44px}
   .search-clear{width:34px;height:34px}
 }
+
+/* v0.3.1 — nutrition profiles */
+.profile-strip{
+  display:grid;
+  grid-template-columns:minmax(180px,230px) minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:8px;
+}
+.profile-select-wrap{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:8px;color:var(--muted);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.profile-select-wrap select,.settings-profile-select select{min-width:0;width:100%;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:8px 9px;font-weight:700;text-transform:none;letter-spacing:0}
+.profile-copy{min-width:0;display:flex;flex-direction:column;gap:2px}
+.profile-copy strong{font-size:13px;color:var(--ink)}
+.profile-copy span{font-size:11px;line-height:1.35;color:var(--muted)}
+#profileSettingsBtn{white-space:nowrap}
+#profileTargetChip.needs-targets{border-style:dashed;color:var(--brand)}
+.profile-status{font-size:11px;line-height:1.35;font-weight:750;padding:7px 8px;border:1px solid var(--line);border-radius:5px;background:var(--metric)}
+.profile-status.profile-pass{background:var(--good-bg);color:var(--good-text);border-color:color-mix(in srgb,var(--good-text) 30%,var(--line))}
+.profile-status.profile-caution{background:var(--warn-bg);color:var(--warn-text);border-color:color-mix(in srgb,var(--warn-text) 28%,var(--line))}
+.profile-status.profile-neutral{background:var(--badge-bg);color:var(--badge-text)}
+.metric.target-pass,.detail-value.target-pass,.compare-table td.target-pass{background:var(--good-bg);color:var(--good-text);border-color:color-mix(in srgb,var(--good-text) 28%,var(--line))}
+.metric.target-fail,.detail-value.target-fail,.compare-table td.target-fail{background:var(--warn-bg);color:var(--warn-text);border-color:color-mix(in srgb,var(--warn-text) 28%,var(--line))}
+.metric.target-missing,.detail-value.target-missing,.compare-table td.target-missing{background:var(--metric);color:var(--muted);border-style:dashed}
+.profile-metrics .metric strong{font-size:18px;line-height:1.2;overflow-wrap:anywhere}
+.profile-targets{margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+.profile-target-group{padding:12px;border:1px solid var(--line);background:var(--metric);border-radius:7px}
+.profile-target-group h3{margin:0 0 4px;font-size:15px}
+.profile-target-group .form-grid{margin-top:10px}
+.settings-profile-select{display:grid;gap:5px;color:var(--muted);font-size:12px;font-weight:800}
+.detail-profile,.compare-profile-note{display:flex;flex-direction:column;gap:3px;margin-top:12px;padding:9px 10px;border-left:3px solid var(--brand);background:var(--metric);font-size:12px}
+.detail-profile span,.compare-profile-note{color:var(--muted)}
+.compare-profile-note{margin:0 0 10px;color:var(--muted)}
+.compare-profile-note strong,.detail-profile strong{color:var(--ink)}
+.sheet-dialog[open]{max-height:calc(100dvh - 20px);overflow:auto}
+.sheet{max-height:calc(100dvh - 24px);overflow:auto}
+
+@media(max-width:720px){
+  .profile-strip{grid-template-columns:minmax(0,1fr) auto;gap:8px}
+  .profile-copy{grid-column:1/-1;grid-row:2}
+  .profile-select-wrap{grid-template-columns:auto minmax(0,1fr)}
+}
+@media(max-width:430px){
+  .profile-strip{padding:9px 10px}
+  .profile-select-wrap{grid-template-columns:1fr;gap:4px}
+  #profileSettingsBtn{align-self:end}
+  .profile-copy span{font-size:10px}
+  .profile-metrics .metric{padding:9px 7px}
+  .profile-metrics .metric strong{font-size:16px}
+}

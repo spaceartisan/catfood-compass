@@ -25,8 +25,8 @@
     favorites:new Set(readJSON('cfc_favorites',[])),
     compare:readJSON('cfc_compare',[]).slice(0,4),
     custom:readJSON('cfc_custom',[]),
-    settings:{carbTarget:10,phosTarget:null,storeMode:false,theme:'forest',...readJSON('cfc_settings',{})},
-    quick:{carb:true,complete:false,favorites:false,wet:false,seafood:false},
+    settings:{profile:'normal',carbTarget:10,phosTarget:null,kidneySodiumMax:null,kidneyProteinMin:null,kidneyProteinMax:null,urinaryMagnesiumMax:null,urinaryPhosMax:null,urinarySodiumMax:null,urinaryCalciumMax:null,weightKcalMax:null,weightProteinMin:null,oncologyCarbMax:null,oncologyProteinMin:null,oncologyKcalMin:null,customCarbMax:null,customProteinMin:null,customFatMax:null,customPhosMax:null,customMagnesiumMax:null,customCalciumMax:null,customSodiumMax:null,customKcalMin:null,customKcalMax:null,storeMode:false,theme:'forest',...readJSON('cfc_settings',{})},
+    quick:{profile:false,carb:false,complete:false,favorites:false,wet:false,seafood:false},
     filters:{brand:'',carbMax:null,proteinMin:null,phosMax:null,fatMax:null,source:'',form:'',texture:'',hideRx:false,excludeSeafood:false,completeOnly:false},
     sort:'relevance'
   };
@@ -179,6 +179,115 @@
     return null;
   };
   const carbFits = (f,max) => { const v=carbFilterValue(f); return v!=null && v<=max; };
+  const PROFILE_DEFS={
+    normal:{label:'Normal',hint:'General nutrition view with no condition-specific target filtering.'},
+    diabetes:{label:'Diabetes',hint:'Carbohydrate-focused screening. The starting target is ≤10% of metabolizable calories.'},
+    kidney:{label:'Kidney',hint:'Phosphorus-first view with optional sodium and protein limits you configure.'},
+    urinary:{label:'Urinary',hint:'Mineral-focused view using magnesium, phosphorus, sodium, and calcium when source data exist.'},
+    weight:{label:'Weight management',hint:'Calorie-density and protein-focused view when comparable kcal/100 g data are available.'},
+    oncology:{label:'Cancer / oncology',hint:'Configurable energy, protein, and carbohydrate lens; no universal cancer-food cutoff is assumed.'},
+    custom:{label:'Custom / Vet',hint:'Use your own nutrient limits from a veterinary or personal nutrition plan.'}
+  };
+  if(!PROFILE_DEFS[state.settings.profile]) state.settings.profile='normal';
+  const currentProfile = () => PROFILE_DEFS[state.settings.profile] || PROFILE_DEFS.normal;
+  const finiteOrNull = v => v==null || v==='' || !Number.isFinite(Number(v)) ? null : Number(v);
+  const profileRules = (profile=state.settings.profile) => {
+    const s=state.settings, out=[];
+    const add=(key,op,value,label,unit='')=>{value=finiteOrNull(value);if(value!=null)out.push({key,op,value,label,unit});};
+    if(profile==='diabetes') add('carb_cal_pct','max',s.carbTarget,'Carbs','% cal');
+    if(profile==='kidney'){
+      add('phosphorus_mg_per_100kcal','max',s.phosTarget,'Phosphorus','mg/100 kcal');
+      add('sodium_mg_per_100kcal','max',s.kidneySodiumMax,'Sodium','mg/100 kcal');
+      add('protein_cal_pct','min',s.kidneyProteinMin,'Protein','% cal');
+      add('protein_cal_pct','max',s.kidneyProteinMax,'Protein','% cal');
+    }
+    if(profile==='urinary'){
+      add('magnesium_mg_per_100kcal','max',s.urinaryMagnesiumMax,'Magnesium','mg/100 kcal');
+      add('phosphorus_mg_per_100kcal','max',s.urinaryPhosMax,'Phosphorus','mg/100 kcal');
+      add('sodium_mg_per_100kcal','max',s.urinarySodiumMax,'Sodium','mg/100 kcal');
+      add('calcium_mg_per_100kcal','max',s.urinaryCalciumMax,'Calcium','mg/100 kcal');
+    }
+    if(profile==='weight'){
+      add('kcal_per_100g','max',s.weightKcalMax,'Calories','kcal/100 g');
+      add('protein_cal_pct','min',s.weightProteinMin,'Protein','% cal');
+    }
+    if(profile==='oncology'){
+      add('carb_cal_pct','max',s.oncologyCarbMax,'Carbs','% cal');
+      add('protein_cal_pct','min',s.oncologyProteinMin,'Protein','% cal');
+      add('kcal_per_100g','min',s.oncologyKcalMin,'Calories','kcal/100 g');
+    }
+    if(profile==='custom'){
+      add('carb_cal_pct','max',s.customCarbMax,'Carbs','% cal');
+      add('protein_cal_pct','min',s.customProteinMin,'Protein','% cal');
+      add('fat_cal_pct','max',s.customFatMax,'Fat','% cal');
+      add('phosphorus_mg_per_100kcal','max',s.customPhosMax,'Phosphorus','mg/100 kcal');
+      add('magnesium_mg_per_100kcal','max',s.customMagnesiumMax,'Magnesium','mg/100 kcal');
+      add('calcium_mg_per_100kcal','max',s.customCalciumMax,'Calcium','mg/100 kcal');
+      add('sodium_mg_per_100kcal','max',s.customSodiumMax,'Sodium','mg/100 kcal');
+      add('kcal_per_100g','min',s.customKcalMin,'Calories','kcal/100 g');
+      add('kcal_per_100g','max',s.customKcalMax,'Calories','kcal/100 g');
+    }
+    return out;
+  };
+  const profileValue = (f,key) => key==='carb_cal_pct' ? carbFilterValue(f) : finiteOrNull(f[key]);
+  const rulePasses = (f,rule) => { const v=profileValue(f,rule.key); return v!=null && (rule.op==='max' ? v<=rule.value : v>=rule.value); };
+  const evaluateProfile = (f,profile=state.settings.profile) => {
+    const rules=profileRules(profile); if(!rules.length) return {configured:false,pass:null,missing:[],failed:[],rules};
+    const missing=rules.filter(r=>profileValue(f,r.key)==null), failed=rules.filter(r=>profileValue(f,r.key)!=null&&!rulePasses(f,r));
+    return {configured:true,pass:missing.length||failed.length?false:true,missing,failed,rules};
+  };
+  const profileHasTargets = (profile=state.settings.profile) => profileRules(profile).length>0;
+  const profileMatches = f => { const e=evaluateProfile(f); return e.configured && e.pass===true; };
+  const ruleText = r => { const unit=r.unit?(String(r.unit).startsWith('%')?String(r.unit):` ${r.unit}`):''; return `${r.label} ${r.op==='max'?'≤':'≥'} ${fmt(r.value, r.value%1?1:0)}${unit}`; };
+  const profileTargetSummary = (profile=state.settings.profile) => profileRules(profile).map(ruleText).join(' · ');
+  const metricValue = (f,key) => {
+    if(key==='calories_package') return calorieText(f);
+    if(key==='kcal_per_100g') return rangeFmt(f,'kcal_per_100g',' kcal/100g');
+    if(key==='protein_cal_pct') return rangeFmt(f,key,'%');
+    if(key==='fat_cal_pct') return rangeFmt(f,key,'%');
+    if(key==='carb_cal_pct') return rangeFmt(f,key,'%');
+    if(key==='phosphorus_mg_per_100kcal') return rangeFmt(f,key,' mg/100 kcal');
+    if(key==='magnesium_mg_per_100kcal') return rangeFmt(f,key,' mg/100 kcal');
+    if(key==='calcium_mg_per_100kcal') return rangeFmt(f,key,' mg/100 kcal');
+    if(key==='sodium_mg_per_100kcal') return rangeFmt(f,key,' mg/100 kcal');
+    return '—';
+  };
+  const profileMetricSpecs = (profile=state.settings.profile) => {
+    if(profile==='diabetes') return [['Carbs','carb_cal_pct'],['Protein','protein_cal_pct'],['Fat','fat_cal_pct']];
+    if(profile==='kidney') return [['Phosphorus','phosphorus_mg_per_100kcal'],['Protein','protein_cal_pct'],['Sodium','sodium_mg_per_100kcal']];
+    if(profile==='urinary') return [['Magnesium','magnesium_mg_per_100kcal'],['Phosphorus','phosphorus_mg_per_100kcal'],['Sodium','sodium_mg_per_100kcal']];
+    if(profile==='weight') return [['Calories','kcal_per_100g'],['Protein','protein_cal_pct'],['Fat','fat_cal_pct']];
+    if(profile==='oncology') return [['Calories','kcal_per_100g'],['Protein','protein_cal_pct'],['Carbs','carb_cal_pct']];
+    if(profile==='custom'){
+      const targeted=[...new Set(profileRules('custom').map(r=>r.key))];
+      const fallbacks=['carb_cal_pct','phosphorus_mg_per_100kcal','protein_cal_pct','fat_cal_pct','kcal_per_100g'];
+      const keys=[...targeted,...fallbacks.filter(k=>!targeted.includes(k))].slice(0,3);
+      const labels={carb_cal_pct:'Carbs',phosphorus_mg_per_100kcal:'Phosphorus',protein_cal_pct:'Protein',fat_cal_pct:'Fat',kcal_per_100g:'Calories',magnesium_mg_per_100kcal:'Magnesium',calcium_mg_per_100kcal:'Calcium',sodium_mg_per_100kcal:'Sodium'};
+      return keys.map(k=>[labels[k]||k,k]);
+    }
+    return [['Protein','protein_cal_pct'],['Fat','fat_cal_pct'],['Carbs','carb_cal_pct']];
+  };
+  const profileDetailSpecs = (profile=state.settings.profile) => {
+    if(profile==='kidney') return [['Calories','calories_package'],['Carbs','carb_cal_pct']];
+    if(profile==='urinary') return [['Calcium','calcium_mg_per_100kcal'],['Calories','calories_package']];
+    if(profile==='weight') return [['Carbs','carb_cal_pct'],['Package calories','calories_package']];
+    if(profile==='oncology') return [['Phosphorus','phosphorus_mg_per_100kcal'],['Package calories','calories_package']];
+    if(profile==='custom') return [['Package calories','calories_package'],['Sodium','sodium_mg_per_100kcal']];
+    return [['Phosphorus','phosphorus_mg_per_100kcal'],['Calories','calories_package']];
+  };
+  const targetClassForMetric = (f,key) => {
+    let rules=profileRules().filter(r=>r.key===key);
+    if(key==='carb_cal_pct'&&state.quick.carb&&!rules.length) rules=[{key,op:'max',value:state.settings.carbTarget}];
+    if(!rules.length) return '';
+    const v=profileValue(f,key); if(v==null) return ' target-missing';
+    return rules.every(r=>rulePasses(f,r)) ? ' target-pass' : ' target-fail';
+  };
+  const profileStatusText = f => {
+    if(state.settings.profile==='normal') return '';
+    const e=evaluateProfile(f); if(!e.configured) return 'No numeric profile targets set';
+    if(e.missing.length) return `Target data incomplete · ${e.missing.map(r=>r.label).join(', ')} missing`;
+    return e.failed.length ? 'Outside selected targets' : 'Meets selected targets';
+  };
   const foodById = id => allFoods().find(f=>f.id===id);
   const toast = msg => { const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),1800); };
   const calorieText = f => {
@@ -195,6 +304,17 @@
     if(f.updated){ const m=String(f.updated).match(/^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/); if(m){let y=+m[3];if(y<100)y+=2000;return y*10000+(+m[1])*100+(+m[2]);} }
     return (f.source_year||0)*10000;
   };
+  const profileComparator = (a,b) => {
+    const p=state.settings.profile, missing=999999;
+    if(p==='diabetes') return (carbFilterValue(a)??missing)-(carbFilterValue(b)??missing)||sourceDateValue(b)-sourceDateValue(a);
+    if(p==='kidney') return (a.phosphorus_mg_per_100kcal??missing)-(b.phosphorus_mg_per_100kcal??missing)||sourceDateValue(b)-sourceDateValue(a);
+    if(p==='urinary') return (a.magnesium_mg_per_100kcal??missing)-(b.magnesium_mg_per_100kcal??missing)||(a.phosphorus_mg_per_100kcal??missing)-(b.phosphorus_mg_per_100kcal??missing)||sourceDateValue(b)-sourceDateValue(a);
+    if(p==='weight') return (a.kcal_per_100g??missing)-(b.kcal_per_100g??missing)||sourceDateValue(b)-sourceDateValue(a);
+    if(p==='custom'&&profileHasTargets()){
+      const ap=profileMatches(a)?0:1,bp=profileMatches(b)?0:1; if(ap!==bp)return ap-bp;
+    }
+    return sourceDateValue(b)-sourceDateValue(a)||a.brand.localeCompare(b.brand)||a.product.localeCompare(b.product);
+  };
 
   function badges(f){
     let b=`<span class="badge ${sourceBadgeClass(f)}">${esc(sourceLabel(f))}</span>`;
@@ -209,12 +329,16 @@
   }
 
   function card(f){
-    const fav=state.favorites.has(f.id), cmp=state.compare.includes(f.id), within=carbFits(f,state.settings.carbTarget), alias=aliasFor(f);
+    const fav=state.favorites.has(f.id), cmp=state.compare.includes(f.id), alias=aliasFor(f);
+    const metrics=profileMetricSpecs().map(([label,key])=>`<div class="metric${targetClassForMetric(f,key)}"><span>${esc(label)}</span><strong>${esc(metricValue(f,key))}</strong></div>`).join('');
+    const details=profileDetailSpecs().map(([label,key])=>`<div class="mini-stat"><span>${esc(label)}</span><strong>${esc(metricValue(f,key))}</strong></div>`).join('');
+    const status=profileStatusText(f);
     return `<article class="food-card" data-id="${esc(f.id)}">
       <div class="card-top"><div class="card-title"><div class="brand-name">${esc(f.brand)}</div><div class="food-name">${esc(f.product)}</div>${f.line?`<div class="line-name">${esc(f.line)}</div>`:''}${f.style?`<div class="style-name">${esc(f.style)}</div>`:''}${alias?.current_name?`<div class="shelf-name">Shelf: ${esc(alias.current_name)}</div>`:''}</div><button class="star-btn ${fav?'saved':''}" data-action="fav" aria-label="${fav?'Remove from':'Add to'} favorites">★</button></div>
       <div class="badge-row">${badges(f)}</div>
-      <div class="macros"><div class="metric"><span>Protein</span><strong>${rangeFmt(f,'protein_cal_pct','%')}</strong></div><div class="metric"><span>Fat</span><strong>${rangeFmt(f,'fat_cal_pct','%')}</strong></div><div class="metric carb ${within?'within':'over'}"><span>Carbs</span><strong>${rangeFmt(f,'carb_cal_pct','%')}</strong></div></div>
-      <div class="details-row"><div class="mini-stat"><span>Phosphorus</span><strong>${rangeFmt(f,'phosphorus_mg_per_100kcal',' mg/100 kcal')}</strong></div><div class="mini-stat"><span>Calories</span><strong>${esc(calorieText(f))}</strong></div></div>
+      ${status?`<div class="profile-status ${evaluateProfile(f).configured?(evaluateProfile(f).pass?'profile-pass':'profile-caution'):'profile-neutral'}">${esc(status)}</div>`:''}
+      <div class="macros profile-metrics">${metrics}</div>
+      <div class="details-row">${details}</div>
       <div class="card-actions"><button data-action="details">Details</button><button data-action="compare" class="${cmp?'compare-selected':''}">${cmp?'✓ Comparing':'Compare'}</button></div>
     </article>`;
   }
@@ -223,6 +347,7 @@
     let foods=allFoods(); const q=state.query.trim(); const fl=state.filters;
     const scores=new Map();
     if(q) foods=foods.filter(f=>{const score=searchScore(f,q);if(score==null)return false;scores.set(f.id,score);return true;});
+    if(state.quick.profile && profileHasTargets()) foods=foods.filter(profileMatches);
     const carbMax = fl.carbMax ?? (state.quick.carb ? state.settings.carbTarget : null);
     if(carbMax!=null) foods=foods.filter(f=>carbFits(f,carbMax));
     if(fl.proteinMin!=null) foods=foods.filter(f=>f.protein_cal_pct!=null && f.protein_cal_pct>=fl.proteinMin);
@@ -238,21 +363,24 @@
     if(state.quick.favorites) foods=foods.filter(f=>state.favorites.has(f.id));
     if(state.quick.wet) foods=foods.filter(f=>f.form==='wet');
     const sorters={
-      relevance:(a,b)=>(scores.get(b.id)??0)-(scores.get(a.id)??0)||(carbFilterValue(a)??999)-(carbFilterValue(b)??999)||sourceDateValue(b)-sourceDateValue(a),
+      relevance:(a,b)=>q?((scores.get(b.id)??0)-(scores.get(a.id)??0)||profileComparator(a,b)):profileComparator(a,b),
       carb_asc:(a,b)=>(carbFilterValue(a)??999)-(carbFilterValue(b)??999)||sourceDateValue(b)-sourceDateValue(a)||a.brand.localeCompare(b.brand),
       phos_asc:(a,b)=>(a.phosphorus_mg_per_100kcal??99999)-(b.phosphorus_mg_per_100kcal??99999),
       protein_desc:(a,b)=>(b.protein_cal_pct??-1)-(a.protein_cal_pct??-1),
       fat_asc:(a,b)=>(a.fat_cal_pct??999)-(b.fat_cal_pct??999),
+      magnesium_asc:(a,b)=>(a.magnesium_mg_per_100kcal??99999)-(b.magnesium_mg_per_100kcal??99999),
+      sodium_asc:(a,b)=>(a.sodium_mg_per_100kcal??99999)-(b.sodium_mg_per_100kcal??99999),
+      calories_asc:(a,b)=>(a.kcal_per_100g??99999)-(b.kcal_per_100g??99999),
       updated_desc:(a,b)=>sourceDateValue(b)-sourceDateValue(a)||a.brand.localeCompare(b.brand),
       brand_asc:(a,b)=>a.brand.localeCompare(b.brand)||a.product.localeCompare(b.product)
     };
     const chosen=(q&&state.sort==='carb_asc')?'relevance':state.sort;
-    foods.sort(sorters[chosen]||sorters.carb_asc); return foods;
+    foods.sort(sorters[chosen]||sorters.relevance); return foods;
   }
 
   const anyActiveFoodFilter = () => {
     const fl=state.filters;
-    return state.quick.carb||state.quick.complete||state.quick.favorites||state.quick.wet||state.quick.seafood||Object.entries(fl).some(([,v])=>(typeof v==='boolean'&&v)||(typeof v!=='boolean'&&v!==null&&v!==''));
+    return state.quick.profile||state.quick.carb||state.quick.complete||state.quick.favorites||state.quick.wet||state.quick.seafood||Object.entries(fl).some(([,v])=>(typeof v==='boolean'&&v)||(typeof v!=='boolean'&&v!==null&&v!==''));
   };
   const searchMatchCountBeforeFilters = query => query ? allFoods().filter(f=>matchesSearch(f,query)).length : 0;
   function renderSuggestions(){
@@ -263,6 +391,25 @@
     box.classList.remove('hidden');
   }
 
+  function renderProfileUI(){
+    const profile=state.settings.profile, def=currentProfile(), rules=profileRules();
+    document.body.dataset.profile=profile;
+    const browseSelect=$('#profileSelect'); if(browseSelect) browseSelect.value=profile;
+    if($('#profileName')) $('#profileName').textContent=def.label;
+    if($('#profileHint')) $('#profileHint').textContent=def.hint;
+    const carbChip=$('#quickCarbChip'); if(carbChip) carbChip.classList.toggle('hidden',profile==='diabetes');
+    const chip=$('#profileTargetChip');
+    if(chip){
+      const show=profile!=='normal'; chip.classList.toggle('hidden',!show);
+      chip.classList.toggle('active',!!state.quick.profile&&rules.length>0);
+      chip.classList.toggle('needs-targets',show&&!rules.length);
+      chip.textContent=rules.length ? `Profile targets · ${profileTargetSummary()}` : 'Set profile targets';
+      chip.setAttribute('aria-pressed',String(!!state.quick.profile&&rules.length>0));
+    }
+  }
+  function showSettingsTargetGroup(profile=$('#settingProfileSelect')?.value||state.settings.profile){
+    $$('.profile-target-group').forEach(g=>g.classList.toggle('hidden',g.dataset.profileTargets!==profile));
+  }
   function renderBrowse(){
     const foods=filterFoods(), query=state.query.trim(); $('#recordCount').textContent=allFoods().length.toLocaleString(); $('#resultCount').textContent=`${foods.length.toLocaleString()} foods`;
     if(!foods.length&&query&&anyActiveFoodFilter()){
@@ -271,6 +418,7 @@
     } else $('#foodGrid').innerHTML=foods.slice(0,state.visible).map(card).join('') || `<div class="empty-state"><div class="empty-icon">⌕</div><h3>No matches</h3><p>Try widening a target or clearing a quick filter.</p></div>`;
     $('#loadMoreBtn').classList.toggle('hidden',foods.length<=state.visible);
     $('#quickCarbValue').textContent=state.settings.carbTarget;
+    renderProfileUI();
     applyStoreMode();
     updateFilterCount();
   }
@@ -285,10 +433,12 @@
     $('#compareEmpty').classList.toggle('hidden',!!foods.length);$('#compareTableWrap').classList.toggle('hidden',!foods.length);
     if(!foods.length){$('#compareTableWrap').innerHTML='';return;}
     const rows=[
-      ['Protein (% calories)',f=>rangeFmt(f,'protein_cal_pct','%')],['Fat (% calories)',f=>rangeFmt(f,'fat_cal_pct','%')],['Carbs (% calories)',f=>rangeFmt(f,'carb_cal_pct','%')],
-      ['Phosphorus',f=>rangeFmt(f,'phosphorus_mg_per_100kcal',' mg/100 kcal')],['Calories',f=>calorieText(f)],['Form',f=>formLabel(f)||'—'],['Source',f=>sourceLabel(f)+(f.updated?` · ${f.updated}`:'')]
+      ['Protein (% calories)','protein_cal_pct',f=>rangeFmt(f,'protein_cal_pct','%')],['Fat (% calories)','fat_cal_pct',f=>rangeFmt(f,'fat_cal_pct','%')],['Carbs (% calories)','carb_cal_pct',f=>rangeFmt(f,'carb_cal_pct','%')],
+      ['Phosphorus','phosphorus_mg_per_100kcal',f=>rangeFmt(f,'phosphorus_mg_per_100kcal',' mg/100 kcal')],['Magnesium','magnesium_mg_per_100kcal',f=>rangeFmt(f,'magnesium_mg_per_100kcal',' mg/100 kcal')],['Calcium','calcium_mg_per_100kcal',f=>rangeFmt(f,'calcium_mg_per_100kcal',' mg/100 kcal')],['Sodium','sodium_mg_per_100kcal',f=>rangeFmt(f,'sodium_mg_per_100kcal',' mg/100 kcal')],
+      ['Calories / 100 g','kcal_per_100g',f=>rangeFmt(f,'kcal_per_100g',' kcal/100g')],['Calories / package','calories_package',f=>calorieText(f)],['Form',null,f=>formLabel(f)||'—'],['Source',null,f=>sourceLabel(f)+(f.updated?` · ${f.updated}`:'')]
     ];
-    $('#compareTableWrap').innerHTML=`<table class="compare-table"><thead><tr><th>Metric</th>${foods.map(f=>`<th><div class="brand-name">${esc(f.brand)}</div>${esc(f.product)}<br><button class="text-btn" data-remove-compare="${esc(f.id)}">Remove</button></th>`).join('')}</tr></thead><tbody>${rows.map(([label,fn])=>`<tr><td><strong>${label}</strong></td>${foods.map(f=>{let cls='';if(label.startsWith('Carbs'))cls=carbFits(f,state.settings.carbTarget)?'value-good':'value-warn';return `<td class="${cls}">${esc(fn(f))}</td>`}).join('')}</tr>`).join('')}</tbody></table>`;
+    const profileLabel=state.settings.profile==='normal'?'Normal':`${currentProfile().label}${profileHasTargets()?` · ${profileTargetSummary()}`:' · no numeric targets set'}`;
+    $('#compareTableWrap').innerHTML=`<div class="compare-profile-note"><strong>Profile:</strong> ${esc(profileLabel)}</div><table class="compare-table"><thead><tr><th>Metric</th>${foods.map(f=>`<th><div class="brand-name">${esc(f.brand)}</div>${esc(f.product)}<br><button class="text-btn" data-remove-compare="${esc(f.id)}">Remove</button></th>`).join('')}</tr></thead><tbody>${rows.map(([label,key,fn])=>`<tr><td><strong>${label}</strong></td>${foods.map(f=>`<td class="${key?targetClassForMetric(f,key).trim():''}">${esc(fn(f))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
   }
 
   function sourceNotes(f){
@@ -309,12 +459,15 @@
     const extraMinerals = [
       ['Magnesium',rangeFmt(f,'magnesium_mg_per_100kcal',' mg/100 kcal')],
       ['Calcium',rangeFmt(f,'calcium_mg_per_100kcal',' mg/100 kcal')],
-      ['Sodium',rangeFmt(f,'sodium_mg_per_100kcal',' mg/100 kcal')]
+      ['Sodium',rangeFmt(f,'sodium_mg_per_100kcal',' mg/100 kcal')],
+      ['Calories / 100 g',rangeFmt(f,'kcal_per_100g',' kcal/100g')]
     ].filter(([,v])=>v!=='—');
-    const alias=aliasFor(f);
+    const alias=aliasFor(f), pe=evaluateProfile(f), p=currentProfile();
+    const profileText=state.settings.profile==='normal'?'Neutral general-nutrition view':pe.configured?`${profileStatusText(f)} · ${profileTargetSummary()}`:'No numeric targets set for this profile';
     $('#detailContent').innerHTML=`<div class="detail-card"><div class="detail-head"><div><div class="brand-name">${esc(f.brand)}</div><h2>${esc(f.product)}</h2>${f.line?`<div class="line-name">${esc(f.line)}</div>`:''}${f.style?`<div class="style-name">${esc(f.style)}</div>`:''}${alias?.current_name?`<div class="shelf-name detail-shelf">Current shelf name: ${esc(alias.current_name)}</div>`:''}</div><button class="icon-btn close-btn" data-close-detail aria-label="Close details" title="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
       <div class="badge-row">${badges(f)}</div>
-      <div class="detail-grid"><div class="detail-value"><span>Protein</span><strong>${rangeFmt(f,'protein_cal_pct','% calories')}</strong></div><div class="detail-value"><span>Fat</span><strong>${rangeFmt(f,'fat_cal_pct','% calories')}</strong></div><div class="detail-value"><span>Carbohydrate</span><strong>${rangeFmt(f,'carb_cal_pct','% calories')}</strong></div><div class="detail-value"><span>Phosphorus</span><strong>${rangeFmt(f,'phosphorus_mg_per_100kcal',' mg/100 kcal')}</strong></div><div class="detail-value"><span>Calories</span><strong>${esc(calorieText(f))}</strong></div><div class="detail-value"><span>Carb target</span><strong>≤ ${fmt(state.settings.carbTarget)}%</strong></div>${extraMinerals.map(([k,v])=>`<div class="detail-value"><span>${k}</span><strong>${esc(v)}</strong></div>`).join('')}</div>
+      <div class="detail-profile"><strong>${esc(p.label)} profile</strong><span>${esc(profileText)}</span></div>
+      <div class="detail-grid"><div class="detail-value${targetClassForMetric(f,'protein_cal_pct')}"><span>Protein</span><strong>${rangeFmt(f,'protein_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'fat_cal_pct')}"><span>Fat</span><strong>${rangeFmt(f,'fat_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'carb_cal_pct')}"><span>Carbohydrate</span><strong>${rangeFmt(f,'carb_cal_pct','% calories')}</strong></div><div class="detail-value${targetClassForMetric(f,'phosphorus_mg_per_100kcal')}"><span>Phosphorus</span><strong>${rangeFmt(f,'phosphorus_mg_per_100kcal',' mg/100 kcal')}</strong></div><div class="detail-value"><span>Calories</span><strong>${esc(calorieText(f))}</strong></div><div class="detail-value"><span>Active profile</span><strong>${esc(p.label)}</strong></div>${extraMinerals.map(([k,v])=>`<div class="detail-value"><span>${k}</span><strong>${esc(v)}</strong></div>`).join('')}</div>
       <div class="detail-notes">${sourceNotes(f)}</div>
       <button class="primary-btn" data-close-detail>Done</button></div>`;
     $('#detailDialog').showModal();
@@ -328,7 +481,17 @@
   function populateBrands(){const brands=[...new Set(allFoods().map(f=>f.brand).filter(Boolean))].sort((a,b)=>a.localeCompare(b));$('#brandFilter').innerHTML='<option value="">All brands</option>'+brands.map(b=>`<option>${esc(b)}</option>`).join('');}
   function syncDialogs(){
     $('#brandFilter').value=state.filters.brand;$('#carbMaxFilter').value=state.filters.carbMax??'';$('#proteinMinFilter').value=state.filters.proteinMin??'';$('#phosMaxFilter').value=state.filters.phosMax??'';$('#fatMaxFilter').value=state.filters.fatMax??'';$('#sourceFilter').value=state.filters.source;$('#formFilter').value=state.filters.form;$('#textureFilter').value=state.filters.texture;$('#hideRxFilter').checked=state.filters.hideRx;$('#excludeSeafoodFilter').checked=state.filters.excludeSeafood;$('#completeOnlyFilter').checked=state.filters.completeOnly;
-    $('#settingCarbTarget').value=state.settings.carbTarget;$('#settingPhosTarget').value=state.settings.phosTarget??'';const theme=$(`input[name=\"theme\"][value=\"${state.settings.theme||'forest'}\"]`);if(theme)theme.checked=true;
+    const set=(id,v)=>{const el=$(id);if(el)el.value=v??'';};
+    set('#settingProfileSelect',state.settings.profile);
+    set('#settingCarbTarget',state.settings.carbTarget);
+    set('#settingPhosTarget',state.settings.phosTarget);
+    set('#settingKidneySodiumMax',state.settings.kidneySodiumMax);set('#settingKidneyProteinMin',state.settings.kidneyProteinMin);set('#settingKidneyProteinMax',state.settings.kidneyProteinMax);
+    set('#settingUrinaryMagnesiumMax',state.settings.urinaryMagnesiumMax);set('#settingUrinaryPhosMax',state.settings.urinaryPhosMax);set('#settingUrinarySodiumMax',state.settings.urinarySodiumMax);set('#settingUrinaryCalciumMax',state.settings.urinaryCalciumMax);
+    set('#settingWeightKcalMax',state.settings.weightKcalMax);set('#settingWeightProteinMin',state.settings.weightProteinMin);
+    set('#settingOncologyCarbMax',state.settings.oncologyCarbMax);set('#settingOncologyProteinMin',state.settings.oncologyProteinMin);set('#settingOncologyKcalMin',state.settings.oncologyKcalMin);
+    set('#settingCustomCarbMax',state.settings.customCarbMax);set('#settingCustomProteinMin',state.settings.customProteinMin);set('#settingCustomFatMax',state.settings.customFatMax);set('#settingCustomPhosMax',state.settings.customPhosMax);set('#settingCustomMagnesiumMax',state.settings.customMagnesiumMax);set('#settingCustomCalciumMax',state.settings.customCalciumMax);set('#settingCustomSodiumMax',state.settings.customSodiumMax);set('#settingCustomKcalMin',state.settings.customKcalMin);set('#settingCustomKcalMax',state.settings.customKcalMax);
+    const theme=$(`input[name="theme"][value="${state.settings.theme||'forest'}"]`);if(theme)theme.checked=true;
+    showSettingsTargetGroup(state.settings.profile);
   }
 
   function initEvents(){
@@ -340,7 +503,7 @@
       if(e.target.closest('[data-close-detail]'))$('#detailDialog').close();
       const del=e.target.closest('[data-delete-custom]');if(del){state.custom=state.custom.filter(x=>x.id!==del.dataset.deleteCustom);persist();populateBrands();renderCustom();renderBrowse();toast('Deleted');}
       const sug=e.target.closest('[data-search-suggestion]');if(sug){state.query=sug.dataset.searchSuggestion;$('#searchInput').value=state.query;$('#clearSearchBtn')?.classList.toggle('hidden',!state.query);state.visible=48;$('#searchSuggestions').classList.add('hidden');renderBrowse();$('#searchInput').focus();}
-      if(e.target.closest('[data-clear-food-filters]')){state.quick={carb:false,complete:false,favorites:false,wet:false,seafood:false};state.filters={brand:'',carbMax:null,proteinMin:null,phosMax:null,fatMax:null,source:'',form:'',texture:'',hideRx:false,excludeSeafood:false,completeOnly:false};$$('.chip[data-quick]').forEach(b=>b.classList.toggle('active',!!state.quick[b.dataset.quick]));syncDialogs();renderBrowse();}
+      if(e.target.closest('[data-clear-food-filters]')){state.quick={profile:false,carb:false,complete:false,favorites:false,wet:false,seafood:false};state.filters={brand:'',carbMax:null,proteinMin:null,phosMax:null,fatMax:null,source:'',form:'',texture:'',hideRx:false,excludeSeafood:false,completeOnly:false};$$('.chip[data-quick]').forEach(b=>b.classList.toggle('active',!!state.quick[b.dataset.quick]));syncDialogs();renderBrowse();}
     });
     $('#searchInput').addEventListener('input',e=>{state.query=e.target.value;$('#clearSearchBtn')?.classList.toggle('hidden',!state.query);state.visible=48;renderBrowse();renderSuggestions();});
     $('#clearSearchBtn').addEventListener('click',()=>{state.query='';$('#searchInput').value='';$('#clearSearchBtn').classList.add('hidden');$('#searchSuggestions').classList.add('hidden');state.visible=48;renderBrowse();$('#searchInput').focus();});
@@ -350,19 +513,42 @@
     $('#sortSelect').addEventListener('change',e=>{state.sort=e.target.value;renderBrowse();});
     $('#loadMoreBtn').addEventListener('click',()=>{state.visible+=48;renderBrowse();});
     $('#storeModeBtn').addEventListener('click',()=>{state.settings.storeMode=!state.settings.storeMode;persist();applyStoreMode();});
-    $$('.chip[data-quick]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.quick;state.quick[k]=!state.quick[k];b.classList.toggle('active',state.quick[k]);state.visible=48;renderBrowse();}));
+    $('#profileSelect').addEventListener('change',e=>{state.settings.profile=PROFILE_DEFS[e.target.value]?e.target.value:'normal';state.quick.profile=state.settings.profile!=='normal'&&profileHasTargets();state.visible=48;persist();syncDialogs();renderBrowse();renderCompare();toast(`${currentProfile().label} profile`);});
+    $('#profileSettingsBtn').addEventListener('click',()=>{syncDialogs();$('#settingsDialog').showModal();showSettingsTargetGroup(state.settings.profile);});
+    $$('.chip[data-quick]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.quick;if(k==='profile'&&!profileHasTargets()){syncDialogs();$('#settingsDialog').showModal();showSettingsTargetGroup(state.settings.profile);return;}state.quick[k]=!state.quick[k];b.classList.toggle('active',state.quick[k]);state.visible=48;renderBrowse();}));
     $('#filterBtn').addEventListener('click',()=>{populateBrands();syncDialogs();$('#filterDialog').showModal();});
     $('#settingsBtn').addEventListener('click',()=>{syncDialogs();$('#settingsDialog').showModal();});
+    $('#settingProfileSelect').addEventListener('change',e=>showSettingsTargetGroup(e.target.value));
     $('#applyFiltersBtn').addEventListener('click',()=>{const n=id=>{const v=$(id).value;return v===''?null:Number(v)};state.filters={brand:$('#brandFilter').value,carbMax:n('#carbMaxFilter'),proteinMin:n('#proteinMinFilter'),phosMax:n('#phosMaxFilter'),fatMax:n('#fatMaxFilter'),source:$('#sourceFilter').value,form:$('#formFilter').value,texture:$('#textureFilter').value,hideRx:$('#hideRxFilter').checked,excludeSeafood:$('#excludeSeafoodFilter').checked,completeOnly:$('#completeOnlyFilter').checked};state.visible=48;renderBrowse();});
     $('#resetFiltersBtn').addEventListener('click',()=>{state.filters={brand:'',carbMax:null,proteinMin:null,phosMax:null,fatMax:null,source:'',form:'',texture:'',hideRx:false,excludeSeafood:false,completeOnly:false};syncDialogs();});
-    $('#saveSettingsBtn').addEventListener('click',()=>{state.settings.carbTarget=Number($('#settingCarbTarget').value)||10;state.settings.phosTarget=$('#settingPhosTarget').value===''?null:Number($('#settingPhosTarget').value);state.settings.theme=$('input[name=\"theme\"]:checked')?.value||'forest';persist();applyTheme();renderBrowse();renderCompare();toast('Settings saved');});
-    $('#resetSettingsBtn').addEventListener('click',()=>{$('#settingCarbTarget').value=10;$('#settingPhosTarget').value='';const t=$('input[name=\"theme\"][value=\"forest\"]');if(t)t.checked=true;});
+    $('#saveSettingsBtn').addEventListener('click',()=>{
+      const opt=id=>{const el=$(id);if(!el||el.value==='')return null;const n=Number(el.value);return Number.isFinite(n)?n:null;};
+      const priorProfile=state.settings.profile, candidate=$('#settingProfileSelect').value, newProfile=PROFILE_DEFS[candidate]?candidate:'normal';
+      state.settings.profile=newProfile;
+      state.settings.carbTarget=opt('#settingCarbTarget')??10;state.settings.phosTarget=opt('#settingPhosTarget');
+      state.settings.kidneySodiumMax=opt('#settingKidneySodiumMax');state.settings.kidneyProteinMin=opt('#settingKidneyProteinMin');state.settings.kidneyProteinMax=opt('#settingKidneyProteinMax');
+      state.settings.urinaryMagnesiumMax=opt('#settingUrinaryMagnesiumMax');state.settings.urinaryPhosMax=opt('#settingUrinaryPhosMax');state.settings.urinarySodiumMax=opt('#settingUrinarySodiumMax');state.settings.urinaryCalciumMax=opt('#settingUrinaryCalciumMax');
+      state.settings.weightKcalMax=opt('#settingWeightKcalMax');state.settings.weightProteinMin=opt('#settingWeightProteinMin');
+      state.settings.oncologyCarbMax=opt('#settingOncologyCarbMax');state.settings.oncologyProteinMin=opt('#settingOncologyProteinMin');state.settings.oncologyKcalMin=opt('#settingOncologyKcalMin');
+      state.settings.customCarbMax=opt('#settingCustomCarbMax');state.settings.customProteinMin=opt('#settingCustomProteinMin');state.settings.customFatMax=opt('#settingCustomFatMax');state.settings.customPhosMax=opt('#settingCustomPhosMax');state.settings.customMagnesiumMax=opt('#settingCustomMagnesiumMax');state.settings.customCalciumMax=opt('#settingCustomCalciumMax');state.settings.customSodiumMax=opt('#settingCustomSodiumMax');state.settings.customKcalMin=opt('#settingCustomKcalMin');state.settings.customKcalMax=opt('#settingCustomKcalMax');
+      state.settings.theme=$('input[name="theme"]:checked')?.value||'forest';
+      if(newProfile==='normal'||!profileHasTargets()) state.quick.profile=false; else if(priorProfile!==newProfile) state.quick.profile=true;
+      persist();applyTheme();renderBrowse();renderCompare();toast('Settings saved');
+    });
+    $('#resetSettingsBtn').addEventListener('click',()=>{
+      $('#settingProfileSelect').value='normal';showSettingsTargetGroup('normal');
+      const defaults={settingCarbTarget:10,settingPhosTarget:'',settingKidneySodiumMax:'',settingKidneyProteinMin:'',settingKidneyProteinMax:'',settingUrinaryMagnesiumMax:'',settingUrinaryPhosMax:'',settingUrinarySodiumMax:'',settingUrinaryCalciumMax:'',settingWeightKcalMax:'',settingWeightProteinMin:'',settingOncologyCarbMax:'',settingOncologyProteinMin:'',settingOncologyKcalMin:'',settingCustomCarbMax:'',settingCustomProteinMin:'',settingCustomFatMax:'',settingCustomPhosMax:'',settingCustomMagnesiumMax:'',settingCustomCalciumMax:'',settingCustomSodiumMax:'',settingCustomKcalMin:'',settingCustomKcalMax:''};
+      Object.entries(defaults).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v;});
+      const t=$('input[name="theme"][value="forest"]');if(t)t.checked=true;
+    });
     $('#clearCompareBtn').addEventListener('click',()=>{state.compare=[];persist();renderCompare();renderBrowse();});
     $('#customFoodForm').addEventListener('input',e=>{const fd=new FormData(e.currentTarget);const vals=['protein','fat','carb'].map(k=>Number(fd.get(k)||0));const sum=vals.reduce((a,b)=>a+b,0);const box=$('#macroSumNote');if(vals.some(v=>v>0)){box.classList.remove('hidden');box.textContent=`Macro calories sum to ${fmt(sum,1)}%. ${Math.abs(sum-100)<=3?'Looks consistent with rounding.':'Check the three values; they should be near 100%.'}`;}else box.classList.add('hidden');});
     $('#customFoodForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.currentTarget);const g=k=>Number(fd.get(k));const p=g('protein'),fat=g('fat'),carb=g('carb');if(Math.abs((p+fat+carb)-100)>5){toast('Macro percentages should add to about 100%');return;}const id='custom-'+Date.now();state.custom.push({id,brand:String(fd.get('brand')).trim(),line:null,product:String(fd.get('product')).trim(),form:String(fd.get('form')||'wet'),protein_cal_pct:p,protein_cal_pct_min:p,protein_cal_pct_max:p,fat_cal_pct:fat,fat_cal_pct_min:fat,fat_cal_pct_max:fat,carb_cal_pct:carb,carb_cal_pct_min:carb,carb_cal_pct_max:carb,phosphorus_mg_per_100kcal:fd.get('phos')?g('phos'):null,phosphorus_mg_per_100kcal_min:fd.get('phos')?g('phos'):null,phosphorus_mg_per_100kcal_max:fd.get('phos')?g('phos'):null,calories:fd.get('calories')?g('calories'):null,calories_min:fd.get('calories')?g('calories'):null,calories_max:fd.get('calories')?g('calories'):null,calories_display:fd.get('calories')?String(fd.get('calories')):null,section_calorie_note:String(fd.get('package')||''),user_source:String(fd.get('source')||''),verification_status:'user'});persist();e.currentTarget.reset();$('#macroSumNote').classList.add('hidden');populateBrands();renderCustom();renderBrowse();toast('Food saved on this device');});
     $('#gaCalcForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.currentTarget),n=k=>Number(fd.get(k));const p=n('protein'),f=n('fat'),fiber=n('fiber'),m=n('moisture'),ash=n('ash');const carb=100-p-f-fiber-m-ash;if(carb<0){$('#gaResult').classList.remove('hidden');$('#gaResult').textContent='Those values add to more than 100%. Check the label entries.';return;}const pk=3.5*p,fk=8.5*f,ck=3.5*carb,total=pk+fk+ck;const pp=total?100*pk/total:0,fp=total?100*fk/total:0,cp=total?100*ck/total:0;$('#gaResult').classList.remove('hidden');$('#gaResult').innerHTML=`<strong>Rough estimate:</strong><br>Protein ${fmt(pp,1)}% · Fat ${fmt(fp,1)}% · Carbs ${fmt(cp,1)}% of estimated metabolizable calories<br><span class="subtle">Estimated carbohydrate by difference: ${fmt(carb,1)}% as-fed. Guaranteed Analysis values are minima/maxima, so treat this as a screening estimate rather than a precise TNA result.</span>`;});
     $('#exportCustomBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state.custom,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='catfood-compass-my-foods.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
   }
+
   function registerSW(){if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./service-worker.js').catch(()=>{});}
+  state.quick.profile=state.settings.profile!=='normal'&&profileHasTargets();
   populateBrands();syncDialogs();initEvents();applyTheme();applyStoreMode();$('#clearSearchBtn')?.classList.toggle('hidden',!state.query);renderBrowse();renderCompare();renderCustom();registerSW();
 })();

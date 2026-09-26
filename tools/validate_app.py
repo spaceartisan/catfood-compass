@@ -73,3 +73,14 @@ assert 'brandCatalogSpecs' in js and 'currentCatalogMatchBySourceId' in js and '
 assert "startsWith('verified_')" in js, 'tentative manufacturer matches must not be exposed as verified aliases'
 assert 'Current catalog reconciliation:' in js, 'generic reconciliation provenance note missing'
 print('PASS: v0.3.0 Tiki, Fancy Feast, and Friskies non-destructive catalog reconciliation layers are wired')
+
+# Nutrition profile regression checks (v0.3.1)
+for profile in ['normal','diabetes','kidney','urinary','weight','oncology','custom']:
+    assert f'value="{profile}"' in html, f'{profile} profile option missing'
+assert 'id="profileSelect"' in html and 'id="profileTargetChip"' in html, 'browse profile controls missing'
+assert "profile:'normal'" in js and 'const PROFILE_DEFS' in js, 'Normal default/profile registry missing'
+assert 'const profileRules' in js and 'const profileMatches' in js and 'const evaluateProfile' in js, 'profile target engine missing'
+assert 'settingUrinaryMagnesiumMax' in html and 'settingCustomSodiumMax' in html and 'settingOncologyKcalMin' in html, 'specialized/custom profile target controls missing'
+assert 'v0.3.1 — nutrition profiles' in css, 'profile UI CSS missing'
+assert 'Profile targets' in html and 'no universal cancer-food cutoff is assumed' in js, 'profile target UX/caution text missing'
+print('PASS: v0.3.1 Normal-default multi-condition nutrition profile system is wired')
