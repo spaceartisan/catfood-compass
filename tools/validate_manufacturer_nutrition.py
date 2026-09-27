@@ -19,7 +19,7 @@ assert bundle.get('schema_version')==1
 assert bundle.get('policy')
 assert len(bundle.get('brand_sources') or [])>=13
 obs=bundle.get('observations') or []
-assert len(obs)>=67
+assert len(obs)>=82
 ids=[o.get('food_id') for o in obs]
 assert all(ids) and len(ids)==len(set(ids)), 'manufacturer observation food_id values must be unique'
 assert set(ids)<=food_ids, f'Unknown food IDs: {sorted(set(ids)-food_ids)}'
@@ -35,6 +35,14 @@ honest_ids={'fdsgw-p12r07','fdsgw-p12r08','fdsgw-p12r09','fdsgw-p12r10','fdsgw-p
 assert fromm_ids <= set(ids), 'Fromm enrichment missing'
 assert farmina_ids <= set(ids), 'Farmina enrichment missing'
 assert honest_ids <= set(ids), 'Honest Kitchen enrichment missing'
+
+fancy_classic_ids={'p14r04','p14r05','p14r06','p14r07','p14r08','p14r09','p14r10','p14r11','p14r12','p14r13','p14r14','p14r15','fdsgw-p05r11','fdsgw-p05r12','fdsgw-p06r01'}
+assert fancy_classic_ids <= set(ids), 'Fancy Feast Classic Paté enrichment missing'
+assert bundle.get('research_summary',{}).get('fancy_feast_classic_pate_current_products')==12, 'Fancy Feast current-product count mismatch'
+assert bundle.get('research_summary',{}).get('fancy_feast_classic_pate_linked_source_records')==15, 'Fancy Feast linked source-row count mismatch'
+ff=[o for o in obs if o.get('food_id') in fancy_classic_ids]
+assert all((o.get('energy') or {}).get('kcal_per_3oz_can') for o in ff), 'Fancy Feast current calorie data missing'
+assert sum(1 for o in ff if o.get('guaranteed_analysis'))>=9, 'Fancy Feast GA coverage unexpectedly low'
 
 numeric_groups={'guaranteed_analysis','typical_percent','as_fed_pct','dry_matter_pct','per_100_kcal','percent_ME','energy'}
 for o in obs:
@@ -66,4 +74,4 @@ assert 'manufacturerNutritionFor' in app and 'manufacturerNutritionHtml' in app
 assert 'does <strong>not</strong> overwrite' in app
 assert 'manufacturerNutritionFor(f)' not in app[app.index('function filterFoods'):app.index('function renderSuggestions')], 'Manufacturer layer must not silently drive filters'
 
-print(f"PASS: {len(obs)} exact manufacturer observations; v0.3.7 Fromm/Farmina/Honest Kitchen enrichment and basis guardrails validated")
+print(f"PASS: {len(obs)} exact manufacturer observations; v0.3.8 Fancy Feast Classic Paté enrichment and basis guardrails validated")

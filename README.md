@@ -1,10 +1,12 @@
-# CatFood Compass v0.3.7
+# CatFood Compass v0.3.8
 
 ## Current manufacturer nutrition layer
 
-v0.3.7 expands the **separate current-manufacturer nutrient observation layer**. It remains deliberately additive: none of the 2,024 Pierson/FDSG source records are rewritten, and unlike nutrient bases are not silently merged into the profile filters.
+v0.3.8 expands the **separate current-manufacturer nutrient observation layer**. It remains deliberately additive: none of the 2,024 Pierson/FDSG source records are rewritten, and unlike nutrient bases are not silently merged into the profile filters.
 
-The manufacturer layer now links **67 exact current products across 12 brands**. This release adds **23 exact matches**: **12 Fromm** current wet foods from Fromm's official 2026 Nutrition Reference Guide, **3 Farmina N&D Quinoa** wet formulas from current manufacturer product pages, and **8 The Honest Kitchen** wet foods from current manufacturer product pages. The prior ACANA, ORIJEN, RAWZ, Young Again, FirstMate, Hill's Science Diet, Dr. Elsey's, ZIWI Peak, and Weruva observations remain. Royal Canin's current US catalog has also been reviewed, but legacy-to-current product reconciliation remains intentionally pending rather than forcing uncertain identity matches.
+The manufacturer layer now contains **82 exact source-record links across 13 exact-match brands**. This release adds current manufacturer observations for **12 Fancy Feast Classic Paté recipes**, linked to **15 immutable Pierson/FDSG source rows** because three current recipes appear in both historical datasets. Current Purina pages provide calculated metabolizable energy for all 12 recipes; directly verified Guaranteed Analysis is captured for eight recipes and intentionally left blank for the remaining four rather than inferred.
+
+This pass is especially useful for the Fancy Feast Classic Paté foods that are common in low-carbohydrate feeding discussions: the app can now show a current Purina calorie/GA observation beside the historical source %ME values without pretending those bases are interchangeable. The prior ACANA, ORIJEN, RAWZ, Young Again, FirstMate, Hill's Science Diet, Dr. Elsey's, ZIWI Peak, Weruva, Fromm, Farmina, and The Honest Kitchen observations remain. Royal Canin's current US catalog has also been reviewed, but legacy-to-current product reconciliation remains intentionally pending rather than forcing uncertain identity matches.
 
 Where a manufacturer publishes mathematically unusual calculated values, CatFood Compass preserves the source rather than silently correcting it. In particular, several current Weruva WX laboratory rows report negative calculated carbohydrate values; those observations are flagged as **Source anomaly preserved**, retain the raw values, and remain display/provenance data rather than inputs to profile filtering.
 
@@ -30,7 +32,7 @@ The app still contains the same **2,024 source nutrition records**:
 - 838 FDSG wet-food records (FPUO flag preserved in the UI/data).
 - 25 FDSG dry/air-dried/steam-dried records.
 
-No source nutrition row was rewritten for v0.3.7.
+No source nutrition row was rewritten for v0.3.8.
 
 ## Nutrition profiles
 

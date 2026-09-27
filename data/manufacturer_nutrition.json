@@ -5,16 +5,18 @@
   "policy": "Additive provenance layer only. Manufacturer observations never overwrite Pierson/FDSG records and are not automatically substituted into profile filtering when nutrient bases differ.",
   "research_summary": {
     "catalog_food_records": 2024,
-    "brands_researched_first_pass": 13,
-    "exact_food_matches": 67,
-    "exact_match_brands": 12,
+    "brands_researched_first_pass": 14,
+    "exact_food_matches": 82,
+    "exact_match_brands": 13,
     "bulk_source_families_identified": 1,
-    "bulk_enrichment_release": "v0.3.7",
+    "bulk_enrichment_release": "v0.3.8",
     "ziwi_exact_matches": 15,
     "weruva_wx_exact_matches": 5,
     "fromm_exact_matches": 12,
     "farmina_exact_matches": 3,
-    "honest_kitchen_exact_matches": 8
+    "honest_kitchen_exact_matches": 8,
+    "fancy_feast_classic_pate_current_products": 12,
+    "fancy_feast_classic_pate_linked_source_records": 15
   },
   "brand_sources": [
     {
@@ -213,6 +215,20 @@
         "linked_nutrient_profile"
       ],
       "notes": "Current manufacturer product pages were linked for all eight Câté/Minced formulas represented in CatFood Compass. This pass captures product-page GA and calories and leaves richer linked nutrient profiles for later structured extraction."
+    },
+    {
+      "brand": "Fancy Feast",
+      "canonical_brand": "FANCY FEAST",
+      "status": "classic_pate_exact_matches_added",
+      "source_type": "manufacturer_product_pages",
+      "source_url": "https://www.purina.com/fancy-feast/products/pate-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "available_data": [
+        "guaranteed_analysis",
+        "calculated_metabolizable_energy",
+        "ingredients"
+      ],
+      "notes": "Current Purina product pages were linked to the 12 Classic Paté recipes represented by verified Fancy Feast reconciliation records. Fifteen CatFood Compass source rows are linked because three current recipes occur in both Pierson and FDSG source datasets. GA is captured only where directly verified; missing GA is left absent rather than inferred."
     }
   ],
   "observations": [
@@ -2775,6 +2791,333 @@
       "basis_notes": [
         "The Honest Kitchen's current product page publishes Guaranteed Analysis and package calories for this recipe.",
         "The manufacturer also links a separate nutrient profile, but this observation does not infer carbohydrate or minerals that are not shown in the captured product-page analysis."
+      ]
+    },
+    {
+      "food_id": "p14r04",
+      "current_product_name": "Fancy Feast Classic Paté Chicken Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-chicken-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1080,
+        "kcal_per_3oz_can": 91
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 10.0,
+        "fat_min_pct": 5.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.25,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "p14r05",
+      "current_product_name": "Fancy Feast Classic Paté Tender Chicken and Liver Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-liver-chicken-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1105,
+        "kcal_per_3oz_can": 93
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 10.0,
+        "fat_min_pct": 5.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.5,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "p14r06",
+      "current_product_name": "Fancy Feast Classic Paté Turkey & Giblets Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-turkey-giblets-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1101,
+        "kcal_per_3oz_can": 93
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 11.0,
+        "fat_min_pct": 5.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.25,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "p14r07",
+      "current_product_name": "Fancy Feast Classic Paté Chopped Grill Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-chopped-grilled-chicken-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1159,
+        "kcal_per_3oz_can": 98
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "This captured current-page observation includes calculated energy only; no unverified Guaranteed Analysis or TNA values were inferred.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ]
+    },
+    {
+      "food_id": "p14r08",
+      "current_product_name": "Fancy Feast Classic Paté Tender Beef Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-beef-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1093,
+        "kcal_per_3oz_can": 93
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 11.0,
+        "fat_min_pct": 4.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.25,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "p14r09",
+      "current_product_name": "Fancy Feast Classic Paté Tender Beef & Liver Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-beef-liver-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1157,
+        "kcal_per_3oz_can": 98
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "This captured current-page observation includes calculated energy only; no unverified Guaranteed Analysis or TNA values were inferred.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ]
+    },
+    {
+      "food_id": "p14r10",
+      "current_product_name": "Fancy Feast Classic Paté Tender Beef & Chicken Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-beef-chicken-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1143,
+        "kcal_per_3oz_can": 97
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 10.5,
+        "fat_min_pct": 6.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.0,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "p14r11",
+      "current_product_name": "Fancy Feast Classic Paté Seafood Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-seafood-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1036,
+        "kcal_per_3oz_can": 88
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "This captured current-page observation includes calculated energy only; no unverified Guaranteed Analysis or TNA values were inferred.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ]
+    },
+    {
+      "food_id": "p14r12",
+      "current_product_name": "Fancy Feast Classic Paté Ocean Whitefish & Tuna Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-whitefish-tuna-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1041,
+        "kcal_per_3oz_can": 88
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 12.0,
+        "fat_min_pct": 2.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.25,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "p14r13",
+      "current_product_name": "Fancy Feast Classic Paté Salmon & Shrimp Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-salmon-shrimp-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1072,
+        "kcal_per_3oz_can": 91
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "This captured current-page observation includes calculated energy only; no unverified Guaranteed Analysis or TNA values were inferred.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ]
+    },
+    {
+      "food_id": "p14r14",
+      "current_product_name": "Fancy Feast Classic Paté Savory Salmon Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-salmon-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1046,
+        "kcal_per_3oz_can": 88
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 11.0,
+        "fat_min_pct": 4.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.25,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "p14r15",
+      "current_product_name": "Fancy Feast Classic Paté Cod, Sole & Shrimp Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-cod-sole-shrimp-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 973,
+        "kcal_per_3oz_can": 82
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 12.0,
+        "fat_min_pct": 2.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.25,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "fdsgw-p05r11",
+      "current_product_name": "Fancy Feast Classic Paté Tender Beef & Chicken Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-beef-chicken-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1143,
+        "kcal_per_3oz_can": 97
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "Guaranteed Analysis values are minima/maxima, not a Typical Nutrient Analysis and not directly interchangeable with %ME values.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ],
+      "guaranteed_analysis": {
+        "protein_min_pct": 10.5,
+        "fat_min_pct": 6.0,
+        "fiber_max_pct": 1.5,
+        "moisture_max_pct": 78.0,
+        "ash_max_pct": 3.0,
+        "taurine_min_pct": 0.05
+      }
+    },
+    {
+      "food_id": "fdsgw-p05r12",
+      "current_product_name": "Fancy Feast Classic Paté Tender Beef & Liver Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-beef-liver-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1157,
+        "kcal_per_3oz_can": 98
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "This captured current-page observation includes calculated energy only; no unverified Guaranteed Analysis or TNA values were inferred.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
+      ]
+    },
+    {
+      "food_id": "fdsgw-p06r01",
+      "current_product_name": "Fancy Feast Classic Paté Chopped Grill Feast Gourmet Wet Cat Food",
+      "match_status": "verified_exact_product",
+      "source_type": "manufacturer_product_page",
+      "source_url": "https://www.purina.com/cats/shop/fancy-feast-timeless-favorites-classic-pate-chopped-grilled-chicken-wet-cat-food",
+      "retrieved_on": "2026-09-26",
+      "energy": {
+        "kcal_per_kg": 1159,
+        "kcal_per_3oz_can": 98
+      },
+      "basis_notes": [
+        "Purina's current product page reports calculated metabolizable energy for the 3 oz can.",
+        "This captured current-page observation includes calculated energy only; no unverified Guaranteed Analysis or TNA values were inferred.",
+        "Current manufacturer values are kept separate from the historical Pierson/FDSG %ME observation and do not drive profile screening."
       ]
     }
   ]
