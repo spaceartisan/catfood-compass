@@ -1,4 +1,4 @@
-const CACHE='catfood-compass-v0.3.9';
+const CACHE='catfood-compass-v0.3.9-dmb';
 const ASSETS=['./','./index.html','./styles.css','./app.js','./data/foods.js','./data/tiki_cat.js','./data/fancy_feast.js','./data/friskies.js','./data/recall_brands.js','./data/recall_brands.json','./data/recalls.js','./data/recalls.json','./data/aliases.js','./data/manufacturer_nutrition.js','./data/manufacturer_nutrition.json','./manifest.webmanifest','./icon.svg'];
 
 self.addEventListener('install',e=>e.waitUntil(
@@ -14,10 +14,6 @@ self.addEventListener('fetch',e=>{
   const url=new URL(e.request.url);
   const isRecallSnapshot=/\/data\/(?:recalls|recall_brands)\.(?:js|json)$/.test(url.pathname);
 
-  // Recall snapshots and their catalog-brand whitelist can change independently
-  // of application releases. Use network-first so an installed/offline-capable
-  // GitHub Pages app sees GitHub Action updates while retaining the last good
-  // copy when offline.
   if(isRecallSnapshot){
     e.respondWith(
       fetch(e.request).then(resp=>{

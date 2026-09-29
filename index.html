@@ -12,42 +12,31 @@
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./styles.css" />
 
-  <style>
-    .nutrition-calculator .calc-hint{display:block;margin-top:2px;font-size:9px;font-weight:650;color:var(--muted);text-transform:none;letter-spacing:0}
-    .nutrition-calc-result{margin-top:14px}
-    .calc-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
-    .calc-summary-grid>div{border:1px solid var(--line);background:var(--metric);border-radius:7px;padding:10px;min-width:0}
-    .calc-summary-grid span{display:block;font-size:9px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.04em}
-    .calc-summary-grid strong{display:block;margin-top:3px;font-size:16px;line-height:1.2;overflow-wrap:anywhere}
+  <style id="calc-v039-style">
+    .calc-panel label small{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:650}
+    #gaResult.calc-result{padding:0;background:transparent}
+    .calc-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0 12px}
+    .calc-summary>div{padding:10px;border:1px solid var(--line);border-radius:7px;background:var(--metric);min-width:0}
+    .calc-summary span{display:block;color:var(--muted);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+    .calc-summary strong{display:block;margin-top:3px;font-size:16px;overflow-wrap:anywhere}
     .calc-section{margin-top:12px}
-    .calc-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:6px}
-    .calc-section-head strong{font-size:13px}.calc-section-head span{color:var(--muted);font-size:10px;text-align:right}
+    .calc-section-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-end;margin-bottom:6px}
+    .calc-section-head strong{font-size:13px}.calc-section-head span{font-size:10px;color:var(--muted);text-align:right}
     .calc-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:7px}
-    .calc-table{width:100%;min-width:430px;border-collapse:collapse;background:var(--panel);font-size:11px}
+    .calc-table{width:100%;min-width:470px;border-collapse:collapse;background:var(--panel);font-size:11px}
     .calc-table th,.calc-table td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
     .calc-table thead th{background:var(--metric);color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.035em}
     .calc-table th:first-child,.calc-table td:first-child{text-align:left}
     .calc-table tbody tr:last-child th,.calc-table tbody tr:last-child td{border-bottom:0}
-    .calc-mineral-table{min-width:360px}
-    .calc-profile{margin-top:12px}
-    .calc-profile-head{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px;border:1px solid var(--line);border-radius:5px;background:var(--metric);font-size:11px}
-    .calc-profile-head.pass{background:var(--good-bg);color:var(--good-text)}
-    .calc-profile-head.fail{background:var(--warn-bg);color:var(--warn-text)}
-    .calc-profile-head span{text-align:right}
-    .calc-targets{display:grid;gap:5px;margin-top:6px}
-    .calc-target-row{display:flex;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:5px;padding:7px 8px;font-size:10px}
-    .calc-target-row span{color:var(--muted)}.calc-target-row strong{text-align:right}
-    .calc-target-row.pass{background:var(--good-bg);color:var(--good-text)}
-    .calc-target-row.fail{background:var(--warn-bg);color:var(--warn-text)}
-    .calc-target-row.missing{background:var(--metric);color:var(--muted);border-style:dashed}
+    .calc-profile{margin-top:12px;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+    .calc-profile-head{padding:9px 10px;background:var(--metric)}
+    .calc-profile-head strong{display:block;font-size:12px}.calc-profile-head span{display:block;margin-top:2px;color:var(--muted);font-size:10px}
+    .calc-check{display:flex;justify-content:space-between;gap:10px;padding:7px 9px;border-top:1px solid var(--line);font-size:10px}
+    .calc-check.pass{background:var(--good-bg);color:var(--good-text)}.calc-check.fail{background:var(--warn-bg);color:var(--warn-text)}
+    .calc-check.missing{color:var(--muted);border-top-style:dashed}
     .calc-note{margin-top:10px;color:var(--muted);font-size:10px;line-height:1.45}
-    .calc-note.warn{padding:8px;border-left:3px solid var(--warn-text);background:var(--warn-bg);color:var(--warn-text)}
-    .calc-error{padding:10px;border:1px solid var(--line);background:var(--warn-bg);color:var(--warn-text);border-radius:7px;font-size:12px;font-weight:750}
-    @media(max-width:480px){
-      .calc-summary-grid{grid-template-columns:1fr 1fr}
-      .calc-section-head{display:block}.calc-section-head span{display:block;margin-top:2px;text-align:left}
-      .calc-profile-head,.calc-target-row{display:block}.calc-profile-head span,.calc-target-row strong{display:block;margin-top:3px;text-align:left}
-    }
+    .calc-error{margin-top:12px;padding:10px;border:1px solid var(--warn-line);border-radius:7px;background:var(--warn-bg);color:var(--warn-text);font-size:12px;font-weight:750}
+    @media(max-width:480px){.calc-section-head{display:block}.calc-section-head span{display:block;margin-top:2px;text-align:left}.calc-check{display:block}.calc-check strong{display:block;margin-top:2px}}
   </style>
 
 </head>
@@ -171,20 +160,18 @@
           <button class="primary-btn" type="submit">Save to this device</button>
         </form>
 
-        <form id="gaCalcForm" class="hidden" aria-hidden="true"></form>
-        <form id="nutritionCalcForm" class="panel form-panel nutrition-calculator">
-          <h3>Nutrition calculator</h3>
-          <p class="subtle">Enter as-fed values from a Guaranteed Analysis or Typical Nutrient Analysis. This calculator is standalone and does not save anything to the food database.</p>
-
+        <form id="gaCalcForm" class="panel form-panel calc-panel">
+          <h3>GA / TNA nutrition calculator</h3>
+          <p class="subtle">Enter as-fed values from a Guaranteed Analysis or Typical Nutrient Analysis. This calculator is separate from the food database and does not save the values.</p>
           <div class="form-grid">
-            <label>Source
+            <label>Source type
               <select name="sourceType">
                 <option value="ga">Guaranteed Analysis (GA)</option>
                 <option value="tna">Typical Nutrient Analysis (TNA)</option>
               </select>
             </label>
             <label>Compare to profile
-              <select id="nutritionCalcProfile" name="profile">
+              <select id="calcProfile" name="profile">
                 <option value="normal">Normal</option>
                 <option value="diabetes">Diabetes</option>
                 <option value="kidney">Kidney</option>
@@ -194,24 +181,20 @@
                 <option value="custom">Custom / Vet</option>
               </select>
             </label>
-
             <label>Protein % as-fed<input required name="protein" type="number" min="0" max="100" step="0.01" inputmode="decimal" /></label>
             <label>Fat % as-fed<input required name="fat" type="number" min="0" max="100" step="0.01" inputmode="decimal" /></label>
             <label>Fiber % as-fed<input required name="fiber" type="number" min="0" max="100" step="0.01" inputmode="decimal" /></label>
-            <label>Moisture % as-fed<input required name="moisture" type="number" min="0" max="100" step="0.01" inputmode="decimal" /></label>
-            <label>Ash % as-fed <span class="calc-hint">needed if carbs are blank</span><input name="ash" type="number" min="0" max="100" step="0.01" inputmode="decimal" /></label>
-            <label>Carbohydrate % as-fed <span class="calc-hint">optional</span><input name="carb" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="Calculate by difference" /></label>
-
-            <label>Phosphorus % as-fed <span class="calc-hint">optional</span><input name="phosphorus" type="number" min="0" max="100" step="0.001" inputmode="decimal" /></label>
-            <label>Sodium % as-fed <span class="calc-hint">optional</span><input name="sodium" type="number" min="0" max="100" step="0.001" inputmode="decimal" /></label>
-            <label>Magnesium % as-fed <span class="calc-hint">optional</span><input name="magnesium" type="number" min="0" max="100" step="0.001" inputmode="decimal" /></label>
-            <label>Calcium % as-fed <span class="calc-hint">optional</span><input name="calcium" type="number" min="0" max="100" step="0.001" inputmode="decimal" /></label>
-
-            <label class="span-2">Package weight in grams <span class="calc-hint">optional, for kcal/package</span><input name="packageGrams" type="number" min="0" step="0.1" inputmode="decimal" placeholder="e.g. 85" /></label>
+            <label>Moisture % as-fed<input required name="moisture" type="number" min="0" max="99.99" step="0.01" inputmode="decimal" /></label>
+            <label>Ash % as-fed <small>needed if carbs are blank</small><input name="ash" type="number" min="0" max="100" step="0.01" inputmode="decimal" /></label>
+            <label>Carbohydrate % as-fed <small>optional</small><input name="carb" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="Calculate by difference" /></label>
+            <label>Phosphorus % as-fed <small>optional</small><input name="phosphorus" type="number" min="0" max="100" step="0.001" inputmode="decimal" /></label>
+            <label>Sodium % as-fed <small>optional</small><input name="sodium" type="number" min="0" max="100" step="0.001" inputmode="decimal" /></label>
+            <label>Magnesium % as-fed <small>optional</small><input name="magnesium" type="number" min="0" max="100" step="0.001" inputmode="decimal" /></label>
+            <label>Calcium % as-fed <small>optional</small><input name="calcium" type="number" min="0" max="100" step="0.001" inputmode="decimal" /></label>
+            <label class="span-2">Package weight (g) <small>optional, for kcal/package</small><input name="packageGrams" type="number" min="0" step="0.1" inputmode="decimal" placeholder="e.g. 85" /></label>
           </div>
-
           <button class="secondary-btn" type="submit">Calculate breakdown</button>
-          <div id="nutritionCalcResult" class="nutrition-calc-result hidden" aria-live="polite"></div>
+          <div id="gaResult" class="calc-result hidden" aria-live="polite"></div>
         </form>
       </div>
       <div id="customFoodsPanel" class="panel custom-list-panel">
@@ -411,268 +394,176 @@
   <script src="./data/recalls.js"></script>
   <script src="./data/aliases.js"></script>
   <script src="./data/manufacturer_nutrition.js"></script>
+  <script src="./app.js"></script>
 
-  <script>
+  <script id="calc-v039-script">
   (() => {
-    const form = document.getElementById('nutritionCalcForm');
-    const result = document.getElementById('nutritionCalcResult');
-    const profileSelect = document.getElementById('nutritionCalcProfile');
+    const form = document.getElementById('gaCalcForm');
+    const result = document.getElementById('gaResult');
+    const profileSelect = document.getElementById('calcProfile');
     if (!form || !result || !profileSelect) return;
 
-    const profileDefs = {
-      normal:'Normal',
-      diabetes:'Diabetes',
-      kidney:'Kidney',
-      urinary:'Urinary',
-      weight:'Weight management',
-      oncology:'Cancer / oncology',
-      custom:'Custom / Vet'
+    const defaults = {
+      profile:'normal', carbTarget:10, phosTarget:null, kidneySodiumMax:null, kidneyProteinMin:null, kidneyProteinMax:null,
+      urinaryMagnesiumMax:null, urinaryPhosMax:null, urinarySodiumMax:null, urinaryCalciumMax:null,
+      weightKcalMax:null, weightProteinMin:null, oncologyCarbMax:null, oncologyProteinMin:null, oncologyKcalMin:null,
+      customCarbMax:null, customProteinMin:null, customFatMax:null, customPhosMax:null, customMagnesiumMax:null,
+      customCalciumMax:null, customSodiumMax:null, customKcalMin:null, customKcalMax:null
     };
-
     const readSettings = () => {
-      try { return JSON.parse(localStorage.getItem('cfc_settings') || '{}') || {}; }
-      catch { return {}; }
+      let saved = {};
+      try { saved = JSON.parse(localStorage.getItem('cfc_settings') || '{}') || {}; } catch {}
+      return {...defaults, ...saved};
     };
+    const initialSettings = readSettings();
+    const validProfiles = new Set(['normal','diabetes','kidney','urinary','weight','oncology','custom']);
+    profileSelect.value = validProfiles.has(initialSettings.profile) ? initialSettings.profile : 'normal';
 
-    const settings = readSettings();
-    if (profileDefs[settings.profile]) profileSelect.value = settings.profile;
-
-    const finite = value => {
-      if (value == null || String(value).trim() === '') return null;
-      const number = Number(value);
-      return Number.isFinite(number) ? number : null;
+    const num = (fd, key) => {
+      const raw = fd.get(key);
+      if (raw == null || String(raw).trim() === '') return null;
+      const value = Number(raw);
+      return Number.isFinite(value) ? value : null;
     };
-
-    const fmt = (value, digits=1) => {
-      if (value == null || !Number.isFinite(Number(value))) return '—';
-      return Number(value).toFixed(digits).replace(/\.0$/, '');
+    const fmt = (value, digits=1) => value == null || !Number.isFinite(value) ? '—' : Number(value).toFixed(digits).replace(/\.0$/,'');
+    const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const rule = (list,key,op,value,label,unit) => {
+      if (value != null && Number.isFinite(Number(value))) list.push({key,op,value:Number(value),label,unit});
     };
-
-    const rulesFor = profile => {
-      const s = readSettings();
-      const rules = [];
-      const add = (key, op, value, label, unit='') => {
-        const number = finite(value);
-        if (number != null) rules.push({key,op,value:number,label,unit});
-      };
-      if (profile === 'diabetes') add('carb_cal_pct','max',s.carbTarget ?? 10,'Carbs','% cal');
+    const profileRules = profile => {
+      const settings = readSettings();
+      const r = [];
+      if (profile === 'diabetes') rule(r,'carb','max',settings.carbTarget,'Carbohydrate','% ME');
       if (profile === 'kidney') {
-        add('phosphorus_mg_per_100kcal','max',s.phosTarget,'Phosphorus','mg/100 kcal');
-        add('sodium_mg_per_100kcal','max',s.kidneySodiumMax,'Sodium','mg/100 kcal');
-        add('protein_cal_pct','min',s.kidneyProteinMin,'Protein','% cal');
-        add('protein_cal_pct','max',s.kidneyProteinMax,'Protein','% cal');
+        rule(r,'phosphorus','max',settings.phosTarget,'Phosphorus','mg/100 kcal');
+        rule(r,'sodium','max',settings.kidneySodiumMax,'Sodium','mg/100 kcal');
+        rule(r,'protein','min',settings.kidneyProteinMin,'Protein','% ME');
+        rule(r,'protein','max',settings.kidneyProteinMax,'Protein','% ME');
       }
       if (profile === 'urinary') {
-        add('magnesium_mg_per_100kcal','max',s.urinaryMagnesiumMax,'Magnesium','mg/100 kcal');
-        add('phosphorus_mg_per_100kcal','max',s.urinaryPhosMax,'Phosphorus','mg/100 kcal');
-        add('sodium_mg_per_100kcal','max',s.urinarySodiumMax,'Sodium','mg/100 kcal');
-        add('calcium_mg_per_100kcal','max',s.urinaryCalciumMax,'Calcium','mg/100 kcal');
+        rule(r,'magnesium','max',settings.urinaryMagnesiumMax,'Magnesium','mg/100 kcal');
+        rule(r,'phosphorus','max',settings.urinaryPhosMax,'Phosphorus','mg/100 kcal');
+        rule(r,'sodium','max',settings.urinarySodiumMax,'Sodium','mg/100 kcal');
+        rule(r,'calcium','max',settings.urinaryCalciumMax,'Calcium','mg/100 kcal');
       }
       if (profile === 'weight') {
-        add('kcal_per_100g','max',s.weightKcalMax,'Calories','kcal/100 g');
-        add('protein_cal_pct','min',s.weightProteinMin,'Protein','% cal');
+        rule(r,'kcal','max',settings.weightKcalMax,'Calories','kcal/100 g');
+        rule(r,'protein','min',settings.weightProteinMin,'Protein','% ME');
       }
       if (profile === 'oncology') {
-        add('carb_cal_pct','max',s.oncologyCarbMax,'Carbs','% cal');
-        add('protein_cal_pct','min',s.oncologyProteinMin,'Protein','% cal');
-        add('kcal_per_100g','min',s.oncologyKcalMin,'Calories','kcal/100 g');
+        rule(r,'carb','max',settings.oncologyCarbMax,'Carbohydrate','% ME');
+        rule(r,'protein','min',settings.oncologyProteinMin,'Protein','% ME');
+        rule(r,'kcal','min',settings.oncologyKcalMin,'Calories','kcal/100 g');
       }
       if (profile === 'custom') {
-        add('carb_cal_pct','max',s.customCarbMax,'Carbs','% cal');
-        add('protein_cal_pct','min',s.customProteinMin,'Protein','% cal');
-        add('fat_cal_pct','max',s.customFatMax,'Fat','% cal');
-        add('phosphorus_mg_per_100kcal','max',s.customPhosMax,'Phosphorus','mg/100 kcal');
-        add('magnesium_mg_per_100kcal','max',s.customMagnesiumMax,'Magnesium','mg/100 kcal');
-        add('calcium_mg_per_100kcal','max',s.customCalciumMax,'Calcium','mg/100 kcal');
-        add('sodium_mg_per_100kcal','max',s.customSodiumMax,'Sodium','mg/100 kcal');
-        add('kcal_per_100g','min',s.customKcalMin,'Calories','kcal/100 g');
-        add('kcal_per_100g','max',s.customKcalMax,'Calories','kcal/100 g');
+        rule(r,'carb','max',settings.customCarbMax,'Carbohydrate','% ME');
+        rule(r,'protein','min',settings.customProteinMin,'Protein','% ME');
+        rule(r,'fat','max',settings.customFatMax,'Fat','% ME');
+        rule(r,'phosphorus','max',settings.customPhosMax,'Phosphorus','mg/100 kcal');
+        rule(r,'magnesium','max',settings.customMagnesiumMax,'Magnesium','mg/100 kcal');
+        rule(r,'calcium','max',settings.customCalciumMax,'Calcium','mg/100 kcal');
+        rule(r,'sodium','max',settings.customSodiumMax,'Sodium','mg/100 kcal');
+        rule(r,'kcal','min',settings.customKcalMin,'Calories','kcal/100 g');
+        rule(r,'kcal','max',settings.customKcalMax,'Calories','kcal/100 g');
       }
-      return rules;
+      return r;
     };
-
-    const unitValue = (value, key) => {
-      if (value == null) return 'Not available';
-      if (key === 'kcal_per_100g') return `${fmt(value)} kcal/100 g`;
-      if (key.endsWith('_mg_per_100kcal')) return `${fmt(value)} mg/100 kcal`;
-      return `${fmt(value)}% cal`;
-    };
+    const profileLabels = {normal:'Normal',diabetes:'Diabetes',kidney:'Kidney',urinary:'Urinary',weight:'Weight management',oncology:'Cancer / oncology',custom:'Custom / Vet'};
 
     form.addEventListener('submit', event => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const n = key => finite(data.get(key));
-
-      const protein = n('protein');
-      const fat = n('fat');
-      const fiber = n('fiber');
-      const moisture = n('moisture');
-      const ash = n('ash');
-      const enteredCarb = n('carb');
-      const packageGrams = n('packageGrams');
-
+      const fd = new FormData(form);
+      const protein = num(fd,'protein'), fat = num(fd,'fat'), fiber = num(fd,'fiber'), moisture = num(fd,'moisture');
+      const ash = num(fd,'ash'), enteredCarb = num(fd,'carb'), packageGrams = num(fd,'packageGrams');
       const fail = message => {
         result.classList.remove('hidden');
-        result.innerHTML = `<div class="calc-error">${message}</div>`;
+        result.innerHTML = `<div class="calc-error">${esc(message)}</div>`;
       };
-
-      if ([protein,fat,fiber,moisture].some(v => v == null)) {
-        fail('Enter protein, fat, fiber, and moisture.');
-        return;
-      }
-
+      if ([protein,fat,fiber,moisture].some(v => v == null)) return fail('Enter protein, fat, fiber, and moisture.');
       const dryMatter = 100 - moisture;
-      if (dryMatter <= 0) {
-        fail('Moisture must be below 100%.');
-        return;
-      }
+      if (dryMatter <= 0) return fail('Moisture must be below 100%.');
+      if (enteredCarb == null && ash == null) return fail('Enter ash, or enter carbohydrate directly. Ash is needed to calculate carbohydrate by difference.');
 
-      if (enteredCarb == null && ash == null) {
-        fail('Enter ash, or enter carbohydrate directly. Ash is needed to estimate carbohydrate by difference.');
-        return;
-      }
+      const carb = enteredCarb == null ? 100 - protein - fat - fiber - moisture - ash : enteredCarb;
+      if (carb < 0) return fail('The values produce a negative carbohydrate estimate. Check the as-fed entries.');
 
-      const carbohydrate = enteredCarb == null
-        ? 100 - protein - fat - fiber - moisture - ash
-        : enteredCarb;
+      const proteinKcal = 3.5 * protein;
+      const fatKcal = 8.5 * fat;
+      const carbKcal = 3.5 * carb;
+      const kcal100 = proteinKcal + fatKcal + carbKcal;
+      if (kcal100 <= 0) return fail('The energy estimate is zero. Check the macro values.');
 
-      if (carbohydrate < 0) {
-        fail('The entered values leave a negative carbohydrate estimate. Check the as-fed numbers.');
-        return;
-      }
-
-      const proteinKcal = protein * 3.5;
-      const fatKcal = fat * 8.5;
-      const carbKcal = carbohydrate * 3.5;
-      const kcal100g = proteinKcal + fatKcal + carbKcal;
-
-      if (kcal100g <= 0) {
-        fail('The energy estimate is zero. Check the macro values.');
-        return;
-      }
-
-      const proteinME = 100 * proteinKcal / kcal100g;
-      const fatME = 100 * fatKcal / kcal100g;
-      const carbME = 100 * carbKcal / kcal100g;
-      const dmb = value => value == null ? null : 100 * value / dryMatter;
-      const mg100kcal = value => value == null ? null : value * 100000 / kcal100g;
-
+      const dmb = value => value == null ? null : value / dryMatter * 100;
+      const mePct = kcal => kcal == null ? null : kcal / kcal100 * 100;
+      const mineralMg100Kcal = pct => pct == null ? null : pct * 100000 / kcal100;
       const minerals = {
-        phosphorus:n('phosphorus'),
-        sodium:n('sodium'),
-        magnesium:n('magnesium'),
-        calcium:n('calcium')
+        phosphorus:num(fd,'phosphorus'), sodium:num(fd,'sodium'),
+        magnesium:num(fd,'magnesium'), calcium:num(fd,'calcium')
+      };
+      const values = {
+        protein:mePct(proteinKcal), fat:mePct(fatKcal), carb:mePct(carbKcal), kcal:kcal100,
+        phosphorus:mineralMg100Kcal(minerals.phosphorus), sodium:mineralMg100Kcal(minerals.sodium),
+        magnesium:mineralMg100Kcal(minerals.magnesium), calcium:mineralMg100Kcal(minerals.calcium)
       };
 
-      const estimate = {
-        protein_cal_pct:proteinME,
-        fat_cal_pct:fatME,
-        carb_cal_pct:carbME,
-        kcal_per_100g:kcal100g,
-        phosphorus_mg_per_100kcal:mg100kcal(minerals.phosphorus),
-        sodium_mg_per_100kcal:mg100kcal(minerals.sodium),
-        magnesium_mg_per_100kcal:mg100kcal(minerals.magnesium),
-        calcium_mg_per_100kcal:mg100kcal(minerals.calcium)
-      };
-
-      const cell = (value, suffix='') => value == null ? '—' : `${fmt(value)}${suffix}`;
       const rows = [
-        ['Protein',protein,dmb(protein),proteinME,proteinKcal],
-        ['Fat',fat,dmb(fat),fatME,fatKcal],
-        ['Carbohydrate',carbohydrate,dmb(carbohydrate),carbME,carbKcal],
+        ['Protein',protein,dmb(protein),values.protein,proteinKcal],
+        ['Fat',fat,dmb(fat),values.fat,fatKcal],
+        ['Carbohydrate',carb,dmb(carb),values.carb,carbKcal],
         ['Fiber',fiber,dmb(fiber),null,null],
-        ['Moisture',moisture,null,null,null],
-        ['Ash',ash,dmb(ash),null,null]
+        ['Ash',ash,dmb(ash),null,null],
+        ['Moisture',moisture,null,null,null]
       ];
-
       const mineralRows = [
-        ['Phosphorus',minerals.phosphorus,estimate.phosphorus_mg_per_100kcal],
-        ['Sodium',minerals.sodium,estimate.sodium_mg_per_100kcal],
-        ['Magnesium',minerals.magnesium,estimate.magnesium_mg_per_100kcal],
-        ['Calcium',minerals.calcium,estimate.calcium_mg_per_100kcal]
-      ].filter(row => row[1] != null);
+        ['Phosphorus',minerals.phosphorus,values.phosphorus],
+        ['Sodium',minerals.sodium,values.sodium],
+        ['Magnesium',minerals.magnesium,values.magnesium],
+        ['Calcium',minerals.calcium,values.calcium]
+      ].filter(([,v]) => v != null);
 
-      const profile = profileDefs[data.get('profile')] ? data.get('profile') : 'normal';
-      const rules = rulesFor(profile);
-
+      const profile = validProfiles.has(String(fd.get('profile'))) ? String(fd.get('profile')) : 'normal';
+      const rules = profileRules(profile);
       let profileHtml = '';
       if (profile === 'normal') {
         profileHtml = `<div class="calc-profile"><div class="calc-profile-head"><strong>Normal profile</strong><span>No condition-specific numeric target check.</span></div></div>`;
       } else if (!rules.length) {
-        profileHtml = `<div class="calc-profile"><div class="calc-profile-head"><strong>${profileDefs[profile]} profile</strong><span>No numeric targets are configured for this profile.</span></div></div>`;
+        profileHtml = `<div class="calc-profile"><div class="calc-profile-head"><strong>${esc(profileLabels[profile])} profile</strong><span>No numeric targets are configured for this profile in Settings.</span></div></div>`;
       } else {
-        let hasFailure = false;
-        let hasMissing = false;
-        const checks = rules.map(rule => {
-          const actual = estimate[rule.key];
-          if (actual == null) {
-            hasMissing = true;
-            return `<div class="calc-target-row missing"><span>${rule.label} ${rule.op === 'max' ? '≤' : '≥'} ${fmt(rule.value)} ${rule.unit}</span><strong>Not available</strong></div>`;
-          }
-          const pass = rule.op === 'max' ? actual <= rule.value : actual >= rule.value;
-          if (!pass) hasFailure = true;
-          return `<div class="calc-target-row ${pass ? 'pass' : 'fail'}"><span>${rule.label} ${rule.op === 'max' ? '≤' : '≥'} ${fmt(rule.value)} ${rule.unit}</span><strong>${unitValue(actual,rule.key)}</strong></div>`;
+        const checks = rules.map(r => {
+          const actual = values[r.key];
+          if (actual == null) return `<div class="calc-check missing"><span>${esc(r.label)} ${r.op==='max'?'≤':'≥'} ${fmt(r.value)} ${esc(r.unit)}</span><strong>Not entered</strong></div>`;
+          const pass = r.op === 'max' ? actual <= r.value : actual >= r.value;
+          return `<div class="calc-check ${pass?'pass':'fail'}"><span>${esc(r.label)} ${r.op==='max'?'≤':'≥'} ${fmt(r.value)} ${esc(r.unit)}</span><strong>${fmt(actual)} ${esc(r.unit)}</strong></div>`;
         }).join('');
-        const message = hasFailure ? 'Outside at least one configured target' : hasMissing ? 'More data needed for all configured targets' : 'Within all configured targets';
-        const cls = hasFailure ? 'fail' : (!hasMissing ? 'pass' : '');
-        profileHtml = `<div class="calc-profile"><div class="calc-profile-head ${cls}"><strong>${profileDefs[profile]} profile</strong><span>${message}</span></div><div class="calc-targets">${checks}</div></div>`;
+        profileHtml = `<div class="calc-profile"><div class="calc-profile-head"><strong>${esc(profileLabels[profile])} profile</strong><span>Compared with your currently configured targets.</span></div>${checks}</div>`;
       }
 
-      const sum = protein + fat + fiber + moisture + carbohydrate + (ash ?? 0);
-      const sumNote = ash != null && enteredCarb != null && Math.abs(sum - 100) > 2
-        ? `<div class="calc-note warn">Entered proximate values total ${fmt(sum)}%. Check whether all values use the same basis and whether rounding is involved.</div>`
-        : '';
-
-      const sourceType = data.get('sourceType') === 'tna' ? 'Typical Nutrient Analysis' : 'Guaranteed Analysis';
-      const sourceNote = data.get('sourceType') === 'ga'
-        ? 'GA values are label minima/maxima, so the calculated carbohydrate, DMB, %ME, and kcal values are screening estimates rather than a true typical analysis.'
-        : 'TNA values are generally better suited to this calculation when they are reported as typical/average as-fed values.';
+      const sourceType = String(fd.get('sourceType')) === 'tna' ? 'TNA' : 'GA';
+      const sourceNote = sourceType === 'GA'
+        ? 'GA values are label minima/maxima, so calculated DMB, %ME, carbohydrate, and kcal values are estimates.'
+        : 'TNA values are generally a better basis for these conversions when the manufacturer reports them as typical as-fed values.';
 
       result.classList.remove('hidden');
       result.innerHTML = `
-        <div class="calc-summary-grid">
-          <div><span>Dry matter</span><strong>${cell(dryMatter,'%')}</strong></div>
-          <div><span>Estimated energy</span><strong>${cell(kcal100g,' kcal/100 g')}</strong></div>
-          <div><span>Estimated energy</span><strong>${cell(kcal100g*10,' kcal/kg')}</strong></div>
-          <div><span>Package</span><strong>${packageGrams == null ? '—' : cell(kcal100g*packageGrams/100,' kcal')}</strong></div>
+        <div class="calc-summary">
+          <div><span>Dry matter</span><strong>${fmt(dryMatter)}%</strong></div>
+          <div><span>Estimated energy</span><strong>${fmt(kcal100)} kcal/100 g</strong></div>
+          <div><span>Estimated energy</span><strong>${fmt(kcal100*10)} kcal/kg</strong></div>
+          <div><span>Estimated package energy</span><strong>${packageGrams == null ? '—' : `${fmt(kcal100*packageGrams/100)} kcal`}</strong></div>
         </div>
-
         <div class="calc-section">
-          <div class="calc-section-head"><strong>Breakdown</strong><span>${enteredCarb == null ? 'Carbohydrate calculated by difference' : 'Carbohydrate entered directly'}</span></div>
-          <div class="calc-table-wrap">
-            <table class="calc-table">
-              <thead><tr><th>Nutrient</th><th>As-fed</th><th>DMB</th><th>% ME</th><th>kcal/100 g</th></tr></thead>
-              <tbody>${rows.map(([label,af,dm,me,kcal]) => `<tr><th>${label}</th><td>${cell(af,'%')}</td><td>${cell(dm,'%')}</td><td>${cell(me,'%')}</td><td>${cell(kcal)}</td></tr>`).join('')}</tbody>
-            </table>
-          </div>
+          <div class="calc-section-head"><strong>Macronutrient breakdown</strong><span>${enteredCarb == null ? 'Carbohydrate calculated by difference' : 'Carbohydrate entered directly'}</span></div>
+          <div class="calc-table-wrap"><table class="calc-table">
+            <thead><tr><th>Nutrient</th><th>As-fed</th><th>DMB</th><th>% ME</th><th>kcal/100 g</th></tr></thead>
+            <tbody>${rows.map(([label,asFed,dry,me,kcal]) => `<tr><th>${label}</th><td>${fmt(asFed)}${asFed==null?'':'%'}</td><td>${fmt(dry)}${dry==null?'':'%'}</td><td>${fmt(me)}${me==null?'':'%'}</td><td>${fmt(kcal)}</td></tr>`).join('')}</tbody>
+          </table></div>
         </div>
-
-        ${mineralRows.length ? `
-        <div class="calc-section">
-          <div class="calc-section-head"><strong>Optional minerals</strong><span>Converted for profile comparison</span></div>
-          <div class="calc-table-wrap">
-            <table class="calc-table calc-mineral-table">
-              <thead><tr><th>Mineral</th><th>As-fed</th><th>DMB</th><th>mg/100 kcal</th></tr></thead>
-              <tbody>${mineralRows.map(([label,af,mg]) => `<tr><th>${label}</th><td>${cell(af,'%')}</td><td>${cell(dmb(af),'%')}</td><td>${cell(mg)}</td></tr>`).join('')}</tbody>
-            </table>
-          </div>
-        </div>` : ''}
-
+        ${mineralRows.length ? `<div class="calc-section"><div class="calc-section-head"><strong>Mineral breakdown</strong><span>As-fed → DMB → energy-normalized</span></div><div class="calc-table-wrap"><table class="calc-table"><thead><tr><th>Mineral</th><th>As-fed</th><th>DMB</th><th>mg/100 kcal</th></tr></thead><tbody>${mineralRows.map(([label,asFed,mg]) => `<tr><th>${label}</th><td>${fmt(asFed,3)}%</td><td>${fmt(dmb(asFed),3)}%</td><td>${fmt(mg)}</td></tr>`).join('')}</tbody></table></div></div>` : ''}
         ${profileHtml}
-        ${sumNote}
-        <div class="calc-note"><strong>${sourceType}</strong> · Estimated with modified Atwater factors: protein 3.5 kcal/g, fat 8.5 kcal/g, carbohydrate 3.5 kcal/g. ${sourceNote}</div>
+        <div class="calc-note"><strong>${sourceType}</strong> · Modified Atwater estimate uses 3.5 kcal/g protein, 8.5 kcal/g fat, and 3.5 kcal/g carbohydrate. ${esc(sourceNote)}</div>
       `;
-    });
-
-    window.addEventListener('storage', event => {
-      if (event.key === 'cfc_settings') {
-        const next = readSettings();
-        if (profileDefs[next.profile]) profileSelect.value = next.profile;
-      }
     });
   })();
   </script>
 
-  <script src="./app.js"></script>
 </body>
 </html>
